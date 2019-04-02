@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/1dv430/ep222ue-project/issues"
   },
-  "homepage": "https://github.com/1dv430/ep222ue-project#readme"
+  "homepage": "https://github.com/1dv430/ep222ue-project#readme",
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
 }
