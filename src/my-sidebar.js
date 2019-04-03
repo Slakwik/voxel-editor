@@ -11,6 +11,12 @@ class SideBar extends LitElement {
         top: 20%;
         background-color: orange;
       }
+      div {
+        background-color: yellow;
+      }
+      h4 {
+        margin: 10px 0 0 0;
+      }
     `
   }
 
@@ -18,6 +24,11 @@ class SideBar extends LitElement {
     return html`
       <h3>Build</h3>
       <h3>Color</h3>
+      
+      <div>
+        <h4>Add</h4>
+        <h4>Remove</h4>
+      </div>
     `
   }
 }
