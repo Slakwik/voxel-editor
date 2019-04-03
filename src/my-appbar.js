@@ -18,6 +18,30 @@ class MyAppBar extends LitElement {
   render () {
     return html`
       <h2>Voxel editor</h2>
+
+      <div>
+        <select>
+          <option>File</option>
+          <option>Open</option>
+          <option>Save</option>
+          <option>Export</option>
+        </select>
+
+        <select>
+          <option>Edit</option>
+          <option>Undo</option>
+          <option>Redo</option>
+          <option>Settings</option>
+        </select>
+
+        <select>
+          <option>View</option>
+          <option>Top</option>
+          <option>Right</option>
+          <option>Bottom</option>
+          <option>Left</option>
+        </select>
+      </div>
     `
   }
 }
