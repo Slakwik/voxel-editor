@@ -7,7 +7,6 @@ class MyApp extends LitElement {
     return html`
       <my-appbar></my-appbar>
       <my-editor></my-editor>
-      <p>Hello, from MyApp!</p>
     `
   }
 }
