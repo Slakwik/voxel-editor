@@ -6,8 +6,11 @@ class MyEditor extends LitElement {
       :host {
         display: block;
         width: 100%;
-        height: 100%;
+        height: 95%;
         background-color: darkgray;
+      }
+      p {
+        margin: 0;
       }
     `
   }
