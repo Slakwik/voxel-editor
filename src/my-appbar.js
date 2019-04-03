@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit-element'
-import './my-element'
 
 class MyAppBar extends LitElement {
   static get styles () {
