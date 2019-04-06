@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
+import { WebGLRenderer } from 'three'
 
 class MyEditor extends LitElement {
   static get styles () {
@@ -15,9 +16,17 @@ class MyEditor extends LitElement {
     `
   }
 
+  constructor () {
+    super()
+
+    this.renderer = new WebGLRenderer()
+
+    this.renderer.setSize(1600, 900)
+  }
+
   render () {
     return html`
-      <p>3D view goes here.</p>
+      <div>${this.renderer.domElement}</div>
     `
   }
 }
