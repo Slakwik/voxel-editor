@@ -21,6 +21,11 @@ class MyEditor extends LitElement {
 
     this.scene = new THREE.Scene()
 
+    const geometry1 = new THREE.PlaneBufferGeometry(4, 4, 16)
+    const material1 = new THREE.MeshBasicMaterial({ color: 0xE59866 })
+    const plane = new THREE.Mesh(geometry1, material1)
+    this.scene.add(plane)
+
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1)
     const material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF })
     const cube = new THREE.Mesh(geometry, material)
