@@ -33,7 +33,8 @@ class MyEditor extends LitElement {
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
 
-    this.camera.position.z = 3
+    this.camera.position.z = 4
+    this.camera.position.y = 1
 
     this.renderer = new THREE.WebGLRenderer()
 
