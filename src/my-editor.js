@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
-import { WebGLRenderer } from 'three'
+import { WebGLRenderer, Scene, PerspectiveCamera } from 'three'
 
 class MyEditor extends LitElement {
   static get styles () {
@@ -19,9 +19,18 @@ class MyEditor extends LitElement {
   constructor () {
     super()
 
+    this.scene = new Scene()
+
+    this.camera = new PerspectiveCamera(75, 16 / 9, 0.1, 1000)
+
     this.renderer = new WebGLRenderer()
 
     this.renderer.setSize(1600, 900)
+  }
+
+  animate () {
+    window.requestAnimationFrame(this.animate)
+    this.renderer.render(this.scene, this.camera)
   }
 
   render () {
