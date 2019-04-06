@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
-import { WebGLRenderer, Scene, PerspectiveCamera, BoxBufferGeometry, MeshBasicMaterial, Mesh } from 'three'
+import * as THREE from 'three'
 
 class MyEditor extends LitElement {
   static get styles () {
@@ -19,18 +19,18 @@ class MyEditor extends LitElement {
   constructor () {
     super()
 
-    this.scene = new Scene()
+    this.scene = new THREE.Scene()
 
-    const geometry = new BoxBufferGeometry(1, 1, 1)
-    const material = new MeshBasicMaterial({ color: 0xFFFFFF })
-    const cube = new Mesh(geometry, material)
+    const geometry = new THREE.BoxBufferGeometry(1, 1, 1)
+    const material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF })
+    const cube = new THREE.Mesh(geometry, material)
     this.scene.add(cube)
 
-    this.camera = new PerspectiveCamera(75, 16 / 9, 0.1, 1000)
+    this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
 
     this.camera.position.z = 3
 
-    this.renderer = new WebGLRenderer()
+    this.renderer = new THREE.WebGLRenderer()
 
     this.renderer.setSize(1600, 900)
 
