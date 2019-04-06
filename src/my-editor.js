@@ -25,6 +25,7 @@ class MyEditor extends LitElement {
     const orangeMaterial = new THREE.MeshBasicMaterial({ color: 0xE59866, side: THREE.DoubleSide })
     const plane = new THREE.Mesh(planeGeometry, orangeMaterial)
     plane.rotation.x = Math.PI / 2
+    plane.position.y = -0.5
     this.scene.add(plane)
 
     const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
@@ -34,7 +35,7 @@ class MyEditor extends LitElement {
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
 
-    this.camera.position.z = 4
+    this.camera.position.z = 5
     this.camera.position.y = 1
 
     this.renderer = new THREE.WebGLRenderer()
