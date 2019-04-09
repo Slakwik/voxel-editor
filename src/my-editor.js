@@ -22,12 +22,9 @@ class MyEditor extends LitElement {
 
     this.scene = new THREE.Scene()
 
-    const planeGeometry = new THREE.PlaneBufferGeometry(4, 4, 16)
-    const orangeMaterial = new THREE.MeshBasicMaterial({ color: 0xE59866, side: THREE.DoubleSide })
-    const plane = new THREE.Mesh(planeGeometry, orangeMaterial)
-    plane.rotation.x = Math.PI / 2
-    plane.position.y = -0.5
-    this.scene.add(plane)
+    const grid = new THREE.GridHelper(25, 25, 0x444444, 0x888888)
+    this.scene.add(grid)
+    grid.position.y = -0.5
 
     const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
     const whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF })
