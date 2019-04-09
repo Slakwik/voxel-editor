@@ -27,8 +27,8 @@ class MyEditor extends LitElement {
     grid.position.y = -0.5
 
     const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
-    const whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF })
-    const cube = new THREE.Mesh(boxGeometry, whiteMaterial)
+    const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
+    const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
     this.scene.add(cube)
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
