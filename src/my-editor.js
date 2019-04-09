@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit-element'
-import * as THREE from 'three'
+
+const THREE = window.THREE
 
 class MyEditor extends LitElement {
   static get styles () {
@@ -42,11 +43,14 @@ class MyEditor extends LitElement {
 
     this.renderer.setSize(1600, 900)
 
+    this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
+
     this.animate()
   }
 
   animate () {
-    window.requestAnimationFrame(this.animate)
+    window.requestAnimationFrame(this.animate.bind(this))
+    this.controls.update()
     this.renderer.render(this.scene, this.camera)
   }
 
