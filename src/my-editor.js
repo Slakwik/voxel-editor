@@ -26,6 +26,13 @@ class MyEditor extends LitElement {
     this.scene.add(grid)
     grid.position.y = -0.5
 
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.6)
+    this.scene.add(ambientLight)
+
+    const pointLight = new THREE.PointLight(0xffffff, 0.8, 100)
+    pointLight.position.set(15, 15, 15)
+    this.scene.add(pointLight)
+
     const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
     const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
     const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
