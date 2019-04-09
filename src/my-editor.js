@@ -50,6 +50,16 @@ class MyEditor extends LitElement {
     this.controls.panSpeed = 0.3
     this.controls.zoomSpeed = 1.6
 
+    const sky = new THREE.Sky()
+    sky.scale.setScalar(100)
+    sky.material.uniforms['turbidity'].value = 10
+    sky.material.uniforms['rayleigh'].value = 0.5
+    sky.material.uniforms['luminance'].value = 0.7
+    sky.material.uniforms['mieCoefficient'].value = 0.006
+    sky.material.uniforms['mieDirectionalG'].value = 0.85
+    sky.material.uniforms['sunPosition'].value = new THREE.Vector3(1, 1, 1)
+    this.scene.add(sky)
+
     this.animate()
   }
 
