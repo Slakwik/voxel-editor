@@ -44,6 +44,14 @@ class MyEditor extends LitElement {
     this.renderer.setSize(1600, 900)
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.enableKeys = false
+    this.controls.enableDamping = true
+    this.controls.dampingFactor = 0.3
+    this.controls.maxDistance = 60
+    this.controls.minDistance = 3
+    this.controls.rotateSpeed = 0.3
+    this.controls.panSpeed = 0.3
+    this.controls.zoomSpeed = 1.6
 
     this.animate()
   }
