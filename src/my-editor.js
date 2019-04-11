@@ -23,6 +23,7 @@ class MyEditor extends LitElement {
     this.scene = new THREE.Scene()
 
     const grid = new THREE.GridHelper(25, 25, 0x444444, 0x888888)
+    grid.name = 'Grid'
     this.scene.add(grid)
     grid.position.y = -0.5
 
@@ -36,6 +37,7 @@ class MyEditor extends LitElement {
     const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
     const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
     const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
+    cube.name = 'Cube'
     this.scene.add(cube)
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
@@ -65,10 +67,13 @@ class MyEditor extends LitElement {
     sky.material.uniforms['mieCoefficient'].value = 0.006
     sky.material.uniforms['mieDirectionalG'].value = 0.85
     sky.material.uniforms['sunPosition'].value = new THREE.Vector3(1, 1, 1)
+    sky.name = 'Sky'
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
     this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
+
+    this.raycaster = new THREE.Raycaster()
 
     this.animate()
   }
@@ -89,6 +94,16 @@ class MyEditor extends LitElement {
 
   animate () {
     window.requestAnimationFrame(this.animate.bind(this))
+
+    this.raycaster.setFromCamera(this.mouse, this.camera)
+
+    const intersects = this.raycaster.intersectObjects(this.scene.children)
+
+    if (intersects.length > 0) {
+      const firstIntersect = intersects[0]
+      console.log(firstIntersect.object.name)
+    }
+
     this.controls.update()
     this.renderer.render(this.scene, this.camera)
   }
