@@ -76,12 +76,15 @@ class MyEditor extends LitElement {
   onMouseMove (event) {
     this.rendererOffsetX = parseInt(this.renderer.domElement.getBoundingClientRect().left)
     this.rendererOffsetY = parseInt(this.renderer.domElement.getBoundingClientRect().top)
+    this.rendererWidth = this.renderer.domElement.getBoundingClientRect().width
+    this.rendererHeight = this.renderer.domElement.getBoundingClientRect().height
 
-    this.mouse.x = event.clientX - this.rendererOffsetX
-    this.mouse.y = event.clientY - this.rendererOffsetY
+    this.mouse.x = ((event.clientX - this.rendererOffsetX) / this.clientWidth) * 2 - 1
+    this.mouse.y = ((event.clientY - this.rendererOffsetY) / this.clientHeight) * -2 + 1
 
     console.log('x: ' + this.mouse.x + '   ' + 'y: ' + this.mouse.y)
     console.log('offX: ' + this.rendererOffsetX + '   ' + 'offY: ' + this.rendererOffsetY)
+    console.log('height: ' + this.rendererHeight + '   ' + 'width: ' + this.rendererWidth)
   }
 
   animate () {
