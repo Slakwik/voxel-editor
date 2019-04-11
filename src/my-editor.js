@@ -22,19 +22,19 @@ class MyEditor extends LitElement {
 
     this.scene = new THREE.Scene()
 
-    const grid = new THREE.GridHelper(25, 25, 0x444444, 0x888888)
+    const grid = new THREE.GridHelper(250, 25, 0x444444, 0x888888)
     grid.name = 'Grid'
     this.scene.add(grid)
-    grid.position.y = -0.5
+    grid.position.y = -5
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.6)
     this.scene.add(ambientLight)
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.8, 100)
-    pointLight.position.set(15, 15, 15)
+    const pointLight = new THREE.PointLight(0xffffff, 0.8, 1000)
+    pointLight.position.set(150, 150, 150)
     this.scene.add(pointLight)
 
-    const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
+    const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
     const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
     const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
     cube.name = 'Cube'
@@ -42,8 +42,8 @@ class MyEditor extends LitElement {
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
 
-    this.camera.position.z = 5
-    this.camera.position.y = 1
+    this.camera.position.z = 50
+    this.camera.position.y = 10
 
     this.renderer = new THREE.WebGLRenderer()
 
@@ -53,14 +53,14 @@ class MyEditor extends LitElement {
     this.controls.enableKeys = false
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.3
-    this.controls.maxDistance = 60
-    this.controls.minDistance = 3
+    this.controls.maxDistance = 600
+    this.controls.minDistance = 30
     this.controls.rotateSpeed = 0.3
     this.controls.panSpeed = 0.3
     this.controls.zoomSpeed = 1.6
 
     const sky = new THREE.Sky()
-    sky.scale.setScalar(100)
+    sky.scale.setScalar(1000)
     sky.material.uniforms['turbidity'].value = 10
     sky.material.uniforms['rayleigh'].value = 0.5
     sky.material.uniforms['luminance'].value = 0.7
