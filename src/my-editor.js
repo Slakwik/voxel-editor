@@ -37,12 +37,10 @@ class MyEditor extends LitElement {
     this.addCube(new THREE.Vector3(0, 0, 0))
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
-
     this.camera.position.z = 50
     this.camera.position.y = 10
 
     this.renderer = new THREE.WebGLRenderer()
-
     this.renderer.setSize(1600, 900)
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
@@ -67,6 +65,7 @@ class MyEditor extends LitElement {
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
+
     this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
     this.renderer.domElement.addEventListener('click', this.onClick.bind(this))
     this.renderer.domElement.addEventListener('contextmenu', this.onRightClick.bind(this))
@@ -89,9 +88,11 @@ class MyEditor extends LitElement {
   addCube (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
     const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
+
     const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
     cube.position.set(position.x, position.y, position.z)
     cube.name = 'Cube: ' + cube.id
+
     this.scene.add(cube)
   }
 
