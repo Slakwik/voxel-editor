@@ -101,15 +101,6 @@ class MyEditor extends LitElement {
 
     if (intersects.length > 0) {
       const firstIntersect = intersects[0]
-      console.log(firstIntersect.object.name)
-      console.log('x: ' + firstIntersect.point.x.toFixed(1) + ' ' +
-                  'y: ' + firstIntersect.point.y.toFixed(1) + ' ' +
-                  'z: ' + firstIntersect.point.z.toFixed(1))
-
-      let clickPosition = new THREE.Vector3(
-        firstIntersect.point.x,
-        firstIntersect.point.y,
-        firstIntersect.point.z)
 
       const clickedObjectPosition = new THREE.Vector3(
         firstIntersect.object.position.x,
@@ -119,15 +110,9 @@ class MyEditor extends LitElement {
 
       const placementDirection = firstIntersect.face.normal
 
-      console.log(placementDirection)
-
       const placementOffset = placementDirection.multiplyScalar(10)
 
-      console.log(placementOffset)
-
       const placementPosition = clickedObjectPosition.add(placementOffset)
-
-      console.log(placementPosition)
 
       this.addCube(placementPosition)
     }
