@@ -94,6 +94,14 @@ class MyEditor extends LitElement {
     this.scene.add(cube)
   }
 
+  removeCube (name) {
+    if (name.slice(0, 4) !== 'Cube') {
+      return
+    }
+    const cube = this.scene.getObjectByName(name)
+    this.scene.remove(cube)
+  }
+
   onClick (event) {
     this.raycaster.setFromCamera(this.mouse, this.camera)
 
