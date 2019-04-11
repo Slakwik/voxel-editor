@@ -23,7 +23,7 @@ class MyEditor extends LitElement {
     this.scene = new THREE.Scene()
 
     const grid = new THREE.GridHelper(250, 25, 0x444444, 0x888888)
-    grid.name = 'Grid'
+    grid.name = 'Grid: ' + grid.id
     this.scene.add(grid)
     grid.position.y = -5
 
@@ -63,7 +63,7 @@ class MyEditor extends LitElement {
     sky.material.uniforms['mieCoefficient'].value = 0.006
     sky.material.uniforms['mieDirectionalG'].value = 0.85
     sky.material.uniforms['sunPosition'].value = new THREE.Vector3(1, 1, 1)
-    sky.name = 'Sky'
+    sky.name = 'Sky: ' + sky.id
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
@@ -90,7 +90,7 @@ class MyEditor extends LitElement {
     const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
     const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
     cube.position.set(position.x, position.y, position.z)
-    cube.name = 'Cube'
+    cube.name = 'Cube: ' + cube.id
     this.scene.add(cube)
   }
 
