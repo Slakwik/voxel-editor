@@ -88,8 +88,6 @@ class MyEditor extends LitElement {
     this.mouse.y = ((event.clientY - rendererOffsetY) / rendererHeight) * -2 + 1
 
     console.log('x: ' + this.mouse.x + '   ' + 'y: ' + this.mouse.y)
-    console.log('offX: ' + this.rendererOffsetX + '   ' + 'offY: ' + this.rendererOffsetY)
-    console.log('height: ' + this.rendererHeight + '   ' + 'width: ' + this.rendererWidth)
   }
 
   animate () {
