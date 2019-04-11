@@ -69,6 +69,7 @@ class MyEditor extends LitElement {
     this.mouse = new THREE.Vector2()
     this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
     this.renderer.domElement.addEventListener('click', this.onClick.bind(this))
+    this.renderer.domElement.addEventListener('contextmenu', this.onRightClick.bind(this))
 
     this.raycaster = new THREE.Raycaster()
 
@@ -103,27 +104,37 @@ class MyEditor extends LitElement {
   }
 
   onClick (event) {
+    const firstIntersect = this.getFirstRaycastIntersect()
+
+    const clickedObjectPosition = new THREE.Vector3(
+      firstIntersect.object.position.x,
+      firstIntersect.object.position.y,
+      firstIntersect.object.position.z
+    )
+
+    const placementDirection = firstIntersect.face.normal
+
+    const placementOffset = placementDirection.multiplyScalar(10)
+
+    const placementPosition = clickedObjectPosition.add(placementOffset)
+
+    this.addCube(placementPosition)
+  }
+
+  getFirstRaycastIntersect () {
     this.raycaster.setFromCamera(this.mouse, this.camera)
 
     const intersects = this.raycaster.intersectObjects(this.scene.children)
 
     if (intersects.length > 0) {
       const firstIntersect = intersects[0]
-
-      const clickedObjectPosition = new THREE.Vector3(
-        firstIntersect.object.position.x,
-        firstIntersect.object.position.y,
-        firstIntersect.object.position.z
-      )
-
-      const placementDirection = firstIntersect.face.normal
-
-      const placementOffset = placementDirection.multiplyScalar(10)
-
-      const placementPosition = clickedObjectPosition.add(placementOffset)
-
-      this.addCube(placementPosition)
+      return firstIntersect
     }
+  }
+
+  onRightClick (event) {
+    const name = this.getFirstRaycastIntersect().object.name
+    this.removeCube(name)
   }
 
   animate () {
