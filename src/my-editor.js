@@ -105,6 +105,13 @@ class MyEditor extends LitElement {
       console.log('x: ' + firstIntersect.point.x.toFixed(1) + ' ' +
                   'y: ' + firstIntersect.point.y.toFixed(1) + ' ' +
                   'z: ' + firstIntersect.point.z.toFixed(1))
+
+      const placementPosition = new THREE.Vector3(
+        firstIntersect.point.x.toFixed(1),
+        firstIntersect.point.y.toFixed(1),
+        firstIntersect.point.z.toFixed(1))
+
+      this.addCube(placementPosition)
     }
   }
 
