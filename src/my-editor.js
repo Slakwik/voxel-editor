@@ -68,6 +68,7 @@ class MyEditor extends LitElement {
 
     this.mouse = new THREE.Vector2()
     this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
+    this.renderer.domElement.addEventListener('click', this.onClick.bind(this))
 
     this.raycaster = new THREE.Raycaster()
 
@@ -93,9 +94,7 @@ class MyEditor extends LitElement {
     this.scene.add(cube)
   }
 
-  animate () {
-    window.requestAnimationFrame(this.animate.bind(this))
-
+  onClick (event) {
     this.raycaster.setFromCamera(this.mouse, this.camera)
 
     const intersects = this.raycaster.intersectObjects(this.scene.children)
@@ -107,7 +106,10 @@ class MyEditor extends LitElement {
                   'y: ' + firstIntersect.point.y.toFixed(1) + ' ' +
                   'z: ' + firstIntersect.point.z.toFixed(1))
     }
+  }
 
+  animate () {
+    window.requestAnimationFrame(this.animate.bind(this))
     this.controls.update()
     this.renderer.render(this.scene, this.camera)
   }
