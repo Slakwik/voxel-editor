@@ -67,7 +67,16 @@ class MyEditor extends LitElement {
     sky.material.uniforms['sunPosition'].value = new THREE.Vector3(1, 1, 1)
     this.scene.add(sky)
 
+    this.mouse = new THREE.Vector2()
+    window.addEventListener('mousemove', this.onMouseMove.bind(this))
+
     this.animate()
+  }
+
+  onMouseMove (event) {
+    this.mouse.x = event.clientX
+    this.mouse.y = event.clientY
+    console.log('x: ' + this.mouse.x + '   ' + 'y: ' + this.mouse.y)
   }
 
   animate () {
