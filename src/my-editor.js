@@ -68,15 +68,20 @@ class MyEditor extends LitElement {
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
-    window.addEventListener('mousemove', this.onMouseMove.bind(this))
+    this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
 
     this.animate()
   }
 
   onMouseMove (event) {
-    this.mouse.x = event.clientX
-    this.mouse.y = event.clientY
+    this.rendererOffsetX = parseInt(this.renderer.domElement.getBoundingClientRect().left)
+    this.rendererOffsetY = parseInt(this.renderer.domElement.getBoundingClientRect().top)
+
+    this.mouse.x = event.clientX - this.rendererOffsetX
+    this.mouse.y = event.clientY - this.rendererOffsetY
+
     console.log('x: ' + this.mouse.x + '   ' + 'y: ' + this.mouse.y)
+    console.log('offX: ' + this.rendererOffsetX + '   ' + 'offY: ' + this.rendererOffsetY)
   }
 
   animate () {
