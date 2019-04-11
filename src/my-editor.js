@@ -98,6 +98,9 @@ class MyEditor extends LitElement {
     if (intersects.length > 0) {
       const firstIntersect = intersects[0]
       console.log(firstIntersect.object.name)
+      console.log('x: ' + firstIntersect.point.x.toFixed(1) + ' ' +
+                  'y: ' + firstIntersect.point.y.toFixed(1) + ' ' +
+                  'z: ' + firstIntersect.point.z.toFixed(1))
     }
 
     this.controls.update()
