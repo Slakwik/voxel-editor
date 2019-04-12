@@ -17,6 +17,16 @@ class MyEditor extends LitElement {
     `
   }
 
+  static get properties () {
+    return {
+      mode: { type: String }
+    }
+  }
+
+  attributeChangedCallback (name, oldval, newval) {
+    console.log(name + ' changed to: ' + newval)
+  }
+
   constructor () {
     super()
 

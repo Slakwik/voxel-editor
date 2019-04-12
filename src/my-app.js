@@ -4,11 +4,22 @@ import './my-editor'
 import './my-sidebar'
 
 class MyApp extends LitElement {
+  static get properties () {
+    return {
+      mode: { type: String }
+    }
+  }
+
+  constructor () {
+    super()
+    this.mode = 'build-mode'
+  }
+
   render () {
     return html`
       <my-appbar></my-appbar>
-      <my-editor></my-editor>
-      <my-sidebar @mode-change="${(e) => { console.log(e.detail.message) }}"></my-sidebar>
+      <my-editor mode="${this.mode}"></my-editor>
+      <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}"></my-sidebar>
     `
   }
 }
