@@ -32,18 +32,14 @@ class Palette extends LitElement {
       const saturation = 60
       const lightness = 60
 
-      this.colors.push(`hsl(${hue}, ${saturation}, ${lightness})`)
+      this.colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`)
     }
 
     console.log(this.colors)
   }
 
   render () {
-    return html`
-      <div>
-        ${this.colors.map(i => html`<button>${i}</button>`)}
-      </div>
-    `
+    return html`<div>${this.colors.map(i => html`<button style='background-color:${i};'></button>`)}</div>`
   }
 }
 
