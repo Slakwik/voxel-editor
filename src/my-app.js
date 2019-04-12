@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit-element'
 import './my-appbar'
 import './my-editor'
 import './my-sidebar'
+import './my-palette'
 
 class MyApp extends LitElement {
   static get properties () {
@@ -20,6 +21,7 @@ class MyApp extends LitElement {
       <my-appbar></my-appbar>
       <my-editor mode="${this.mode}"></my-editor>
       <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}"></my-sidebar>
+      <my-palette></my-palette>
     `
   }
 }
