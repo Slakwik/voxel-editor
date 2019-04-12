@@ -19,7 +19,8 @@ class MyEditor extends LitElement {
 
   static get properties () {
     return {
-      mode: { type: String }
+      mode: { type: String },
+      color: { type: String }
     }
   }
 
