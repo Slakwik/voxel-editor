@@ -29,7 +29,7 @@ class Palette extends LitElement {
     // Create rainbow with HSL colors
     for (let i = 0; i < 360; i += 30) {
       const hue = i
-      const saturation = 60
+      const saturation = 90
       const lightness = 60
 
       this.colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`)

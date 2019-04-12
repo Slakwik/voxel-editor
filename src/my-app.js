@@ -15,7 +15,7 @@ class MyApp extends LitElement {
   constructor () {
     super()
     this.mode = 'build-mode'
-    this.color = 'hsl(60, 60%, 60%)'
+    this.color = 'hsl(60, 90%, 60%)'
   }
 
   render () {
