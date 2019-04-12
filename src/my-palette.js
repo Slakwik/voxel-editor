@@ -38,8 +38,6 @@ class Palette extends LitElement {
 
       this.colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`)
     }
-
-    console.log(this.colors)
   }
 
   onColorClick (event) {
