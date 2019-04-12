@@ -52,8 +52,6 @@ class MyEditor extends LitElement {
     pointLight.position.set(150, 150, 150)
     this.scene.add(pointLight)
 
-    this.addCube(new THREE.Vector3(0, 0, 0))
-
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
     this.camera.position.z = 50
     this.camera.position.y = 10
@@ -93,6 +91,10 @@ class MyEditor extends LitElement {
     this.animate()
   }
 
+  firstUpdated () {
+    this.addCube(new THREE.Vector3(0, 0, 0))
+  }
+
   onMouseMove (event) {
     const rendererOffsetX = 0
     const rendererOffsetY = 50
@@ -105,7 +107,7 @@ class MyEditor extends LitElement {
 
   addCube (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
-    const yellowMaterial = new THREE.MeshPhongMaterial({ color: 0x937520 })
+    const yellowMaterial = new THREE.MeshPhongMaterial({ color: this.color })
 
     const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
     cube.position.set(position.x, position.y, position.z)
