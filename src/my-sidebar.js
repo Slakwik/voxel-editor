@@ -32,11 +32,6 @@ class SideBar extends LitElement {
     return html`
       <input type="image" value="build-mode" alt="Build" draggable="false" src="../icons/build.png">
       <input type="image" value="color-mode" alt="Color" draggable="false" src="../icons/color.png">
-      
-      <div>
-        <h4>Add</h4>
-        <h4>Remove</h4>
-      </div>
     `
   }
 }
