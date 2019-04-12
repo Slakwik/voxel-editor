@@ -24,8 +24,15 @@ class MyEditor extends LitElement {
     }
   }
 
-  attributeChangedCallback (name, oldval, newval) {
-    console.log(name + ' changed to: ' + newval)
+  attributeChangedCallback (name, oldValue, newValue) {
+    switch (name) {
+      case 'mode':
+        this.mode = newValue
+        break
+      case 'color':
+        this.color = newValue
+        break
+    }
   }
 
   constructor () {
