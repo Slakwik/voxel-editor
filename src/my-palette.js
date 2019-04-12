@@ -5,18 +5,22 @@ class Palette extends LitElement {
     return css`
       :host {
         display: block;
-        height: fit-content;
         position: absolute;
-        border: 2px solid orange;
-        width: 5%;
+        border: 2px solid saddlebrown;
+        background-color: tan;
+        border-radius: 5px;
+        padding: 5px;
+        width: 100px;
         top: 35%;
       }
       button {     
         border: none;
         padding: 10px;
-        border-radius: 2px;
+        border: 2px solid white;
+        border-radius: 5px;
         margin: 4px 4px;
         font-size: 8px;
+        cursor: pointer;
       }
     `
   }
