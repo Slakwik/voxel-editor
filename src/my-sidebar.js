@@ -28,10 +28,19 @@ class SideBar extends LitElement {
     `
   }
 
+  onModeClick (event) {
+    const modeChangeEvent = new window.CustomEvent('mode-change', {
+      detail: { message: event.target.value },
+      bubbles: true,
+      composed: true
+    })
+    this.dispatchEvent(modeChangeEvent)
+  }
+
   render () {
     return html`
-      <input type="image" value="build-mode" alt="Build" draggable="false" src="../icons/build.png">
-      <input type="image" value="color-mode" alt="Color" draggable="false" src="../icons/color.png">
+      <input type="image" @click="${this.onModeClick}" value="build-mode" alt="Build" draggable="false" src="../icons/build.png">
+      <input type="image" @click="${this.onModeClick}" value="color-mode" alt="Color" draggable="false" src="../icons/color.png">
     `
   }
 }

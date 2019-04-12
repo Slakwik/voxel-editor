@@ -8,7 +8,7 @@ class MyApp extends LitElement {
     return html`
       <my-appbar></my-appbar>
       <my-editor></my-editor>
-      <my-sidebar></my-sidebar>
+      <my-sidebar @mode-change="${(e) => { console.log(e.detail.message) }}"></my-sidebar>
     `
   }
 }
