@@ -11,24 +11,30 @@ class Palette extends LitElement {
         width: 5%;
         top: 35%;
       }
+      button {     
+        border: none;
+        padding: 10px;
+        border-radius: 2px;
+        margin: 4px 4px;
+      }
     `
   }
 
   render () {
     return html`
       <div>
-        <button>01</button>
-        <button>02</button>
-        <button>03</button>
-        <button>04</button>
-        <button>05</button>
-        <button>06</button>
-        <button>07</button>
-        <button>08</button>
-        <button>09</button>
-        <button>10</button>
-        <button>11</button>
-        <button>12</button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
       </div>
     `
   }
