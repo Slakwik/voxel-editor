@@ -81,11 +81,6 @@ class MyEditor extends LitElement {
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
-
-    this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
-    this.renderer.domElement.addEventListener('click', this.onClick.bind(this))
-    this.renderer.domElement.addEventListener('contextmenu', this.onRightClick.bind(this))
-
     this.raycaster = new THREE.Raycaster()
 
     this.animate()
@@ -170,7 +165,9 @@ class MyEditor extends LitElement {
 
   render () {
     return html`
-      <div>${this.renderer.domElement}</div>
+      <div @mousemove=${this.onMouseMove} @click=${this.onClick} @contextmenu=${this.onRightClick}>
+        ${this.renderer.domElement}
+      </div>
     `
   }
 }
