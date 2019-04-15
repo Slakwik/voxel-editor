@@ -21,7 +21,7 @@ class MyApp extends LitElement {
   render () {
     return html`
       <my-appbar></my-appbar>
-      <my-editor mode="${this.mode}" color="${this.color}"></my-editor>
+      <my-editor .mode=${this.mode} .color=${this.color}></my-editor>
       <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}"></my-sidebar>
       <my-palette @color-change="${(e) => { this.color = e.detail.message }}"></my-palette>
     `
