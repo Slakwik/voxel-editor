@@ -6,6 +6,15 @@ class MyColorButton extends LitElement {
       :host {
         display: block;
       }
+      button {     
+        border: none;
+        padding: 10px;
+        border: 2px solid white;
+        border-radius: 5px;
+        margin: 4px 4px;
+        font-size: 8px;
+        cursor: pointer;
+      }
     `
   }
 
