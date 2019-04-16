@@ -109,16 +109,16 @@ class MyEditor extends LitElement {
   }
 
   onClick (event) {
-    const firstIntersect = this.getFirstRaycastIntersect()
+    const firstIntersection = this.getFirstRaycastIntersection()
 
     if (this.mode === 'build-mode') {
       const clickedObjectPosition = new THREE.Vector3(
-        firstIntersect.object.position.x,
-        firstIntersect.object.position.y,
-        firstIntersect.object.position.z
+        firstIntersection.object.position.x,
+        firstIntersection.object.position.y,
+        firstIntersection.object.position.z
       )
 
-      const placementDirection = firstIntersect.face.normal
+      const placementDirection = firstIntersection.face.normal
 
       const placementOffset = placementDirection.multiplyScalar(10)
 
@@ -126,23 +126,23 @@ class MyEditor extends LitElement {
 
       this.addCube(placementPosition)
     } else if (this.mode === 'color-mode') {
-      firstIntersect.object.material.color.set(this.color)
+      firstIntersection.object.material.color.set(this.color)
     }
   }
 
-  getFirstRaycastIntersect () {
+  getFirstRaycastIntersection () {
     this.raycaster.setFromCamera(this.mouse, this.camera)
 
-    const intersects = this.raycaster.intersectObjects(this.scene.children)
+    const intersections = this.raycaster.intersectObjects(this.scene.children)
 
-    if (intersects.length > 0) {
-      const firstIntersect = intersects[0]
-      return firstIntersect
+    if (intersections.length > 0) {
+      const firstIntersection = intersections[0]
+      return firstIntersection
     }
   }
 
   onRightClick (event) {
-    const name = this.getFirstRaycastIntersect().object.name
+    const name = this.getFirstRaycastIntersection().object.name
     this.removeCube(name)
   }
 
