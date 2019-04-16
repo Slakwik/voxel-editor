@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
+import './my-color-button'
 
 class Palette extends LitElement {
   static get styles () {
@@ -41,7 +42,7 @@ class Palette extends LitElement {
   }
 
   render () {
-    return html`<div>${this.colors.map(i => html`<button value='${i}' @click="${this.onColorClick}" style='background-color:${i};'></button>`)}</div>`
+    return html`${this.colors.map(i => html`<my-color-button value='${i}' @click="${this.onColorClick}" .color=${i}></my-color-button>`)}`
   }
 }
 

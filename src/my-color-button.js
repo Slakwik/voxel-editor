@@ -4,7 +4,7 @@ class MyColorButton extends LitElement {
   static get styles () {
     return css`
       :host {
-        display: block;
+        display: inline;
       }
       button {     
         border: none;
@@ -18,8 +18,14 @@ class MyColorButton extends LitElement {
     `
   }
 
+  static get properties () {
+    return {
+      color: { type: String }
+    }
+  }
+
   render () {
-    return html`<button></button>`
+    return html`<button style='background-color:${this.color};'></button>`
   }
 }
 
