@@ -24,7 +24,7 @@ class MyColorButton extends LitElement {
     }
   }
 
-  onColorClick (event) {
+  onClick (event) {
     const colorChangeEvent = new window.CustomEvent('color-change', {
       detail: { message: event.target.value },
       bubbles: true,
@@ -34,7 +34,7 @@ class MyColorButton extends LitElement {
   }
 
   render () {
-    return html`<button value='${this.color}' @click='${this.onColorClick}' style='background-color:${this.color};'></button>`
+    return html`<button value='${this.color}' @click='${this.onClick}' style='background-color:${this.color};'></button>`
   }
 }
 
