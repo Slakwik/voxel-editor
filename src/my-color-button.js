@@ -34,7 +34,10 @@ class MyColorButton extends LitElement {
   }
 
   render () {
-    return html`<button value='${this.color}' @click='${this.onClick}' style='background-color:${this.color};'></button>`
+    return html`
+      <style>button { background-color: ${this.color}; }</style>
+      <button value='${this.color}' @click='${this.onClick}'></button>
+    `
   }
 }
 
