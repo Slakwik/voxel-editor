@@ -20,16 +20,22 @@ class Palette extends LitElement {
   constructor () {
     super()
 
-    this.colors = []
+    this.colors = this.createColorArray()
+  }
 
-    // Create rainbow with HSL colors
-    for (let i = 0; i < 360; i += 10) {
+  createColorArray (stepLength = 10) {
+    let colorArray = []
+
+    for (let i = 0; i < 360; i += stepLength) {
       const hue = i
       const saturation = 90
       const lightness = 60
+      const hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`
 
-      this.colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`)
+      colorArray.push(hsl)
     }
+
+    return colorArray
   }
 
   render () {
