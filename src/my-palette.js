@@ -32,17 +32,8 @@ class Palette extends LitElement {
     }
   }
 
-  onColorClick (event) {
-    const colorChangeEvent = new window.CustomEvent('color-change', {
-      detail: { message: event.target.value },
-      bubbles: true,
-      composed: true
-    })
-    this.dispatchEvent(colorChangeEvent)
-  }
-
   render () {
-    return html`${this.colors.map(i => html`<my-color-button value='${i}' @click="${this.onColorClick}" .color=${i}></my-color-button>`)}`
+    return html`${this.colors.map(i => html`<my-color-button .color=${i}></my-color-button>`)}`
   }
 }
 
