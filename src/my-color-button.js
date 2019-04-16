@@ -7,12 +7,10 @@ class MyColorButton extends LitElement {
         display: inline;
       }
       button {     
-        border: none;
         padding: 10px;
         border: 2px solid white;
         border-radius: 5px;
-        margin: 4px 4px;
-        font-size: 8px;
+        margin: 4px 3px;
         cursor: pointer;
       }
     `
