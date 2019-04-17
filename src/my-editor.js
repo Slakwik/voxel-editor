@@ -98,19 +98,18 @@ class MyEditor extends LitElement {
 
   addCube (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
-    const yellowMaterial = new THREE.MeshPhongMaterial({ color: this.color })
+    const coloredMaterial = new THREE.MeshPhongMaterial({ color: this.color })
 
-    const cube = new THREE.Mesh(boxGeometry, yellowMaterial)
-    cube.position.set(position.x, position.y, position.z)
+    const cube = new THREE.Mesh(boxGeometry, coloredMaterial)
     cube.name = 'Cube: ' + cube.id
+    cube.position.set(position.x, position.y, position.z)
 
     this.scene.add(cube)
   }
 
   removeCube (name) {
-    if (name.slice(0, 4) !== 'Cube') {
-      return
-    }
+    if (name.slice(0, 4) !== 'Cube') { return }
+
     const cube = this.scene.getObjectByName(name)
     this.scene.remove(cube)
   }
