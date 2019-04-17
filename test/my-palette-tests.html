@@ -14,8 +14,8 @@
   <script type="module">
     import { MyPalette } from '../src/my-palette.js';
 
-    suite('<my-palette>', () => {
-      test('is of the type HTMLElement', () => {
+    describe('<my-palette>', () => {
+      it('is of the type HTMLElement', () => {
         const myPalette = document.querySelector('my-palette')
         chai.assert.typeOf(myPalette, 'HTMLElement')
       })
