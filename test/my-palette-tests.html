@@ -19,6 +19,15 @@
         const myPalette = document.querySelector('my-palette')
         chai.assert.typeOf(myPalette, 'HTMLElement')
       })
+
+      describe('createColorArray()', () => {
+        it('returns "hsl(10, 10%, 10%)" for the params (10, 10, 10)', () => {
+          const myPalette = document.querySelector('my-palette')
+          const expected = 'hsl(10, 10%, 10%)'
+          const actual = myPalette.createHSLColor(10, 10, 10)
+          chai.assert.equal(expected, actual)
+        })
+      })
     })
   </script>
 
