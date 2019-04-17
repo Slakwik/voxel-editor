@@ -121,6 +121,14 @@ class MyEditor extends LitElement {
     cube.material.color.set(this.color)
   }
 
+  isCube (object) {
+    if (object.name.slice(0, 4) === 'Cube') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   onClick (event) {
     const firstIntersection = this.getFirstRaycastIntersection()
 
