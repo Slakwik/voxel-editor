@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "polymer serve",
-    "test": "polymer test --npm"
+    "test": "polymer serve --root ./test"
   },
   "repository": {
     "type": "git",
