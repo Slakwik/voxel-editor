@@ -114,6 +114,13 @@ class MyEditor extends LitElement {
     this.scene.remove(cube)
   }
 
+  colorCube (name) {
+    if (name.slice(0, 4) !== 'Cube') { return }
+
+    const cube = this.scene.getObjectByName(name)
+    cube.material.color.set(this.color)
+  }
+
   onClick (event) {
     const firstIntersection = this.getFirstRaycastIntersection()
 
@@ -135,7 +142,7 @@ class MyEditor extends LitElement {
         break
 
       case 'color-mode':
-        firstIntersection.object.material.color.set(this.color)
+        this.colorCube(firstIntersection.object.name)
         break
     }
   }
