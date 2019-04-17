@@ -128,6 +128,8 @@ class MyEditor extends LitElement {
   onClick (event) {
     const firstIntersection = this.getFirstRaycastIntersection()
 
+    if (!this.isCube(firstIntersection.object)) { return }
+
     switch (this.mode) {
       case 'build-mode':
         const clickedObjectPosition = new THREE.Vector3(
@@ -163,8 +165,11 @@ class MyEditor extends LitElement {
   }
 
   onRightClick (event) {
-    const name = this.getFirstRaycastIntersection().object.name
-    this.removeCube(name)
+    const clickedObject = this.getFirstRaycastIntersection().object
+
+    if (this.isCube(clickedObject)) {
+      this.removeCube(clickedObject.name)
+    }
   }
 
   animate () {
