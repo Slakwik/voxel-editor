@@ -132,18 +132,7 @@ class MyEditor extends LitElement {
 
     switch (this.mode) {
       case 'build-mode':
-        const clickedObjectPosition = new THREE.Vector3(
-          firstIntersection.object.position.x,
-          firstIntersection.object.position.y,
-          firstIntersection.object.position.z
-        )
-
-        const placementDirection = firstIntersection.face.normal
-
-        const placementOffset = placementDirection.multiplyScalar(10)
-
-        const placementPosition = clickedObjectPosition.add(placementOffset)
-
+        const placementPosition = this.calculatePlacementPosition(firstIntersection)
         this.addCube(placementPosition)
         break
 
@@ -151,6 +140,20 @@ class MyEditor extends LitElement {
         this.colorCube(firstIntersection.object.name)
         break
     }
+  }
+
+  calculatePlacementPosition (intersection) {
+    const clickedCubePosition = new THREE.Vector3(
+      intersection.object.position.x,
+      intersection.object.position.y,
+      intersection.object.position.z
+    )
+
+    const placementDirection = intersection.face.normal
+    const placementOffset = placementDirection.multiplyScalar(10)
+    const placementPosition = clickedCubePosition.add(placementOffset)
+
+    return placementPosition
   }
 
   getFirstRaycastIntersection () {
