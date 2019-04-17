@@ -1,0 +1,14 @@
+{
+  "npm": true,
+  "moduleResolution": "node",
+  "suites": [
+    "test/my-palette-tests.html"
+  ],
+  "plugins": {
+    "local": {
+      "browsers": [
+        "firefox"
+      ]
+    }
+  }
+}
