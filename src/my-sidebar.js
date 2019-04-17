@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element'
 
-class SideBar extends LitElement {
+class MySideBar extends LitElement {
   static get styles () {
     return css`
       :host {
@@ -45,4 +45,4 @@ class SideBar extends LitElement {
   }
 }
 
-window.customElements.define('my-sidebar', SideBar)
+window.customElements.define('my-sidebar', MySideBar)

@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element'
 import './my-color-button'
 
-class Palette extends LitElement {
+class MyPalette extends LitElement {
   static get styles () {
     return css`
       :host {
@@ -43,4 +43,4 @@ class Palette extends LitElement {
   }
 }
 
-window.customElements.define('my-palette', Palette)
+window.customElements.define('my-palette', MyPalette)
