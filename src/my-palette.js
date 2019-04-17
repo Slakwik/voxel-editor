@@ -20,22 +20,22 @@ class Palette extends LitElement {
   constructor () {
     super()
 
-    this.colors = this.createColorArray()
+    this.colors = this.createColorArray(10, 90, 60)
   }
 
-  createColorArray (stepLength = 10) {
+  createColorArray (hueStepLength, saturation, lightness) {
     let colorArray = []
 
-    for (let i = 0; i < 360; i += stepLength) {
-      const hue = i
-      const saturation = 90
-      const lightness = 60
-      const hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`
-
+    for (let hue = 0; hue < 360; hue += hueStepLength) {
+      const hsl = this.createHSLColor(hue, saturation, lightness)
       colorArray.push(hsl)
     }
 
     return colorArray
+  }
+
+  createHSLColor (hue, saturation, lightness) {
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`
   }
 
   render () {
