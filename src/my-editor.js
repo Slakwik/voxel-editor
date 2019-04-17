@@ -31,8 +31,8 @@ class MyEditor extends LitElement {
 
     const grid = new THREE.GridHelper(250, 25, 0x444444, 0x888888)
     grid.name = 'Grid: ' + grid.id
+    grid.position.set(0, -5, 0)
     this.scene.add(grid)
-    grid.position.y = -5
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.6)
     this.scene.add(ambientLight)
@@ -42,8 +42,7 @@ class MyEditor extends LitElement {
     this.scene.add(pointLight)
 
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
-    this.camera.position.z = 50
-    this.camera.position.y = 10
+    this.camera.position.set(0, 10, 50)
 
     this.renderer = new THREE.WebGLRenderer()
     this.renderer.setSize(1600, 900)
@@ -59,17 +58,18 @@ class MyEditor extends LitElement {
     this.controls.zoomSpeed = 1.6
 
     const sky = new THREE.Sky()
-    sky.scale.setScalar(1000)
-    sky.material.uniforms['turbidity'].value = 10
-    sky.material.uniforms['rayleigh'].value = 0.5
-    sky.material.uniforms['luminance'].value = 0.7
-    sky.material.uniforms['mieCoefficient'].value = 0.006
-    sky.material.uniforms['mieDirectionalG'].value = 0.85
-    sky.material.uniforms['sunPosition'].value = new THREE.Vector3(1, 1, 1)
     sky.name = 'Sky: ' + sky.id
+    sky.material.uniforms.turbidity.value = 10
+    sky.material.uniforms.rayleigh.value = 0.5
+    sky.material.uniforms.luminance.value = 0.7
+    sky.material.uniforms.mieCoefficient.value = 0.006
+    sky.material.uniforms.mieDirectionalG.value = 0.85
+    sky.material.uniforms.sunPosition.value = new THREE.Vector3(1, 1, 1)
+    sky.scale.setScalar(1000)
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
+
     this.raycaster = new THREE.Raycaster()
 
     this.animate()
