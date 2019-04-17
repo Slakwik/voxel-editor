@@ -117,22 +117,26 @@ class MyEditor extends LitElement {
   onClick (event) {
     const firstIntersection = this.getFirstRaycastIntersection()
 
-    if (this.mode === 'build-mode') {
-      const clickedObjectPosition = new THREE.Vector3(
-        firstIntersection.object.position.x,
-        firstIntersection.object.position.y,
-        firstIntersection.object.position.z
-      )
+    switch (this.mode) {
+      case 'build-mode':
+        const clickedObjectPosition = new THREE.Vector3(
+          firstIntersection.object.position.x,
+          firstIntersection.object.position.y,
+          firstIntersection.object.position.z
+        )
 
-      const placementDirection = firstIntersection.face.normal
+        const placementDirection = firstIntersection.face.normal
 
-      const placementOffset = placementDirection.multiplyScalar(10)
+        const placementOffset = placementDirection.multiplyScalar(10)
 
-      const placementPosition = clickedObjectPosition.add(placementOffset)
+        const placementPosition = clickedObjectPosition.add(placementOffset)
 
-      this.addCube(placementPosition)
-    } else if (this.mode === 'color-mode') {
-      firstIntersection.object.material.color.set(this.color)
+        this.addCube(placementPosition)
+        break
+
+      case 'color-mode':
+        firstIntersection.object.material.color.set(this.color)
+        break
     }
   }
 
