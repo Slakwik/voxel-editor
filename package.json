@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/1dv430/ep222ue-project#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^6.0.2",
     "polymer-cli": "^1.9.8",
     "standard": "^12.0.1",
