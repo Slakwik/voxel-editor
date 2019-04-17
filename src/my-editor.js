@@ -82,11 +82,18 @@ class MyEditor extends LitElement {
   onMouseMove (event) {
     const rendererOffsetX = 0
     const rendererOffsetY = 50
+
     const rendererWidth = 1600
     const rendererHeight = 900
 
-    this.mouse.x = ((event.clientX - rendererOffsetX) / rendererWidth) * 2 - 1
-    this.mouse.y = ((event.clientY - rendererOffsetY) / rendererHeight) * -2 + 1
+    const mouseX = event.clientX - rendererOffsetX
+    const mouseY = event.clientY - rendererOffsetY
+
+    const mouseNormalizedX = mouseX / rendererWidth * 2 - 1
+    const mouseNormalizedY = mouseY / rendererHeight * -2 + 1
+
+    this.mouse.x = mouseNormalizedX
+    this.mouse.y = mouseNormalizedY
   }
 
   addCube (position) {
