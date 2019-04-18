@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
+import save from './save.js'
 
 const THREE = window.THREE
 
@@ -183,6 +184,7 @@ class MyEditor extends LitElement {
 
   onSaveClick () {
     console.log('Saving scene...')
+    save(this.scene)
   }
 
   render () {
