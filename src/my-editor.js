@@ -184,12 +184,10 @@ class MyEditor extends LitElement {
   }
 
   onSaveClick () {
-    console.log('Saving scene...')
     save(this.scene)
   }
 
   async onLoadClick () {
-    console.log('Loading scene...')
     const loadedScene = await load()
 
     if (loadedScene) {
