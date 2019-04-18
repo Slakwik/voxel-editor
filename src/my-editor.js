@@ -100,7 +100,7 @@ class MyEditor extends LitElement {
 
   addCube (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
-    const coloredMaterial = new THREE.MeshPhongMaterial({ color: this.color })
+    const coloredMaterial = new THREE.MeshStandardMaterial({ color: this.color })
 
     const cube = new THREE.Mesh(boxGeometry, coloredMaterial)
     cube.name = 'Cube: ' + cube.id
