@@ -31,7 +31,8 @@ class MyEditor extends LitElement {
 
     this.scene = new THREE.Scene()
 
-    const grid = new THREE.GridHelper(250, 25, 0x444444, 0x888888)
+    const grid = new THREE.GridHelper(250, 25)
+    grid.material = new THREE.MeshBasicMaterial({ color: 0x888888 })
     grid.name = 'Grid: ' + grid.id
     grid.position.set(0, -5, 0)
     this.scene.add(grid)
