@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit-element'
 import save from './save.js'
+import load from './load.js'
 
 const THREE = window.THREE
 
@@ -187,12 +188,18 @@ class MyEditor extends LitElement {
     save(this.scene)
   }
 
+  onLoadClick () {
+    console.log('Loading scene...')
+    load()
+  }
+
   render () {
     return html`
       <div @mousemove=${this.onMouseMove} @click=${this.onClick} @contextmenu=${this.onRightClick}>
         ${this.renderer.domElement}
       </div>
       <button @click=${this.onSaveClick}>Save</button>
+      <button @click=${this.onLoadClick}>Load</button>
     `
   }
 }
