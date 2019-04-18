@@ -4,9 +4,9 @@ function save (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = { }
 
-  exporter.parse(scene, (gltf) => {
-    const gltfJSON = JSON.stringify(gltf)
-    window.localStorage.setItem('scene', gltfJSON)
+  exporter.parse(scene, (gltfScene) => {
+    const jsonScene = JSON.stringify(gltfScene)
+    window.localStorage.setItem('scene', jsonScene)
   }, options)
 }
 

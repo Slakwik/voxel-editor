@@ -3,10 +3,10 @@ const THREE = window.THREE
 function load () {
   const loader = new THREE.GLTFLoader()
 
-  const sceneJSON = window.localStorage.getItem('scene')
+  const jsonScene = window.localStorage.getItem('scene')
 
   return new Promise((resolve) => {
-    loader.parse(sceneJSON, '', (gltf) => {
+    loader.parse(jsonScene, '', (gltf) => {
       resolve(gltf.scene)
     })
   })
