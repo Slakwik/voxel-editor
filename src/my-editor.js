@@ -181,11 +181,16 @@ class MyEditor extends LitElement {
     window.requestAnimationFrame(this.animate.bind(this))
   }
 
+  onSaveClick () {
+    console.log('Saving scene...')
+  }
+
   render () {
     return html`
       <div @mousemove=${this.onMouseMove} @click=${this.onClick} @contextmenu=${this.onRightClick}>
         ${this.renderer.domElement}
       </div>
+      <button @click=${this.onSaveClick}>Save</button>
     `
   }
 }
