@@ -39,7 +39,7 @@ class MyEditor extends LitElement {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.6)
     this.scene.add(ambientLight)
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.8, 1000)
+    const pointLight = new THREE.PointLight(0xffffff, 0.8, 1000, 2)
     pointLight.position.set(150, 150, 150)
     this.scene.add(pointLight)
 
