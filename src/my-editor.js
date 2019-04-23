@@ -127,6 +127,18 @@ class MyEditor extends LitElement {
   }
 
   onMouseDown (event) {
+    this.mouseDownX = event.clientX
+    this.mouseDownY = event.clientY
+  }
+
+  onMouseUp (event) {
+    const mouseUpX = event.clientX
+    const mouseUpY = event.clientY
+
+    if (this.mouseDownX !== mouseUpX || this.mouseDownY !== mouseUpY) {
+      return
+    }
+
     switch (event.button) {
       case 0:
         this.onLeftClick()
@@ -209,7 +221,7 @@ class MyEditor extends LitElement {
 
   render () {
     return html`
-      <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown}>
+      <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown} @mouseup=${this.onMouseUp}>
         ${this.renderer.domElement}
       </div>
       <button @click=${this.onSaveClick}>Save</button>
