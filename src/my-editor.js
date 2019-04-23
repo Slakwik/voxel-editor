@@ -126,7 +126,18 @@ class MyEditor extends LitElement {
     }
   }
 
-  onClick (event) {
+  onMouseDown (event) {
+    switch (event.button) {
+      case 0:
+        this.onLeftClick()
+        break
+      case 2:
+        this.onRightClick()
+        break
+    }
+  }
+
+  onLeftClick () {
     const firstIntersection = this.getFirstRaycastIntersection()
 
     if (!this.isCube(firstIntersection.object)) { return }
@@ -168,7 +179,7 @@ class MyEditor extends LitElement {
     }
   }
 
-  onRightClick (event) {
+  onRightClick () {
     const clickedObject = this.getFirstRaycastIntersection().object
 
     if (this.isCube(clickedObject)) {
@@ -198,7 +209,7 @@ class MyEditor extends LitElement {
 
   render () {
     return html`
-      <div @mousemove=${this.onMouseMove} @click=${this.onClick} @contextmenu=${this.onRightClick}>
+      <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown}>
         ${this.renderer.domElement}
       </div>
       <button @click=${this.onSaveClick}>Save</button>
