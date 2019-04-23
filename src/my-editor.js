@@ -220,9 +220,13 @@ class MyEditor extends LitElement {
   async onLoadClick () {
     const loadedScene = await load()
 
-    if (loadedScene) {
-      this.scene = loadedScene
-    }
+    const oldCubes = this.scene.children.filter(child => this.isCube(child))
+
+    this.scene.remove(...oldCubes)
+
+    const newCubes = loadedScene.children.filter(child => this.isCube(child))
+
+    this.scene.add(...newCubes)
   }
 
   render () {
