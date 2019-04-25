@@ -7,6 +7,8 @@ describe('my-editor', () => {
     await page.goto('http://localhost:8081')
   })
 
+  // This test doesn't fail if my-editor constructor is commented out. Why?
+  // Is it the editor updates that cause evaluate to fail?
   it('is added to the dom', async () => {
     const element = await page.evaluate(`${elementPath}`)
     global.assert.isOk(element)
