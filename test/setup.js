@@ -4,7 +4,7 @@ const chai = require('chai')
 const options = {
   timeout: 20000,
   headless: false,
-  slowMo: 200,
+  slowMo: 0,
   defaultViewport: {
     width: 1920,
     height: 1080
