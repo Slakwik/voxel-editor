@@ -7,7 +7,7 @@ describe('my-color-button', () => {
     await page.goto('http://localhost:8081')
   })
 
-  it('is added to the dom', async () => {
+  it('should be added to the dom', async () => {
     const element = await page.evaluate(`${elementPath}`)
     global.assert.isOk(element)
   })

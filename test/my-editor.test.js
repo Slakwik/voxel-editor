@@ -9,25 +9,25 @@ describe('my-editor', () => {
 
   // This test doesn't fail if my-editor constructor is commented out. Why?
   // Is it the editor updates that cause evaluate to fail?
-  it('is added to the dom', async () => {
+  it('should be added to the dom', async () => {
     const element = await page.evaluate(`${elementPath}`)
     global.assert.isOk(element)
   })
 
   describe('isCube()', () => {
-    it('returns a boolean', async () => {
+    it('should return a boolean', async () => {
       const expectedType = 'boolean'
       const actualType = await page.evaluate(`${elementPath}.isCube({ name: 'Sky: 12' })`)
       global.assert.typeOf(actualType, expectedType)
     })
 
-    it('returns true if object name starts with Cube', async () => {
+    it('should return true if the object name starts with Cube', async () => {
       const expected = true
       const actual = await page.evaluate(`${elementPath}.isCube({ name: 'Cube: 10' })`)
       global.assert.strictEqual(actual, expected)
     })
 
-    it('returns false if object name doesn\'t start with Cube', async () => {
+    it('should return false if the object name does not start with Cube', async () => {
       const expected = false
       const actual = await page.evaluate(`${elementPath}.isCube({ name: 'Grid: 4' })`)
       global.assert.strictEqual(actual, expected)

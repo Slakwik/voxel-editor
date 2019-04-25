@@ -7,12 +7,12 @@ describe('my-appbar', () => {
     await page.goto('http://localhost:8081')
   })
 
-  it('is added to the dom', async () => {
+  it('should be added to the dom', async () => {
     const element = await page.evaluate(`${elementPath}`)
     global.assert.isOk(element)
   })
 
-  it('contains a correct title header', async () => {
+  it('should contain a header with the correct title', async () => {
     const headerContent = await page.evaluate(`${elementPath}.shadowRoot.querySelector('h2').textContent`)
     global.assert.strictEqual(headerContent, 'Voxel Editor')
   })
