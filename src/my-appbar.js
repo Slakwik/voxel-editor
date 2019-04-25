@@ -17,7 +17,7 @@ class MyAppBar extends LitElement {
 
   render () {
     return html`
-      <h2>Voxel editor</h2>
+      <h2>Voxel Editor</h2>
 
       <div>
         <select>

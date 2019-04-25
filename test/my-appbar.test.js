@@ -12,6 +12,11 @@ describe('my-appbar', () => {
     global.assert.isOk(element)
   })
 
+  it('contains a correct title header', async () => {
+    const headerContent = await page.evaluate(`${elementPath}.shadowRoot.querySelector('h2').textContent`)
+    global.assert.strictEqual(headerContent, 'Voxel Editor')
+  })
+
   after(async () => {
     await page.close()
   })
