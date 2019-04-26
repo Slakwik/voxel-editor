@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "polymer serve",
-    "test": "mocha test/setup.js test --timeout 20000"
+    "test": "mocha test/setup.js test --timeout 20000",
+    "build": "polymer build",
+    "serve": "polymer serve build/default"
   },
   "repository": {
     "type": "git",
