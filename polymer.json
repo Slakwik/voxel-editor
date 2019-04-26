@@ -3,7 +3,8 @@
   "shell": "src/my-app.js",
   "extraDependencies": [
     "icons/*",
-    "style.css"
+    "style.css",
+    ".nojekyll"
   ],
   "moduleResolution": "node",
   "npm": true,
