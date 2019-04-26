@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element'
+import './three'
 import './my-appbar'
 import './my-editor'
 import './my-sidebar'
