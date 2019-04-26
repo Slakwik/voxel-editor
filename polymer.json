@@ -1,15 +1,21 @@
 {
   "entrypoint": "index.html",
   "shell": "src/my-app.js",
-  "sources": [
-    "src/my-app.js",
-    "package.json"
+  "extraDependencies": [
+    "icons/*",
+    "style.css"
   ],
   "moduleResolution": "node",
   "npm": true,
   "builds": [
     {
-      "preset": "es6-bundled"
+      "name": "default",
+      "bundle": false,
+      "js": { "minify": true },
+      "css": { "minify": true },
+      "html": { "minify": true },
+      "addServiceWorker": true,
+      "addPushManifest": false
     }
   ]
 }
