@@ -248,6 +248,13 @@ class MyEditor extends LitElement {
       <button @click=${this.onLoadClick}>Load</button>
       <button @click=${this.onExportClick}>Export</button>
       <button @click=${this.onPhotoClick}>Photo</button>
+
+      <div @click=${this.onViewClick} style="display: inline;">
+        <button value="top">Top</button>
+        <button value="right">Right</button>
+        <button value="bottom">Bottom</button>
+        <button value="left">Left</button>
+      </div>
     `
   }
 }
