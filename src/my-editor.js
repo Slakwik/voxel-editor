@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element'
 import save from './save.js'
 import load from './load.js'
+import exportScene from './export.js'
 
 const THREE = window.THREE
 
@@ -230,7 +231,7 @@ class MyEditor extends LitElement {
   }
 
   onExportClick () {
-    console.log('Export clicked!')
+    exportScene(this.scene)
   }
 
   render () {

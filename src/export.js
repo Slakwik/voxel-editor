@@ -6,7 +6,13 @@ function exportScene (scene) {
 
   exporter.parse(scene, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
-    // window.localStorage.setItem('scene', jsonScene)
+    const blob = new window.Blob([jsonScene], { type: 'text/plain' })
+    const fileName = 'scene.gltf'
+
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = fileName
+    a.click()
   }, options)
 }
 
