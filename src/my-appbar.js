@@ -20,11 +20,11 @@ class MyAppBar extends LitElement {
     return html`
       <h2>Voxel Editor</h2>
       
-      <my-dropdown name="File" .content="${['Open', 'Save', 'Export']}"></my-dropdown>
+      <my-dropdown title="File" .content="${['Open', 'Save', 'Export']}"></my-dropdown>
       
-      <my-dropdown name="Edit" .content="${['Undo', 'Redo', 'Settings']}"></my-dropdown>
+      <my-dropdown title="Edit" .content="${['Undo', 'Redo', 'Settings']}"></my-dropdown>
       
-      <my-dropdown name="View" .content="${['Top', 'Right', 'Bottom', 'Left']}"></my-dropdown>
+      <my-dropdown title="View" .content="${['Top', 'Right', 'Bottom', 'Left']}"></my-dropdown>
     `
   }
 }
