@@ -12,9 +12,15 @@ class MyDropdown extends LitElement {
     `
   }
 
+  static get properties () {
+    return {
+      name: { type: String }
+    }
+  }
+
   render () {
     return html`
-      <div>Dropdown</div>
+      <div>${this.name}</div>
     `
   }
 }
