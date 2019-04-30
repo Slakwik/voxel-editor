@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
+import './my-dropdown'
 
 class MyAppBar extends LitElement {
   static get styles () {
@@ -18,30 +19,12 @@ class MyAppBar extends LitElement {
   render () {
     return html`
       <h2>Voxel Editor</h2>
-
-      <div>
-        <select>
-          <option>File</option>
-          <option>Open</option>
-          <option>Save</option>
-          <option>Export</option>
-        </select>
-
-        <select>
-          <option>Edit</option>
-          <option>Undo</option>
-          <option>Redo</option>
-          <option>Settings</option>
-        </select>
-
-        <select>
-          <option>View</option>
-          <option>Top</option>
-          <option>Right</option>
-          <option>Bottom</option>
-          <option>Left</option>
-        </select>
-      </div>
+      
+      <my-dropdown name="File" .content="${['Open', 'Save', 'Export']}"></my-dropdown>
+      
+      <my-dropdown name="Edit" .content="${['Undo', 'Redo', 'Settings']}"></my-dropdown>
+      
+      <my-dropdown name="View" .content="${['Top', 'Right', 'Bottom', 'Left']}"></my-dropdown>
     `
   }
 }
