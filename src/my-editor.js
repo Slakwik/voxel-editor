@@ -234,6 +234,10 @@ class MyEditor extends LitElement {
     exportScene(this.scene)
   }
 
+  onPhotoClick () {
+    console.log('Taking photo!')
+  }
+
   render () {
     return html`
       <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown} @mouseup=${this.onMouseUp}>
@@ -242,6 +246,7 @@ class MyEditor extends LitElement {
       <button @click=${this.onSaveClick}>Save</button>
       <button @click=${this.onLoadClick}>Load</button>
       <button @click=${this.onExportClick}>Export</button>
+      <button @click=${this.onPhotoClick}>Photo</button>
     `
   }
 }
