@@ -239,6 +239,23 @@ class MyEditor extends LitElement {
     takePhoto(this.renderer)
   }
 
+  onViewClick (event) {
+    switch (event.target.value) {
+      case 'top':
+        console.log('top')
+        break
+      case 'right':
+        console.log('right')
+        break
+      case 'bottom':
+        console.log('bottom')
+        break
+      case 'left':
+        console.log('left')
+        break
+    }
+  }
+
   render () {
     return html`
       <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown} @mouseup=${this.onMouseUp}>
@@ -248,7 +265,7 @@ class MyEditor extends LitElement {
       <button @click=${this.onLoadClick}>Load</button>
       <button @click=${this.onExportClick}>Export</button>
       <button @click=${this.onPhotoClick}>Photo</button>
-
+      
       <div @click=${this.onViewClick} style="display: inline;">
         <button value="top">Top</button>
         <button value="right">Right</button>
