@@ -14,13 +14,17 @@ class MyDropdown extends LitElement {
 
   static get properties () {
     return {
-      title: { type: String }
+      title: { type: String },
+      content: { type: Array }
     }
   }
 
   render () {
     return html`
       <div>${this.title}</div>
+      <div>
+        ${this.content.map(i => html`<button>${i}</button>`)}
+      </div>
     `
   }
 }
