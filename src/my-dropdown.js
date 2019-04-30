@@ -7,7 +7,13 @@ class MyDropdown extends LitElement {
         display: inline;
       }
       div {
-        background-color: cyan;
+        background-color: #039372;
+        color: white;
+        padding: 4px 10px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 3px;
+        display: inline
       }
     `
   }
