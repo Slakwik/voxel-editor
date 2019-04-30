@@ -229,6 +229,10 @@ class MyEditor extends LitElement {
     this.scene.add(...newCubes)
   }
 
+  onExportClick () {
+    console.log('Export clicked!')
+  }
+
   render () {
     return html`
       <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown} @mouseup=${this.onMouseUp}>
@@ -236,6 +240,7 @@ class MyEditor extends LitElement {
       </div>
       <button @click=${this.onSaveClick}>Save</button>
       <button @click=${this.onLoadClick}>Load</button>
+      <button @click=${this.onExportClick}>Export</button>
     `
   }
 }
