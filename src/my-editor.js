@@ -240,18 +240,20 @@ class MyEditor extends LitElement {
   }
 
   onViewClick (event) {
+    this.controls.reset()
+
     switch (event.target.value) {
       case 'top':
-        console.log('top')
+        this.camera.position.set(0, 100, 0)
         break
       case 'right':
-        console.log('right')
+        this.camera.position.set(100, 0, 0)
         break
       case 'bottom':
-        console.log('bottom')
+        this.camera.position.set(0, -100, 0)
         break
       case 'left':
-        console.log('left')
+        this.camera.position.set(-100, 0, 0)
         break
     }
   }
