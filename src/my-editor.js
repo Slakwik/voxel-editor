@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit-element'
 import save from './save.js'
 import load from './load.js'
 import exportScene from './export.js'
+import takePhoto from './photo.js'
 
 const THREE = window.THREE
 
@@ -48,7 +49,7 @@ class MyEditor extends LitElement {
     this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
     this.camera.position.set(0, 10, 50)
 
-    this.renderer = new THREE.WebGLRenderer()
+    this.renderer = new THREE.WebGLRenderer(({ preserveDrawingBuffer: true }))
     this.renderer.setSize(1600, 900)
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
@@ -235,7 +236,7 @@ class MyEditor extends LitElement {
   }
 
   onPhotoClick () {
-    console.log('Taking photo!')
+    takePhoto(this.renderer)
   }
 
   render () {
