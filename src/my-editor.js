@@ -270,17 +270,6 @@ class MyEditor extends LitElement {
       <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown} @mouseup=${this.onMouseUp}>
         ${this.renderer.domElement}
       </div>
-      <button @click=${this.onSaveClick}>Save</button>
-      <button @click=${this.onLoadClick}>Load</button>
-      <button @click=${this.onExportClick}>Export</button>
-      <button @click=${this.onPhotoClick}>Photo</button>
-      
-      <div @click=${this.onViewClick} style="display: inline;">
-        <button value="top">Top</button>
-        <button value="right">Right</button>
-        <button value="bottom">Bottom</button>
-        <button value="left">Left</button>
-      </div>
     `
   }
 }
