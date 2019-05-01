@@ -24,7 +24,8 @@ class MyEditor extends LitElement {
   static get properties () {
     return {
       mode: { type: String },
-      color: { type: String }
+      color: { type: String },
+      action: { type: String, reflect: true }
     }
   }
 
@@ -255,6 +256,12 @@ class MyEditor extends LitElement {
       case 'left':
         this.camera.position.set(-100, 0, 0)
         break
+    }
+  }
+
+  attributeChangedCallback (name, oldValue, newValue) {
+    if (name === 'action') {
+      console.log(newValue)
     }
   }
 

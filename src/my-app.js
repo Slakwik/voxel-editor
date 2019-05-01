@@ -9,7 +9,8 @@ class MyApp extends LitElement {
   static get properties () {
     return {
       mode: { type: String },
-      color: { type: String }
+      color: { type: String },
+      action: { type: String }
     }
   }
 
@@ -21,8 +22,8 @@ class MyApp extends LitElement {
 
   render () {
     return html`
-      <my-appbar @menu-action="${(e) => { console.log(e.detail.message) }}"></my-appbar>
-      <my-editor .mode=${this.mode} .color=${this.color}></my-editor>
+      <my-appbar @menu-action="${(e) => { this.action = e.detail.message }}"></my-appbar>
+      <my-editor .mode=${this.mode} .color=${this.color} action=${this.action}></my-editor>
       <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}"></my-sidebar>
       <my-palette @color-change="${(e) => { this.color = e.detail.message }}"></my-palette>
     `
