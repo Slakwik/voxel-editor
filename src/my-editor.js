@@ -80,11 +80,19 @@ class MyEditor extends LitElement {
 
     this.raycaster = new THREE.Raycaster()
 
+    window.addEventListener('resize', this.onResize.bind(this))
+
     this.animate()
   }
 
   firstUpdated () {
     this.addCube(new THREE.Vector3(0, 0, 0))
+  }
+
+  onResize () {
+    this.camera.aspect = window.innerWidth / window.innerHeight
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
   }
 
   onMouseMove (event) {
