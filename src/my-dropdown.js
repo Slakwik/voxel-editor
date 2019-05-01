@@ -38,11 +38,23 @@ class MyDropdown extends LitElement {
     event.target.nextElementSibling.classList.toggle('hidden')
   }
 
+  onMenuClick (event) {
+    if (!event.target.value) return
+
+    const menuActionEvent = new window.CustomEvent('menu-action', {
+      detail: { message: event.target.value },
+      bubbles: true,
+      composed: true
+    })
+
+    this.dispatchEvent(menuActionEvent)
+  }
+
   render () {
     return html`
       <button @click=${this.onTitleClick}>${this.title}</button>
-      <div class="content">
-        ${this.content.map(i => html`<button>${i}</button>`)}
+      <div class="content" @click=${this.onMenuClick}>
+        ${this.content.map(i => html`<button value="${i.toLowerCase()}">${i}</button>`)}
       </div>
     `
   }
