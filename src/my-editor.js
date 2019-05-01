@@ -216,11 +216,7 @@ class MyEditor extends LitElement {
     window.requestAnimationFrame(this.animate.bind(this))
   }
 
-  onSaveClick () {
-    save(this.scene)
-  }
-
-  async onLoadClick () {
+  async startLoad () {
     const loadedScene = await load()
 
     const oldCubes = this.scene.children.filter(child => this.isCube(child))
@@ -230,14 +226,6 @@ class MyEditor extends LitElement {
     const newCubes = loadedScene.children.filter(child => this.isCube(child))
 
     this.scene.add(...newCubes)
-  }
-
-  onExportClick () {
-    exportScene(this.scene)
-  }
-
-  onPhotoClick () {
-    takePhoto(this.renderer)
   }
 
   onViewClick (event) {
@@ -261,7 +249,20 @@ class MyEditor extends LitElement {
 
   attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'action') {
-      console.log(newValue)
+      switch (newValue) {
+        case 'save':
+          save(this.scene)
+          break
+        case 'load':
+          this.startLoad()
+          break
+        case 'export':
+          exportScene(this.scene)
+          break
+        case 'photo':
+          takePhoto(this.renderer)
+          break
+      }
     }
   }
 
