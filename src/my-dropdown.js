@@ -10,10 +10,11 @@ class MyDropdown extends LitElement {
         background-color: #039372;
         color: white;
         padding: 4px 10px;
-        margin: 0 5px 0 3px;
+        margin: 5px 3px;
         border: none;
         border-radius: 3px;
         display: inline;
+        cursor: pointer;
       }
       .content {
         display: none;
