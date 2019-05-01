@@ -15,6 +15,12 @@ class MyDropdown extends LitElement {
         border-radius: 3px;
         display: inline
       }
+      .content {
+        display: none;
+      }
+      .hidden {
+        display: inline;
+      }
     `
   }
 
@@ -25,10 +31,14 @@ class MyDropdown extends LitElement {
     }
   }
 
+  onTitleClick (event) {
+    event.target.nextElementSibling.classList.toggle('hidden')
+  }
+
   render () {
     return html`
-      <div>${this.title}</div>
-      <div>
+      <button @click=${this.onTitleClick}>${this.title}</button>
+      <div class="content">
         ${this.content.map(i => html`<button>${i}</button>`)}
       </div>
     `
