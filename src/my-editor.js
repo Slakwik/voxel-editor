@@ -12,7 +12,8 @@ class MyEditor extends LitElement {
       :host {
         display: block;
         width: 100%;
-        height: 95%;
+        height: 100%;
+        overflow: hidden;
         background-color: darkgray;
       }
       p {
@@ -47,11 +48,12 @@ class MyEditor extends LitElement {
     pointLight.position.set(150, 150, 150)
     this.scene.add(pointLight)
 
-    this.camera = new THREE.PerspectiveCamera(75, 16 / 9, 0.1, 1000)
+    const aspectRatio = window.innerWidth / window.innerHeight
+    this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000)
     this.camera.position.set(0, 10, 50)
 
     this.renderer = new THREE.WebGLRenderer(({ preserveDrawingBuffer: true }))
-    this.renderer.setSize(1600, 900)
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableKeys = false
@@ -86,14 +88,11 @@ class MyEditor extends LitElement {
   }
 
   onMouseMove (event) {
-    const rendererOffsetX = 0
-    const rendererOffsetY = 50
+    const rendererWidth = window.innerWidth
+    const rendererHeight = window.innerHeight
 
-    const rendererWidth = 1600
-    const rendererHeight = 900
-
-    const mouseX = event.clientX - rendererOffsetX
-    const mouseY = event.clientY - rendererOffsetY
+    const mouseX = event.clientX
+    const mouseY = event.clientY
 
     const mouseNormalizedX = mouseX / rendererWidth * 2 - 1
     const mouseNormalizedY = mouseY / rendererHeight * -2 + 1

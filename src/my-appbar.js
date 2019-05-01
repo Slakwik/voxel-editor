@@ -6,6 +6,7 @@ class MyAppBar extends LitElement {
     return css`
       :host {
         display: block;
+        position: absolute;
         width: 100%;
         height: 5%;
         background-color: lightskyblue;
