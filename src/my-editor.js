@@ -228,23 +228,9 @@ class MyEditor extends LitElement {
     this.scene.add(...newCubes)
   }
 
-  onViewClick (event) {
+  moveCameraTo (x, y, z) {
     this.controls.reset()
-
-    switch (event.target.value) {
-      case 'top':
-        this.camera.position.set(0, 100, 0)
-        break
-      case 'right':
-        this.camera.position.set(100, 0, 0)
-        break
-      case 'bottom':
-        this.camera.position.set(0, -100, 0)
-        break
-      case 'left':
-        this.camera.position.set(-100, 0, 0)
-        break
-    }
+    this.camera.position.set(x, y, z)
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
@@ -261,6 +247,18 @@ class MyEditor extends LitElement {
           break
         case 'photo':
           takePhoto(this.renderer)
+          break
+        case 'top':
+          this.moveCameraTo(0, 100, 0)
+          break
+        case 'right':
+          this.moveCameraTo(100, 0, 0)
+          break
+        case 'bottom':
+          this.moveCameraTo(0, -100, 0)
+          break
+        case 'left':
+          this.moveCameraTo(-100, 0, 0)
           break
       }
     }
