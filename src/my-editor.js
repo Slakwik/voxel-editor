@@ -52,7 +52,7 @@ class MyEditor extends LitElement {
     this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000)
     this.camera.position.set(0, 10, 50)
 
-    this.renderer = new THREE.WebGLRenderer(({ preserveDrawingBuffer: true }))
+    this.renderer = new THREE.WebGLRenderer(({ preserveDrawingBuffer: true, antialias: true }))
     this.renderer.setSize(window.innerWidth, window.innerHeight)
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
