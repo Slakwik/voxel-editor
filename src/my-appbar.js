@@ -15,6 +15,7 @@ class MyAppBar extends LitElement {
       }
       h2 {
         display: inline;
+        vertical-align: middle;
         margin: 0 6px;
       }
     `
