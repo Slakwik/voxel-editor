@@ -28,10 +28,6 @@ class MySideBar extends LitElement {
     `
   }
 
-  firstUpdated () {
-    this.shadowRoot.querySelector('input').focus()
-  }
-
   onFocus (event) {
     this.shadowRoot.querySelectorAll('input').forEach(el => el.classList.remove('selected'))
     event.target.classList.add('selected')
