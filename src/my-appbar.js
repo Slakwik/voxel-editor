@@ -10,6 +10,7 @@ class MyAppBar extends LitElement {
         width: 100%;
         height: fit-content;
         background-color: lightskyblue;
+        z-index: 2;
       }
       h2 {
         display: inline;

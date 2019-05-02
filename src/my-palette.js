@@ -6,13 +6,11 @@ class MyPalette extends LitElement {
     return css`
       :host {
         display: block;
-        position: absolute;
         border: 2px solid saddlebrown;
         background-color: tan;
         border-radius: 5px;
         padding: 5px;
         width: 100px;
-        top: 35%;
       }
     `
   }
