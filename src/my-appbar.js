@@ -9,11 +9,13 @@ class MyAppBar extends LitElement {
         position: absolute;
         width: 100%;
         height: fit-content;
-        background-color: lightskyblue;
+        background: linear-gradient(to right, #1488CC, #2B32B2);
+        border-bottom: 1px solid #FEFEFE;
         user-select: none;
         z-index: 2;
       }
       h2 {
+        color: #FEFEFE;
         display: inline;
         vertical-align: middle;
         margin: 0 6px;
