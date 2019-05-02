@@ -6,9 +6,9 @@ class MyPalette extends LitElement {
     return css`
       :host {
         display: block;
-        border: 2px solid saddlebrown;
-        background-color: tan;
-        border-radius: 5px;
+        border: 1px solid #FEFEFE;
+        background-color: rgba(20, 140, 200, 0.2);
+        border-radius: 4px;
         padding: 5px;
         width: 100px;
       }
