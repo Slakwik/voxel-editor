@@ -69,11 +69,11 @@ class MyEditor extends LitElement {
     sky.name = 'Sky: ' + sky.id
     sky.material.uniforms.turbidity.value = 10
     sky.material.uniforms.rayleigh.value = 0.5
-    sky.material.uniforms.luminance.value = 0.7
-    sky.material.uniforms.mieCoefficient.value = 0.006
-    sky.material.uniforms.mieDirectionalG.value = 0.85
-    sky.material.uniforms.sunPosition.value = new THREE.Vector3(1, 1, 1)
-    sky.scale.setScalar(1000)
+    sky.material.uniforms.luminance.value = 0.16
+    sky.material.uniforms.mieCoefficient.value = 0.01
+    sky.material.uniforms.mieDirectionalG.value = 0.95
+    sky.material.uniforms.sunPosition.value = new THREE.Vector3(100, 200, 100)
+    sky.scale.setScalar(2000)
     this.scene.add(sky)
 
     this.mouse = new THREE.Vector2()
