@@ -17,6 +17,9 @@ class MyDropdown extends LitElement {
         cursor: pointer;
         outline: none;
       }
+      button:active {
+        transform: translateY(1px);
+      }
       .content {
         display: none;
       }
