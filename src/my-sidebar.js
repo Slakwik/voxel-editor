@@ -9,6 +9,7 @@ class MySideBar extends LitElement {
         width: fit-content;
         height: fit-content;
         max-height: 100%;
+        user-select: none;
         background-color: salmon;
         top: 40%;
         transform: translateY(-40%);
