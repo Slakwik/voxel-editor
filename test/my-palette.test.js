@@ -1,6 +1,6 @@
 describe('my-palette', () => {
   let page
-  let elementPath = `document.querySelector('body > my-app').shadowRoot.querySelector('my-palette')`
+  let elementPath = `document.querySelector("body > my-app").shadowRoot.querySelector("my-sidebar").shadowRoot.querySelector("my-palette")`
 
   before(async () => {
     page = await global.browser.newPage()

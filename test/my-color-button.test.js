@@ -1,6 +1,6 @@
 describe('my-color-button', () => {
   let page
-  let elementPath = `document.querySelector('body > my-app').shadowRoot.querySelector('my-palette').shadowRoot.querySelector('my-color-button')`
+  let elementPath = `document.querySelector("body > my-app").shadowRoot.querySelector("my-sidebar").shadowRoot.querySelector("my-palette").shadowRoot.querySelector("my-color-button")`
 
   before(async () => {
     page = await global.browser.newPage()
