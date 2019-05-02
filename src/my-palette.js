@@ -36,8 +36,14 @@ class MyPalette extends LitElement {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
   }
 
+  onFocus (event) {
+    this.shadowRoot.querySelectorAll('my-color-button')
+      .forEach(el => el.shadowRoot.querySelector('button').classList.remove('selected'))
+    event.target.shadowRoot.querySelector('button').classList.add('selected')
+  }
+
   render () {
-    return html`${this.colors.map(i => html`<my-color-button .color=${i}></my-color-button>`)}`
+    return html`${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}`
   }
 }
 

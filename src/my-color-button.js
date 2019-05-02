@@ -14,6 +14,10 @@ class MyColorButton extends LitElement {
         cursor: pointer;
         outline:none;
       }
+      .selected {
+        border: 2px solid #FEFEFE;
+        margin: 2px 1px
+      }
     `
   }
 
