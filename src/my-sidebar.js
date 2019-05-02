@@ -22,7 +22,19 @@ class MySideBar extends LitElement {
         border-radius: 100%;
         outline:none;
       }
+      .selected {
+        border: 2px solid #FEFEFE;
+      }
     `
+  }
+
+  firstUpdated () {
+    this.shadowRoot.querySelector('input').focus()
+  }
+
+  onFocus (event) {
+    this.shadowRoot.querySelectorAll('input').forEach(el => el.classList.remove('selected'))
+    event.target.classList.add('selected')
   }
 
   onModeClick (event) {
@@ -37,8 +49,10 @@ class MySideBar extends LitElement {
   render () {
     return html`
       <div>
-        <input type="image" @click="${this.onModeClick}" value="build-mode" alt="Build" draggable="false" src="./icons/build.png">
-        <input type="image" @click="${this.onModeClick}" value="color-mode" alt="Color" draggable="false" src="./icons/color.png">
+        <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="build-mode" alt="Build" draggable="false"
+          src="./icons/build.png">
+        <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="color-mode" alt="Color" draggable="false"
+          src="./icons/color.png">
       </div>
       <my-palette></my-palette>
     `
