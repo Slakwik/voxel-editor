@@ -41,6 +41,7 @@ class MySideBar extends LitElement {
     return html`
       <input type="image" @click="${this.onModeClick}" value="build-mode" alt="Build" draggable="false" src="./icons/build.png">
       <input type="image" @click="${this.onModeClick}" value="color-mode" alt="Color" draggable="false" src="./icons/color.png">
+      <my-palette></my-palette>
     `
   }
 }

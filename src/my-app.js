@@ -24,8 +24,7 @@ class MyApp extends LitElement {
     return html`
       <my-appbar @menu-action="${(e) => { this.action = e.detail.message }}"></my-appbar>
       <my-editor .mode=${this.mode} .color=${this.color} action=${this.action}></my-editor>
-      <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}"></my-sidebar>
-      <my-palette @color-change="${(e) => { this.color = e.detail.message }}"></my-palette>
+      <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}" @color-change="${(e) => { this.color = e.detail.message }}"></my-sidebar>
     `
   }
 }
