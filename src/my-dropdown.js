@@ -31,7 +31,7 @@ class MyDropdown extends LitElement {
 
   static get properties () {
     return {
-      title: { type: String },
+      titlex: { type: String },
       content: { type: Array }
     }
   }
@@ -54,7 +54,7 @@ class MyDropdown extends LitElement {
 
   render () {
     return html`
-      <button @click=${this.onTitleClick}>${this.title}</button>
+      <button @click=${this.onTitleClick}>${this.titlex}</button>
       <div class="content" @click=${this.onMenuClick}>
         ${this.content.map(i => html`<button value="${i.toLowerCase()}">${i}</button>`)}
       </div>
