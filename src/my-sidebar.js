@@ -10,20 +10,17 @@ class MySideBar extends LitElement {
         height: fit-content;
         max-height: 100%;
         user-select: none;
-        background-color: salmon;
         top: 40%;
+        left: 5px;
         transform: translateY(-40%);
         z-index: 1;
       }
-      div {
-        background-color: yellow;
-      }
       input {
-        background-color: orange;
-        height: 50%;
-        width: 30%;
-        padding: 10px;
+        background: linear-gradient(to bottom, #ffe259, #ffa751);
+        border: 1px solid #FEFEFE;
+        padding: 8px;
         border-radius: 100%;
+        outline:none;
       }
     `
   }
