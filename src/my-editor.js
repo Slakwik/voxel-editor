@@ -250,7 +250,8 @@ class MyEditor extends LitElement {
           this.startLoad()
           break
         case 'export':
-          exportScene(this.scene)
+          const cubes = this.scene.children.filter(child => this.isCube(child))
+          exportScene(cubes)
           break
         case 'photo':
           takePhoto(this.renderer)
