@@ -250,8 +250,19 @@ class MyEditor extends LitElement {
           this.startLoad()
           break
         case 'export':
-          const cubes = this.scene.children.filter(child => this.isCube(child))
-          exportScene(cubes)
+          let cubes = this.scene.children.filter(child => this.isCube(child))
+          let geometries = []
+          let materials = []
+
+          for (let i = 0; i < cubes.length; i++) {
+            geometries.push(cubes[i].geometry.clone().applyMatrix(cubes[i].matrix))
+            materials.push(cubes[i].material.clone())
+          }
+
+          let mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries, true)
+          let mergedMesh = new THREE.Mesh(mergedGeometry, materials)
+
+          exportScene(mergedMesh)
           break
         case 'photo':
           takePhoto(this.renderer)
