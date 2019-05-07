@@ -179,6 +179,14 @@ class MyEditor extends LitElement {
       case 'color-mode':
         this.colorCube(firstIntersection.object)
         break
+
+      case 'move-mode':
+        console.log('Left-click in move mode!')
+        break
+
+      case 'extrude-mode':
+        console.log('Left-click in extrude mode!')
+        break
     }
   }
 
