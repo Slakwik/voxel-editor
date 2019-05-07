@@ -15,15 +15,20 @@ class MySideBar extends LitElement {
         transform: translateY(-40%);
         z-index: 1;
       }
+      div {
+        width: 110px;
+      }
       input {
         background: linear-gradient(to bottom, #ffe259, #ffa751);
         border: 1px solid #FEFEFE;
-        padding: 8px;
+        padding: 6px;
+        margin: 1px;
         border-radius: 100%;
         outline:none;
       }
       .selected {
         border: 2px solid #FEFEFE;
+        margin: 0px;
       }
     `
   }
