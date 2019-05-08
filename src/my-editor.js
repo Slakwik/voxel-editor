@@ -55,15 +55,15 @@ class MyEditor extends LitElement {
     this.renderer = new THREE.WebGLRenderer(({ preserveDrawingBuffer: true, antialias: true }))
     this.renderer.setSize(window.innerWidth, window.innerHeight)
 
-    this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
-    this.controls.enableKeys = false
-    this.controls.enableDamping = true
-    this.controls.dampingFactor = 0.3
-    this.controls.maxDistance = 600
-    this.controls.minDistance = 30
-    this.controls.rotateSpeed = 0.3
-    this.controls.panSpeed = 0.3
-    this.controls.zoomSpeed = 1.6
+    this.orbitControls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
+    this.orbitControls.enableKeys = false
+    this.orbitControls.enableDamping = true
+    this.orbitControls.dampingFactor = 0.3
+    this.orbitControls.maxDistance = 600
+    this.orbitControls.minDistance = 30
+    this.orbitControls.rotateSpeed = 0.3
+    this.orbitControls.panSpeed = 0.3
+    this.orbitControls.zoomSpeed = 1.6
 
     const sky = new THREE.Sky()
     sky.name = 'Sky: ' + sky.id
@@ -224,7 +224,7 @@ class MyEditor extends LitElement {
   }
 
   animate () {
-    this.controls.update()
+    this.orbitControls.update()
 
     this.renderer.render(this.scene, this.camera)
 
@@ -244,7 +244,7 @@ class MyEditor extends LitElement {
   }
 
   moveCameraTo (x, y, z) {
-    this.controls.reset()
+    this.orbitControls.reset()
     this.camera.position.set(x, y, z)
   }
 
