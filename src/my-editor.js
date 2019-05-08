@@ -206,16 +206,16 @@ class MyEditor extends LitElement {
     }
   }
 
-  addToSelection (obj) {
-    const outline = new THREE.BoxHelper(obj, 0x000000)
-    obj.add(outline)
-    this.selection.add(obj)
+  addToSelection (cube) {
+    const outline = new THREE.BoxHelper(cube, 0x000000)
+    cube.add(outline)
+    this.selection.add(cube)
   }
 
-  removeFromSelection (obj) {
-    obj.remove(...obj.children)
-    obj.position.setFromMatrixPosition(obj.matrixWorld)
-    this.scene.add(obj)
+  removeFromSelection (cube) {
+    cube.remove(...cube.children)
+    cube.position.setFromMatrixPosition(cube.matrixWorld)
+    this.scene.add(cube)
   }
 
   cancelSelection () {
