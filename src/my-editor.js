@@ -70,6 +70,9 @@ class MyEditor extends LitElement {
     this.voxelControls.setTranslationSnap(10)
     this.scene.add(this.voxelControls)
 
+    this.selection = new THREE.Group()
+    this.scene.add(this.selection)
+
     const sky = new THREE.Sky()
     sky.name = 'Sky: ' + sky.id
     sky.material.uniforms.turbidity.value = 10
@@ -186,13 +189,20 @@ class MyEditor extends LitElement {
         break
 
       case 'move-mode':
-        this.voxelControls.attach(firstIntersection.object)
+        this.addToSelection(firstIntersection.object)
+        this.voxelControls.attach(this.selection)
         break
 
       case 'extrude-mode':
         console.log('Left-click in extrude mode!')
         break
     }
+  }
+
+  addToSelection (obj) {
+    const outline = new THREE.BoxHelper(obj, 0x000000)
+    this.selection.add(obj)
+    this.selection.add(outline)
   }
 
   calculatePlacementPosition (intersection) {
