@@ -180,7 +180,10 @@ class MyEditor extends LitElement {
   onLeftClick () {
     const firstIntersection = this.getFirstRaycastIntersection()
 
-    if (!this.isCube(firstIntersection.object)) { return }
+    if (!this.isCube(firstIntersection.object)) {
+      this.cancelSelection()
+      return
+    }
 
     switch (this.mode) {
       case 'build-mode':
@@ -207,6 +210,10 @@ class MyEditor extends LitElement {
     const outline = new THREE.BoxHelper(obj, 0x000000)
     this.selection.add(obj)
     this.selection.add(outline)
+  }
+
+  cancelSelection () {
+    this.voxelControls.detach()
   }
 
   calculatePlacementPosition (intersection) {
