@@ -65,6 +65,11 @@ class MyEditor extends LitElement {
     this.orbitControls.panSpeed = 0.3
     this.orbitControls.zoomSpeed = 1.6
 
+    this.voxelControls = new THREE.TransformControls(this.camera, this.renderer.domElement)
+    this.voxelControls.setMode('translate')
+    this.voxelControls.setTranslationSnap(10)
+    this.scene.add(this.voxelControls)
+
     const sky = new THREE.Sky()
     sky.name = 'Sky: ' + sky.id
     sky.material.uniforms.turbidity.value = 10
@@ -181,7 +186,7 @@ class MyEditor extends LitElement {
         break
 
       case 'move-mode':
-        console.log('Left-click in move mode!')
+        this.voxelControls.attach(firstIntersection.object)
         break
 
       case 'extrude-mode':
