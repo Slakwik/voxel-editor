@@ -70,6 +70,10 @@ class MyEditor extends LitElement {
     this.voxelControls.setTranslationSnap(10)
     this.scene.add(this.voxelControls)
 
+    this.voxelControls.addEventListener('dragging-changed', (event) => {
+      this.orbitControls.enabled = !event.value
+    })
+
     this.selection = new THREE.Group()
     this.scene.add(this.selection)
 
