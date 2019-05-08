@@ -208,12 +208,22 @@ class MyEditor extends LitElement {
 
   addToSelection (obj) {
     const outline = new THREE.BoxHelper(obj, 0x000000)
+    obj.add(outline)
     this.selection.add(obj)
-    this.selection.add(outline)
+  }
+
+  removeFromSelection (obj) {
+    obj.remove(...obj.children)
+    obj.position.setFromMatrixPosition(obj.matrixWorld)
+    this.scene.add(obj)
   }
 
   cancelSelection () {
     this.voxelControls.detach()
+
+    for (let i = 0; i < this.selection.children.length; i++) {
+      this.removeFromSelection(this.selection.children[i])
+    }
   }
 
   calculatePlacementPosition (intersection) {
