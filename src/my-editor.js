@@ -237,8 +237,8 @@ class MyEditor extends LitElement {
 
   cancelSelection () {
     if (this.selection) {
-      for (let i = 0; i < this.selection.children.length; i++) {
-        this.removeFromSelection(this.selection.children[i])
+      while (this.selection.children.length > 0) {
+        this.removeFromSelection(this.selection.children[0])
       }
       this.scene.remove(this.selection)
       this.selection = undefined
