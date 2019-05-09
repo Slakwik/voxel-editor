@@ -222,7 +222,7 @@ class MyEditor extends LitElement {
   }
 
   attachOutline (object) {
-    const outline = new THREE.BoxHelper(object, 0x000000)
+    const outline = new THREE.BoxHelper(object, 0xFFFFFF)
     outline.name = 'Outline: ' + outline.id
     object.add(outline)
 
