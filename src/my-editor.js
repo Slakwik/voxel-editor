@@ -197,7 +197,6 @@ class MyEditor extends LitElement {
 
       case 'move-mode':
         this.addToSelection(firstIntersection.object)
-        this.voxelControls.attach(this.selection)
         break
 
       case 'extrude-mode':
@@ -229,8 +228,6 @@ class MyEditor extends LitElement {
   }
 
   cancelSelection () {
-    this.voxelControls.detach()
-
     for (let i = 0; i < this.selection.children.length; i++) {
       this.removeFromSelection(this.selection.children[i])
     }
