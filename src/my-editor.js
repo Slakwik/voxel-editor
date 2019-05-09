@@ -74,9 +74,6 @@ class MyEditor extends LitElement {
       this.orbitControls.enabled = !event.value
     })
 
-    this.selection = new THREE.Group()
-    this.scene.add(this.selection)
-
     const sky = new THREE.Sky()
     sky.name = 'Sky: ' + sky.id
     sky.material.uniforms.turbidity.value = 10
@@ -196,6 +193,11 @@ class MyEditor extends LitElement {
         break
 
       case 'move-mode':
+        if (!this.selection) {
+          this.selection = new THREE.Group()
+          this.selection.position.setFromMatrixPosition(firstIntersection.object.matrixWorld)
+          this.scene.add(this.selection)
+        }
         this.addToSelection(firstIntersection.object)
         break
 
@@ -228,8 +230,12 @@ class MyEditor extends LitElement {
   }
 
   cancelSelection () {
-    for (let i = 0; i < this.selection.children.length; i++) {
-      this.removeFromSelection(this.selection.children[i])
+    if (this.selection) {
+      for (let i = 0; i < this.selection.children.length; i++) {
+        this.removeFromSelection(this.selection.children[i])
+      }
+      this.scene.remove(this.selection)
+      this.selection = undefined
     }
   }
 
