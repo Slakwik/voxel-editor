@@ -179,6 +179,7 @@ class MyEditor extends LitElement {
 
     if (!this.isCube(firstIntersection.object)) {
       this.cancelSelection()
+      this.voxelControls.detach(this.selection)
       return
     }
 
@@ -199,6 +200,7 @@ class MyEditor extends LitElement {
           this.scene.add(this.selection)
         }
         this.addToSelection(firstIntersection.object)
+        this.voxelControls.attach(this.selection)
         break
 
       case 'extrude-mode':
