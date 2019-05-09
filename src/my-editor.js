@@ -210,6 +210,9 @@ class MyEditor extends LitElement {
   addToSelection (cube) {
     this.attachOutline(cube)
     this.selection.add(cube)
+
+    cube.position.sub(this.selection.position)
+    cube.updateMatrix()
   }
 
   removeFromSelection (cube) {
@@ -222,6 +225,9 @@ class MyEditor extends LitElement {
     const outline = new THREE.BoxHelper(object, 0x000000)
     outline.name = 'Outline: ' + outline.id
     object.add(outline)
+
+    outline.position.sub(object.position)
+    outline.updateMatrix()
   }
 
   detachOutline (object) {
