@@ -207,15 +207,25 @@ class MyEditor extends LitElement {
   }
 
   addToSelection (cube) {
-    const outline = new THREE.BoxHelper(cube, 0x000000)
-    cube.add(outline)
+    this.attachOutline(cube)
     this.selection.add(cube)
   }
 
   removeFromSelection (cube) {
-    cube.remove(...cube.children)
+    this.detachOutline(cube)
     cube.position.setFromMatrixPosition(cube.matrixWorld)
     this.scene.add(cube)
+  }
+
+  attachOutline (object) {
+    const outline = new THREE.BoxHelper(object, 0x000000)
+    outline.name = 'Outline: ' + outline.id
+    object.add(outline)
+  }
+
+  detachOutline (object) {
+    const outline = object.children.find(child => child.name.slice(0, 7) === 'Outline')
+    object.remove(outline)
   }
 
   cancelSelection () {
