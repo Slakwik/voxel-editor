@@ -68,6 +68,7 @@ class MyEditor extends LitElement {
     this.voxelControls = new THREE.TransformControls(this.camera, this.renderer.domElement)
     this.voxelControls.setMode('translate')
     this.voxelControls.setTranslationSnap(10)
+    this.voxelControls.size += 0.3
     this.scene.add(this.voxelControls)
 
     this.voxelControls.addEventListener('dragging-changed', (event) => {
