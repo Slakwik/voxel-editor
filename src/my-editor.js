@@ -292,33 +292,31 @@ class MyEditor extends LitElement {
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
-    if (name === 'action') {
-      switch (newValue) {
-        case 'save':
-          save(this.scene)
-          break
-        case 'load':
-          load(this.scene)
-          break
-        case 'export':
-          export_(this.scene)
-          break
-        case 'screenshot':
-          screenshot(this.renderer)
-          break
-        case 'top':
-          this.moveCameraTo(0, 100, 0)
-          break
-        case 'right':
-          this.moveCameraTo(100, 0, 0)
-          break
-        case 'bottom':
-          this.moveCameraTo(0, -100, 0)
-          break
-        case 'left':
-          this.moveCameraTo(-100, 0, 0)
-          break
-      }
+    switch (newValue) {
+      case 'save':
+        save(this.scene)
+        break
+      case 'load':
+        load(this.scene)
+        break
+      case 'export':
+        export_(this.scene)
+        break
+      case 'screenshot':
+        screenshot(this.renderer)
+        break
+      case 'top':
+        this.moveCameraTo(0, 100, 0)
+        break
+      case 'right':
+        this.moveCameraTo(100, 0, 0)
+        break
+      case 'bottom':
+        this.moveCameraTo(0, -100, 0)
+        break
+      case 'left':
+        this.moveCameraTo(-100, 0, 0)
+        break
     }
   }
 
