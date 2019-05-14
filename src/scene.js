@@ -9,13 +9,9 @@ function exportScene (scene) {
 
   exporter.parse(mergedCubes, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
-    const blob = new window.Blob([jsonScene], { type: 'text/plain' })
-    const fileName = 'scene.gltf'
-
-    const a = document.createElement('a')
-    a.href = URL.createObjectURL(blob)
-    a.download = fileName
-    a.click()
+    const modelData = URL.createObjectURL(new window.Blob([jsonScene], { type: 'text/plain' }))
+    const modelName = 'scene.gltf'
+    download(modelData, modelName)
   }, options)
 }
 
