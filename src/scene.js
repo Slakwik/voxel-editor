@@ -54,9 +54,9 @@ function load () {
 }
 
 // from photo.js
-function takePhoto (renderer) {
+function screenshot (renderer) {
   const image = renderer.domElement.toDataURL('image/png')
-  const fileName = 'photo.png'
+  const fileName = 'screenshot.png'
 
   const a = document.createElement('a')
   a.href = image
@@ -65,4 +65,4 @@ function takePhoto (renderer) {
 }
 
 // exports
-export { save, load, exportScene, takePhoto }
+export { save, load, exportScene, screenshot }
