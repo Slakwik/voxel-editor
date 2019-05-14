@@ -14,6 +14,17 @@ describe('my-editor', () => {
     global.assert.isOk(element)
   })
 
+  it('should be resized dynamically', async () => {
+    const newSize = { width: 960, height: 540 }
+    const expected = newSize
+    page.setViewport(newSize)
+    const actual = {
+      width: await page.evaluate(`${elementPath}.getBoundingClientRect().width`),
+      height: await page.evaluate(`${elementPath}.getBoundingClientRect().height`)
+    }
+    global.assert.strictEqual(JSON.stringify(actual), JSON.stringify(expected))
+  })
+
   describe('isCube()', () => {
     it('should return a boolean', async () => {
       const expectedType = 'boolean'
