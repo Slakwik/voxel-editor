@@ -1,6 +1,5 @@
 const THREE = window.THREE
 
-// from export.js
 function exportScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
@@ -29,7 +28,6 @@ function exportScene (scene) {
   }, options)
 }
 
-// from save.js
 function save (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = { }
@@ -40,7 +38,6 @@ function save (scene) {
   }, options)
 }
 
-// from load.js
 function load () {
   const loader = new THREE.GLTFLoader()
 
@@ -53,7 +50,6 @@ function load () {
   })
 }
 
-// from photo.js
 function screenshot (renderer) {
   const image = renderer.domElement.toDataURL('image/png')
   const fileName = 'screenshot.png'
@@ -64,5 +60,4 @@ function screenshot (renderer) {
   a.click()
 }
 
-// exports
 export { save, load, exportScene, screenshot }
