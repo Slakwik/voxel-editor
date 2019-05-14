@@ -63,11 +63,14 @@ function load (scene) {
 }
 
 function screenshot (renderer) {
-  const image = renderer.domElement.toDataURL('image/png')
-  const fileName = 'screenshot.png'
+  const imageData = renderer.domElement.toDataURL('image/png')
+  const imageName = 'screenshot.png'
+  download(imageData, imageName)
+}
 
+function download (data, fileName) {
   const a = document.createElement('a')
-  a.href = image
+  a.href = data
   a.download = fileName
   a.click()
 }
