@@ -57,7 +57,7 @@ function load (scene) {
     const oldCubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
     scene.remove(...oldCubes)
 
-    const newCubes = loadedScene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+    const newCubes = loadedScene.children
     scene.add(...newCubes)
   })
 }
