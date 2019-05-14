@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
-import { save, load, exportScene, screenshot } from './scene.js'
+import { save, load, export_, screenshot } from './scene.js'
 
 const THREE = window.THREE
 
@@ -301,7 +301,7 @@ class MyEditor extends LitElement {
           load(this.scene)
           break
         case 'export':
-          exportScene(this.scene)
+          export_(this.scene)
           break
         case 'screenshot':
           screenshot(this.renderer)

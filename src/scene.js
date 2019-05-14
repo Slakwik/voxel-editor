@@ -1,6 +1,6 @@
 const THREE = window.THREE
 
-function exportScene (scene) {
+function export_ (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
@@ -10,7 +10,7 @@ function exportScene (scene) {
   exporter.parse(mergedCubes, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
     const modelData = URL.createObjectURL(new window.Blob([jsonScene], { type: 'text/plain' }))
-    const modelName = 'scene.gltf'
+    const modelName = 'model.gltf'
     download(modelData, modelName)
   }, options)
 }
@@ -71,4 +71,4 @@ function download (data, fileName) {
   a.click()
 }
 
-export { save, load, exportScene, screenshot }
+export { save, load, export_, screenshot }
