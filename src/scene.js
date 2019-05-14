@@ -36,9 +36,11 @@ function mergeMeshes (meshes) {
 
 function save (scene) {
   const exporter = new THREE.GLTFExporter()
-  const options = { }
+  const options = {}
 
-  exporter.parse(scene, (gltfScene) => {
+  const cubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+
+  exporter.parse(cubes, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
     window.localStorage.setItem('scene', jsonScene)
   }, options)
