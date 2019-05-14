@@ -25,6 +25,14 @@ describe('my-editor', () => {
     global.assert.strictEqual(JSON.stringify(actual), JSON.stringify(expected))
   })
 
+  it('should have the correct aspect ratio', async () => {
+    const expected = await page.evaluate(`window.innerWidth`) /
+      await page.evaluate(`window.innerHeight`)
+    const actual = await page.evaluate(`${elementPath}.getBoundingClientRect().width`) /
+      await page.evaluate(`${elementPath}.getBoundingClientRect().height`)
+    global.assert.strictEqual(actual, expected)
+  })
+
   describe('isCube()', () => {
     it('should return a boolean', async () => {
       const expectedType = 'boolean'
