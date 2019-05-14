@@ -22,7 +22,7 @@ class MyPalette extends LitElement {
   }
 
   createColorArray (hueStepLength, saturation, lightness) {
-    let colorArray = []
+    const colorArray = []
 
     for (let hue = 0; hue < 360; hue += hueStepLength) {
       const hsl = this.createHSLColor(hue, saturation, lightness)
