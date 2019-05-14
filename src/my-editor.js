@@ -286,18 +286,6 @@ class MyEditor extends LitElement {
     window.requestAnimationFrame(this.animate.bind(this))
   }
 
-  async startLoad () {
-    const loadedScene = await load()
-
-    const oldCubes = this.scene.children.filter(child => this.isCube(child))
-
-    this.scene.remove(...oldCubes)
-
-    const newCubes = loadedScene.children.filter(child => this.isCube(child))
-
-    this.scene.add(...newCubes)
-  }
-
   moveCameraTo (x, y, z) {
     this.orbitControls.reset()
     this.camera.position.set(x, y, z)
@@ -310,7 +298,7 @@ class MyEditor extends LitElement {
           save(this.scene)
           break
         case 'load':
-          this.startLoad()
+          load(this.scene)
           break
         case 'export':
           exportScene(this.scene)

@@ -38,15 +38,19 @@ function save (scene) {
   }, options)
 }
 
-function load () {
+function load (scene) {
   const loader = new THREE.GLTFLoader()
 
   const jsonScene = window.localStorage.getItem('scene')
 
-  return new Promise((resolve) => {
-    loader.parse(jsonScene, '', (gltf) => {
-      resolve(gltf.scene)
-    })
+  loader.parse(jsonScene, '', (gltf) => {
+    const loadedScene = gltf.scene
+
+    const oldCubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+    scene.remove(...oldCubes)
+
+    const newCubes = loadedScene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+    scene.add(...newCubes)
   })
 }
 
