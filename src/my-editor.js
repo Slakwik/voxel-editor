@@ -1,8 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
-import save from './save.js'
-import load from './load.js'
-import exportScene from './export.js'
-import takePhoto from './photo.js'
+import { save, load, exportScene, takePhoto } from './scene.js'
 
 const THREE = window.THREE
 
