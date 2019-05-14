@@ -5,7 +5,19 @@ function exportScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
-  exporter.parse(scene, (gltfScene) => {
+  let cubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+  let geometries = []
+  let materials = []
+
+  for (let i = 0; i < cubes.length; i++) {
+    geometries.push(cubes[i].geometry.clone().applyMatrix(cubes[i].matrix))
+    materials.push(cubes[i].material.clone())
+  }
+
+  let mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries, true)
+  let mergedMesh = new THREE.Mesh(mergedGeometry, materials)
+
+  exporter.parse(mergedMesh, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
     const blob = new window.Blob([jsonScene], { type: 'text/plain' })
     const fileName = 'scene.gltf'
