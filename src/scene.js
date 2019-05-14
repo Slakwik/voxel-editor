@@ -4,19 +4,10 @@ function exportScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
-  let cubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
-  let geometries = []
-  let materials = []
+  const cubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+  const mergedCubes = mergeMeshes(cubes)
 
-  for (let i = 0; i < cubes.length; i++) {
-    geometries.push(cubes[i].geometry.clone().applyMatrix(cubes[i].matrix))
-    materials.push(cubes[i].material.clone())
-  }
-
-  let mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries, true)
-  let mergedMesh = new THREE.Mesh(mergedGeometry, materials)
-
-  exporter.parse(mergedMesh, (gltfScene) => {
+  exporter.parse(mergedCubes, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
     const blob = new window.Blob([jsonScene], { type: 'text/plain' })
     const fileName = 'scene.gltf'
@@ -26,6 +17,21 @@ function exportScene (scene) {
     a.download = fileName
     a.click()
   }, options)
+}
+
+function mergeMeshes (meshes) {
+  const geometries = []
+  const materials = []
+
+  for (let i = 0; i < meshes.length; i++) {
+    geometries.push(meshes[i].geometry.clone().applyMatrix(meshes[i].matrix))
+    materials.push(meshes[i].material.clone())
+  }
+
+  const mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries, true)
+  const mergedMesh = new THREE.Mesh(mergedGeometry, materials)
+
+  return mergedMesh
 }
 
 function save (scene) {
