@@ -42,17 +42,7 @@ class MySettings extends LitElement {
 
   constructor () {
     super()
-
-    const loadedSettings = this.loadSettings()
-
-    if (loadedSettings) {
-      this.settings = loadedSettings
-    } else {
-      this.settings = {
-        antiAliasing: true,
-        pbrMaterials: true
-      }
-    }
+    this.settings = this.loadSettings()
   }
 
   loadSettings () {
