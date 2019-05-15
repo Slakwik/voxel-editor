@@ -34,6 +34,47 @@ class MySettings extends LitElement {
     `
   }
 
+  static get properties () {
+    return {
+      settings: { type: Object }
+    }
+  }
+
+  constructor () {
+    super()
+
+    const loadedSettings = this.loadSettings()
+
+    if (loadedSettings) {
+      this.settings = loadedSettings
+    } else {
+      this.settings = {
+        antiAliasing: true,
+        pbrMaterials: true
+      }
+    }
+  }
+
+  loadSettings () {
+    return JSON.parse(window.localStorage.getItem('settings'))
+  }
+
+  onSettingChange (event) {
+    switch (event.target.name) {
+      case 'antiAliasing':
+        this.settings.antiAliasing = event.target.checked
+        break
+      case 'pbrMaterials':
+        this.settings.pbrMaterials = event.target.checked
+        break
+    }
+    this.saveSettings(this.settings)
+  }
+
+  saveSettings (settings) {
+    window.localStorage.setItem('settings', JSON.stringify(settings))
+  }
+
   onCloseClick () {
     this.remove()
   }
@@ -45,11 +86,13 @@ class MySettings extends LitElement {
       <h3>Settings</h3>
 
       <div class='setting'>
-        <input type="checkbox"><label>Anti-aliasing</label>
+        <input type="checkbox" name="antiAliasing" @change="${this.onSettingChange}" ?checked="${this.settings.antiAliasing}">
+        <label>Anti-aliasing</label>
       </div>
 
       <div class='setting'>
-        <input type="checkbox"><label>PBR materials</label>
+        <input type="checkbox" name="pbrMaterials" @change="${this.onSettingChange}" ?checked="${this.settings.pbrMaterials}">
+        <label>PBR materials</label>
       </div>
     `
   }
