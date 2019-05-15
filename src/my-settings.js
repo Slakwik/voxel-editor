@@ -8,14 +8,15 @@ class MySettings extends LitElement {
         display: block;
         position: absolute;
         border: 1px solid #FEFEFE;
-        background-color: rgba(20, 140, 200, 0.2);
+        background-color: rgba(20, 140, 200, 0.5);
         border-radius: 4px;
         padding: 5px;
         height: 250px;
         width: 200px;
         left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        top: 20%;
+        transform: translate(-50%, -20%);
+        user-select: none;
         color: white;
       }
       .close {
@@ -31,6 +32,10 @@ class MySettings extends LitElement {
       }
       .setting {
         margin: 10px;
+      }
+      input {
+        width: 15px;
+        height: 15px;
       }
     `
   }
