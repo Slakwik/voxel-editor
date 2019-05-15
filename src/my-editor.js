@@ -32,7 +32,7 @@ class MyEditor extends LitElement {
     super()
 
     this.scene = new THREE.Scene()
-    this.scene.background = new THREE.Color(0xbfd1e5)
+    this.scene.background = new THREE.Color(0xdaeaf1)
 
     const grid = new THREE.GridHelper(250, 25)
     grid.material = new THREE.MeshBasicMaterial({ color: 0x888888 })
