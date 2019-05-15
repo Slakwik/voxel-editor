@@ -4,6 +4,7 @@ import './my-appbar'
 import './my-editor'
 import './my-sidebar'
 import './my-palette'
+import './my-settings'
 
 class MyApp extends LitElement {
   static get properties () {
@@ -25,6 +26,7 @@ class MyApp extends LitElement {
       <my-appbar @menu-action="${(e) => { this.action = e.detail.message }}"></my-appbar>
       <my-editor .mode=${this.mode} .color=${this.color} action=${this.action}></my-editor>
       <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}" @color-change="${(e) => { this.color = e.detail.message }}"></my-sidebar>
+      <my-settings></my-settings>
     `
   }
 }
