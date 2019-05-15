@@ -19,6 +19,14 @@ class MySettings extends LitElement {
       div {
         color: white;
       }
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0px 6px;
+        cursor: pointer;
+        font-size: 20px;
+      }
     `
   }
 
