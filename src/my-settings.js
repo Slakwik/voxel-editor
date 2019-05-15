@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
+import { loadSettings, saveSettings } from './settings.js'
 
 class MySettings extends LitElement {
   static get styles () {
@@ -42,11 +43,7 @@ class MySettings extends LitElement {
 
   constructor () {
     super()
-    this.settings = this.loadSettings()
-  }
-
-  loadSettings () {
-    return JSON.parse(window.localStorage.getItem('settings'))
+    this.settings = loadSettings()
   }
 
   onSettingChange (event) {
@@ -58,11 +55,7 @@ class MySettings extends LitElement {
         this.settings.pbrMaterials = event.target.checked
         break
     }
-    this.saveSettings(this.settings)
-  }
-
-  saveSettings (settings) {
-    window.localStorage.setItem('settings', JSON.stringify(settings))
+    saveSettings(this.settings)
   }
 
   onCloseClick () {

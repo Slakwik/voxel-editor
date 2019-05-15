@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element'
+import { loadSettings, saveSettings } from './settings.js'
 import './three'
 import './my-appbar'
 import './my-editor'
@@ -20,17 +21,9 @@ class MyApp extends LitElement {
     this.mode = 'build-mode'
     this.color = 'hsl(60, 90%, 60%)'
 
-    if (!this.loadSettings()) {
-      this.saveSettings({ antiAliasing: true, pbrMaterials: true })
+    if (!loadSettings()) {
+      saveSettings({ antiAliasing: true, pbrMaterials: true })
     }
-  }
-
-  loadSettings () {
-    return JSON.parse(window.localStorage.getItem('settings'))
-  }
-
-  saveSettings (settings) {
-    window.localStorage.setItem('settings', JSON.stringify(settings))
   }
 
   render () {

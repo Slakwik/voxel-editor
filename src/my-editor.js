@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit-element'
 import { save, load, export_, screenshot } from './scene.js'
+import { loadSettings } from './settings.js'
 
 const THREE = window.THREE
 
@@ -49,7 +50,7 @@ class MyEditor extends LitElement {
     this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000)
     this.camera.position.set(0, 10, 50)
 
-    this.settings = this.loadSettings()
+    this.settings = loadSettings()
 
     this.renderer = new THREE.WebGLRenderer(({
       preserveDrawingBuffer: true,
@@ -95,10 +96,6 @@ class MyEditor extends LitElement {
     window.addEventListener('resize', this.onResize.bind(this))
 
     this.animate()
-  }
-
-  loadSettings () {
-    return JSON.parse(window.localStorage.getItem('settings'))
   }
 
   firstUpdated () {
