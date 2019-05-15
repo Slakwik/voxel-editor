@@ -54,6 +54,9 @@ class MySettings extends LitElement {
       case 'pbrMaterials':
         this.settings.pbrMaterials = event.target.checked
         break
+      case 'skyBackground':
+        this.settings.skyBackground = event.target.checked
+        break
     }
     saveSettings(this.settings)
   }
@@ -65,17 +68,22 @@ class MySettings extends LitElement {
   render () {
     return html`
       <div class='close' @click=${this.onCloseClick}>x</div>
-
+      
       <h3>Settings</h3>
-
+      
       <div class='setting'>
         <input type="checkbox" name="antiAliasing" @change="${this.onSettingChange}" ?checked="${this.settings.antiAliasing}">
         <label>Anti-aliasing</label>
       </div>
-
+      
       <div class='setting'>
         <input type="checkbox" name="pbrMaterials" @change="${this.onSettingChange}" ?checked="${this.settings.pbrMaterials}">
         <label>PBR materials</label>
+      </div>
+      
+      <div class='setting'>
+        <input type="checkbox" name="skyBackground" @change="${this.onSettingChange}" ?checked="${this.settings.skyBackground}">
+        <label>Sky background</label>
       </div>
     `
   }

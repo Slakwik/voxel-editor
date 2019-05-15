@@ -22,7 +22,7 @@ class MyApp extends LitElement {
     this.color = 'hsl(60, 90%, 60%)'
 
     if (!loadSettings()) {
-      saveSettings({ antiAliasing: true, pbrMaterials: true })
+      saveSettings({ antiAliasing: true, pbrMaterials: true, skyBackground: true })
     }
   }
 

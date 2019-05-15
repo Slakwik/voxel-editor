@@ -32,6 +32,7 @@ class MyEditor extends LitElement {
     super()
 
     this.scene = new THREE.Scene()
+    this.scene.background = new THREE.Color(0xbfd1e5)
 
     const grid = new THREE.GridHelper(250, 25)
     grid.material = new THREE.MeshBasicMaterial({ color: 0x888888 })
@@ -78,16 +79,18 @@ class MyEditor extends LitElement {
       this.orbitControls.enabled = !event.value
     })
 
-    const sky = new THREE.Sky()
-    sky.name = 'Sky: ' + sky.id
-    sky.material.uniforms.turbidity.value = 10
-    sky.material.uniforms.rayleigh.value = 0.5
-    sky.material.uniforms.luminance.value = 0.16
-    sky.material.uniforms.mieCoefficient.value = 0.01
-    sky.material.uniforms.mieDirectionalG.value = 0.95
-    sky.material.uniforms.sunPosition.value = new THREE.Vector3(100, 200, 100)
-    sky.scale.setScalar(2000)
-    this.scene.add(sky)
+    if (this.settings.skyBackground) {
+      const sky = new THREE.Sky()
+      sky.name = 'Sky: ' + sky.id
+      sky.material.uniforms.turbidity.value = 10
+      sky.material.uniforms.rayleigh.value = 0.5
+      sky.material.uniforms.luminance.value = 0.16
+      sky.material.uniforms.mieCoefficient.value = 0.01
+      sky.material.uniforms.mieDirectionalG.value = 0.95
+      sky.material.uniforms.sunPosition.value = new THREE.Vector3(100, 200, 100)
+      sky.scale.setScalar(2000)
+      this.scene.add(sky)
+    }
 
     this.mouse = new THREE.Vector2()
 
