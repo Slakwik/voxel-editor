@@ -22,9 +22,14 @@ class MySettings extends LitElement {
     `
   }
 
+  onCloseClick () {
+    this.remove()
+  }
+
   render () {
     return html`
       <div>Settings</div>
+      <div class='close' @click=${this.onCloseClick}>x</div>
     `
   }
 }
