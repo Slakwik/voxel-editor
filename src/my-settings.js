@@ -15,8 +15,6 @@ class MySettings extends LitElement {
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-      }
-      div {
         color: white;
       }
       .close {
@@ -27,6 +25,12 @@ class MySettings extends LitElement {
         cursor: pointer;
         font-size: 20px;
       }
+      h3 {
+        margin: 0px 3px;
+      }
+      .setting {
+        margin: 10px;
+      }
     `
   }
 
@@ -36,8 +40,17 @@ class MySettings extends LitElement {
 
   render () {
     return html`
-      <div>Settings</div>
       <div class='close' @click=${this.onCloseClick}>x</div>
+
+      <h3>Settings</h3>
+
+      <div class='setting'>
+        <input type="checkbox"><label>Anti-aliasing</label>
+      </div>
+
+      <div class='setting'>
+        <input type="checkbox"><label>PBR materials</label>
+      </div>
     `
   }
 }
