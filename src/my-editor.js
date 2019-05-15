@@ -49,7 +49,12 @@ class MyEditor extends LitElement {
     this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000)
     this.camera.position.set(0, 10, 50)
 
-    this.renderer = new THREE.WebGLRenderer(({ preserveDrawingBuffer: true, antialias: true }))
+    this.settings = this.loadSettings()
+
+    this.renderer = new THREE.WebGLRenderer(({
+      preserveDrawingBuffer: true,
+      antialias: this.settings.antiAliasing
+    }))
     this.renderer.setSize(window.innerWidth, window.innerHeight)
 
     this.orbitControls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
@@ -92,6 +97,10 @@ class MyEditor extends LitElement {
     this.animate()
   }
 
+  loadSettings () {
+    return JSON.parse(window.localStorage.getItem('settings'))
+  }
+
   firstUpdated () {
     this.addCube(new THREE.Vector3(0, 0, 0))
   }
@@ -118,7 +127,13 @@ class MyEditor extends LitElement {
 
   addCube (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
-    const coloredMaterial = new THREE.MeshStandardMaterial({ color: this.color })
+    let coloredMaterial
+
+    if (this.settings.pbrMaterials) {
+      coloredMaterial = new THREE.MeshStandardMaterial({ color: this.color })
+    } else {
+      coloredMaterial = new THREE.MeshBasicMaterial({ color: this.color })
+    }
 
     const cube = new THREE.Mesh(boxGeometry, coloredMaterial)
     cube.name = 'Cube: ' + cube.id
