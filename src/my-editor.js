@@ -127,13 +127,10 @@ class MyEditor extends LitElement {
 
   addCube (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
-    let coloredMaterial
 
-    if (this.settings.pbrMaterials) {
-      coloredMaterial = new THREE.MeshStandardMaterial({ color: this.color })
-    } else {
-      coloredMaterial = new THREE.MeshBasicMaterial({ color: this.color })
-    }
+    let coloredMaterial = (this.settings.pbrMaterials)
+      ? new THREE.MeshStandardMaterial({ color: this.color })
+      : new THREE.MeshBasicMaterial({ color: this.color })
 
     const cube = new THREE.Mesh(boxGeometry, coloredMaterial)
     cube.name = 'Cube: ' + cube.id
