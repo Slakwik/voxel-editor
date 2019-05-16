@@ -272,10 +272,7 @@ class MyEditor extends LitElement {
 
     const intersections = this.raycaster.intersectObjects(this.scene.children)
 
-    if (intersections.length > 0) {
-      const firstIntersection = intersections[0]
-      return firstIntersection
-    }
+    if (intersections.length > 0) return intersections[0]
   }
 
   onRightClick () {
