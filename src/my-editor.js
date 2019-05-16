@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element'
-import { save, load, export_, screenshot } from './scene.js'
+import { saveScene, loadScene, exportScene, screenshot } from './scene.js'
 import { loadSettings } from './settings.js'
 
 const THREE = window.THREE
@@ -299,13 +299,13 @@ class MyEditor extends LitElement {
   attributeChangedCallback (name, oldValue, newValue) {
     switch (newValue) {
       case 'save':
-        save(this.scene)
+        saveScene(this.scene)
         break
       case 'load':
-        load(this.scene)
+        loadScene(this.scene)
         break
       case 'export':
-        export_(this.scene)
+        exportScene(this.scene)
         break
       case 'screenshot':
         screenshot(this.renderer)

@@ -1,6 +1,6 @@
 const THREE = window.THREE
 
-function export_ (scene) {
+function exportScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
@@ -30,7 +30,7 @@ function mergeMeshes (meshes) {
   return mergedMesh
 }
 
-function save (scene) {
+function saveScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
@@ -42,7 +42,7 @@ function save (scene) {
   }, options)
 }
 
-function load (scene) {
+function loadScene (scene) {
   const loader = new THREE.GLTFLoader()
 
   const jsonScene = window.localStorage.getItem('scene')
@@ -71,4 +71,4 @@ function download (data, fileName) {
   a.click()
 }
 
-export { save, load, export_, screenshot }
+export { saveScene, loadScene, exportScene, screenshot }
