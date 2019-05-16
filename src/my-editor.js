@@ -148,11 +148,7 @@ class MyEditor extends LitElement {
   }
 
   isCube (object) {
-    if (object.name.slice(0, 4) === 'Cube') {
-      return true
-    } else {
-      return false
-    }
+    return object.name.slice(0, 4) === 'Cube'
   }
 
   onMouseDown (event) {
