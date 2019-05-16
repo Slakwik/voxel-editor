@@ -160,13 +160,13 @@ class MyEditor extends LitElement {
     const mouseUpX = event.clientX
     const mouseUpY = event.clientY
 
-    const eventCoordinateDifferenceX = Math.abs(this.mouseDownX - mouseUpX)
-    const eventCoordinateDifferenceY = Math.abs(this.mouseDownY - mouseUpY)
+    const mousePressedMovementX = Math.abs(this.mouseDownX - mouseUpX)
+    const mousePressedMovementY = Math.abs(this.mouseDownY - mouseUpY)
 
     const movementThreshold = 6
 
-    if (eventCoordinateDifferenceX > movementThreshold ||
-      eventCoordinateDifferenceY > movementThreshold) {
+    if (mousePressedMovementX > movementThreshold ||
+      mousePressedMovementY > movementThreshold) {
       return
     }
 
