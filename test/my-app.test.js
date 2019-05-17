@@ -36,6 +36,12 @@ describe('my-app', () => {
     global.assert.strictEqual(actual, expected)
   })
 
+  it('should set all settings to true as default', async () => {
+    const expected = '{"antiAliasing":true,"pbrMaterials":true,"skyBackground":true}'
+    const actual = await page.evaluate(`window.localStorage.getItem('settings')`)
+    global.assert.strictEqual(actual, expected)
+  })
+
   after(async () => {
     await page.close()
   })
