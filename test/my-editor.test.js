@@ -31,22 +31,22 @@ describe('my-editor', () => {
     global.assert.strictEqual(actual, expected)
   })
 
-  describe('isCube()', () => {
+  describe('isVoxel()', () => {
     it('should return a boolean', async () => {
       const expectedType = 'boolean'
-      const actualType = await page.evaluate(`${elementPath}.isCube({ name: 'Sky: 12' })`)
+      const actualType = await page.evaluate(`${elementPath}.isVoxel({ name: 'Sky: 12' })`)
       global.assert.typeOf(actualType, expectedType)
     })
 
-    it('should return true if the object name starts with Cube', async () => {
+    it('should return true if the object name starts with Voxel', async () => {
       const expected = true
-      const actual = await page.evaluate(`${elementPath}.isCube({ name: 'Cube: 10' })`)
+      const actual = await page.evaluate(`${elementPath}.isVoxel({ name: 'Voxel: 10' })`)
       global.assert.strictEqual(actual, expected)
     })
 
-    it('should return false if the object name does not start with Cube', async () => {
+    it('should return false if the object name does not start with Voxel', async () => {
       const expected = false
-      const actual = await page.evaluate(`${elementPath}.isCube({ name: 'Grid: 4' })`)
+      const actual = await page.evaluate(`${elementPath}.isVoxel({ name: 'Grid: 4' })`)
       global.assert.strictEqual(actual, expected)
     })
   })

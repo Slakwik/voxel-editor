@@ -4,10 +4,10 @@ function exportScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
-  const cubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
-  const mergedCubes = mergeMeshes(cubes)
+  const voxels = scene.children.filter(child => child.name.slice(0, 5) === 'Voxel')
+  const mergedVoxels = mergeMeshes(voxels)
 
-  exporter.parse(mergedCubes, (gltfScene) => {
+  exporter.parse(mergedVoxels, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
     const modelData = URL.createObjectURL(new window.Blob([jsonScene], { type: 'text/plain' }))
     const modelName = 'model.gltf'
@@ -34,9 +34,9 @@ function saveScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
 
-  const cubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
+  const voxels = scene.children.filter(child => child.name.slice(0, 5) === 'Voxel')
 
-  exporter.parse(cubes, (gltfScene) => {
+  exporter.parse(voxels, (gltfScene) => {
     const jsonScene = JSON.stringify(gltfScene)
     window.localStorage.setItem('scene', jsonScene)
   }, options)
@@ -50,11 +50,11 @@ function loadScene (scene) {
   loader.parse(jsonScene, '', (gltf) => {
     const loadedScene = gltf.scene
 
-    const oldCubes = scene.children.filter(child => child.name.slice(0, 4) === 'Cube')
-    scene.remove(...oldCubes)
+    const oldVoxels = scene.children.filter(child => child.name.slice(0, 5) === 'Voxel')
+    scene.remove(...oldVoxels)
 
-    const newCubes = loadedScene.children
-    scene.add(...newCubes)
+    const newVoxels = loadedScene.children
+    scene.add(...newVoxels)
   })
 }
 

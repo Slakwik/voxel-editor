@@ -103,7 +103,7 @@ class MyEditor extends LitElement {
   }
 
   firstUpdated () {
-    this.addCube(new THREE.Vector3(0, 0, 0))
+    this.addVoxel(new THREE.Vector3(0, 0, 0))
 
     window.addEventListener('resize', () => {
       this.camera.aspect = window.innerWidth / window.innerHeight
@@ -126,30 +126,30 @@ class MyEditor extends LitElement {
     this.mouse.y = mouseNormalizedY
   }
 
-  addCube (position) {
+  addVoxel (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
 
     let coloredMaterial = (this.settings.pbrMaterials)
       ? new THREE.MeshStandardMaterial({ color: this.color })
       : new THREE.MeshBasicMaterial({ color: this.color })
 
-    const cube = new THREE.Mesh(boxGeometry, coloredMaterial)
-    cube.name = 'Cube: ' + cube.id
-    cube.position.set(position.x, position.y, position.z)
+    const voxel = new THREE.Mesh(boxGeometry, coloredMaterial)
+    voxel.name = 'Voxel: ' + voxel.id
+    voxel.position.set(position.x, position.y, position.z)
 
-    this.scene.add(cube)
+    this.scene.add(voxel)
   }
 
-  removeCube (cubeReference) {
-    this.scene.remove(cubeReference)
+  removeVoxel (voxelReference) {
+    this.scene.remove(voxelReference)
   }
 
-  colorCube (cubeReference) {
-    cubeReference.material.color.set(this.color)
+  colorVoxel (voxelReference) {
+    voxelReference.material.color.set(this.color)
   }
 
-  isCube (object) {
-    return object.name.slice(0, 4) === 'Cube'
+  isVoxel (object) {
+    return object.name.slice(0, 5) === 'Voxel'
   }
 
   onMouseDown (event) {
@@ -184,7 +184,7 @@ class MyEditor extends LitElement {
   onLeftClick () {
     const firstIntersection = this.getFirstRaycastIntersection()
 
-    if (!this.isCube(firstIntersection.object)) {
+    if (!this.isVoxel(firstIntersection.object)) {
       this.cancelSelection()
       this.voxelControls.detach(this.selection)
       return
@@ -193,11 +193,11 @@ class MyEditor extends LitElement {
     switch (this.mode) {
       case 'build-mode':
         const placementPosition = this.calculatePlacementPosition(firstIntersection)
-        this.addCube(placementPosition)
+        this.addVoxel(placementPosition)
         break
 
       case 'color-mode':
-        this.colorCube(firstIntersection.object)
+        this.colorVoxel(firstIntersection.object)
         break
 
       case 'move-mode':
@@ -216,18 +216,18 @@ class MyEditor extends LitElement {
     }
   }
 
-  addToSelection (cube) {
-    this.attachOutline(cube)
-    this.selection.add(cube)
+  addToSelection (voxel) {
+    this.attachOutline(voxel)
+    this.selection.add(voxel)
 
-    cube.position.sub(this.selection.position)
-    cube.updateMatrix()
+    voxel.position.sub(this.selection.position)
+    voxel.updateMatrix()
   }
 
-  removeFromSelection (cube) {
-    this.detachOutline(cube)
-    cube.position.setFromMatrixPosition(cube.matrixWorld)
-    this.scene.add(cube)
+  removeFromSelection (voxel) {
+    this.detachOutline(voxel)
+    voxel.position.setFromMatrixPosition(voxel.matrixWorld)
+    this.scene.add(voxel)
   }
 
   attachOutline (object) {
@@ -255,7 +255,7 @@ class MyEditor extends LitElement {
   }
 
   calculatePlacementPosition (intersection) {
-    const clickedCubePosition = new THREE.Vector3(
+    const clickedVoxelPosition = new THREE.Vector3(
       intersection.object.position.x,
       intersection.object.position.y,
       intersection.object.position.z
@@ -263,7 +263,7 @@ class MyEditor extends LitElement {
 
     const placementDirection = intersection.face.normal
     const placementOffset = placementDirection.multiplyScalar(10)
-    const placementPosition = clickedCubePosition.add(placementOffset)
+    const placementPosition = clickedVoxelPosition.add(placementOffset)
 
     return placementPosition
   }
@@ -279,8 +279,8 @@ class MyEditor extends LitElement {
   onRightClick () {
     const clickedObject = this.getFirstRaycastIntersection().object
 
-    if (this.isCube(clickedObject)) {
-      this.removeCube(clickedObject)
+    if (this.isVoxel(clickedObject)) {
+      this.removeVoxel(clickedObject)
     }
   }
 
