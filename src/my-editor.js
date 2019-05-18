@@ -47,8 +47,11 @@ class MyEditor extends LitElement {
     pointLight.position.set(150, 150, 150)
     this.scene.add(pointLight)
 
-    const aspectRatio = window.innerWidth / window.innerHeight
-    this.camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000)
+    const fov = 75
+    const aspect = window.innerWidth / window.innerHeight
+    const near = 0.1
+    const far = 1000
+    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
     this.camera.position.set(0, 10, 50)
 
     this.settings = loadSettings()
