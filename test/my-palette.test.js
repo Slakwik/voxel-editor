@@ -19,6 +19,13 @@ describe('my-palette', () => {
       global.assert.typeOf(actualType, expectedType)
     })
 
+    it('should return a valid color', async () => {
+      const createdColor = await page.evaluate(`${elementPath}.createHSLColor(100, 10, 10)`)
+      await page.evaluate(`document.body.style.backgroundColor = "${createdColor}"`)
+      const evaluatedColor = await page.evaluate(`document.body.style.backgroundColor`)
+      global.assert.strictEqual(evaluatedColor, 'rgb(25, 28, 23)')
+    })
+
     it('should return "hsl(10, 10%, 10%)" for the parameters (10, 10, 10)', async () => {
       const expected = 'hsl(10, 10%, 10%)'
       const actual = await page.evaluate(`${elementPath}.createHSLColor(10, 10, 10)`)
