@@ -21,13 +21,13 @@ class MyDropdown extends LitElement {
         transform: translateY(1px);
       }
       .content {
-        display: none;
+        display: inline;
       }
       .content button {
         border: 1px dotted #FEFEFE;
       }
       .hidden {
-        display: inline;
+        display: none;
       }
     `
   }
@@ -58,7 +58,7 @@ class MyDropdown extends LitElement {
   render () {
     return html`
       <button @click=${this.onTitleClick}>${this.titlex}</button>
-      <div class="content" @click=${this.onMenuClick}>
+      <div class="content hidden" @click=${this.onMenuClick}>
         ${this.content.map(i => html`<button value="${i.toLowerCase()}">${i}</button>`)}
       </div>
     `
