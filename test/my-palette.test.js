@@ -45,6 +45,12 @@ describe('my-palette', () => {
       const result = await page.evaluate(`${elementPath}.createColorArray(10, 0, 0)`)
       global.assert.lengthOf(result, expectedLength)
     })
+
+    it('should return unique colors', async () => {
+      const colorArray = await page.evaluate(`${elementPath}.createColorArray(10, 10, 10)`)
+      const colorSet = new Set(colorArray)
+      global.assert.strictEqual(colorArray.length, colorSet.size)
+    })
   })
 
   after(async () => {
