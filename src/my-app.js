@@ -57,6 +57,19 @@ class MyApp extends LitElement {
     }
   }
 
+  firstUpdated () {
+    this.addEventListener('menu-action', (event) => {
+      if (event.detail.message === 'settings') {
+        let settingsMenu = this.shadowRoot.querySelector('my-settings')
+
+        if (!this.shadowRoot.contains(settingsMenu)) {
+          settingsMenu = document.createElement('my-settings')
+          this.shadowRoot.appendChild(settingsMenu)
+        }
+      }
+    })
+  }
+
   /**
    * Renders a template inside the components shadow root.
    *
@@ -70,8 +83,6 @@ class MyApp extends LitElement {
       <my-editor .mode=${this.mode} .color=${this.color}></my-editor>
       
       <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}" @color-change="${(e) => { this.color = e.detail.message }}"></my-sidebar>
-      
-      ${this.menuAction === 'settings' ? html`<my-settings></my-settings>` : ''}
     `
   }
 }
