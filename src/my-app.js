@@ -35,9 +35,7 @@ class MyApp extends LitElement {
       // The currently active mode.
       mode: { type: String },
       // The currently active color for building / coloring.
-      color: { type: String },
-      // The latest menu action.
-      menuAction: { type: String }
+      color: { type: String }
     }
   }
 
@@ -67,9 +65,9 @@ class MyApp extends LitElement {
    */
   render () {
     return html`
-      <my-appbar @menu-action="${(e) => { this.menuAction = e.detail.message }}"></my-appbar>
+      <my-appbar></my-appbar>
       
-      <my-editor .mode=${this.mode} .color=${this.color} action=${this.menuAction}></my-editor>
+      <my-editor .mode=${this.mode} .color=${this.color}></my-editor>
       
       <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}" @color-change="${(e) => { this.color = e.detail.message }}"></my-sidebar>
       

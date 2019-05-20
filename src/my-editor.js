@@ -110,6 +110,10 @@ class MyEditor extends LitElement {
       this.camera.updateProjectionMatrix()
       this.renderer.setSize(window.innerWidth, window.innerHeight)
     })
+
+    window.addEventListener('menu-action', (event) => {
+      this.performAction(event.detail.message)
+    })
   }
 
   onMouseMove (event) {
@@ -297,8 +301,8 @@ class MyEditor extends LitElement {
     this.camera.position.set(x, y, z)
   }
 
-  attributeChangedCallback (name, oldValue, newValue) {
-    switch (newValue) {
+  performAction (actionType) {
+    switch (actionType) {
       case 'save':
         saveScene(this.scene)
         break
