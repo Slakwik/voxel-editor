@@ -1,7 +1,29 @@
+/**
+ * Module for the palette component.
+ *
+ * @module src/my-palette
+ * @author Elias Pekkala
+ * @version 1.0.0
+ */
+
+// Imports.
 import { LitElement, html, css } from 'lit-element'
 import './my-color-button'
 
+/**
+ * The palette component.
+ *
+ * @class MyPalette
+ * @extends {LitElement}
+ */
 class MyPalette extends LitElement {
+  /**
+   * The component styles.
+   *
+   * @readonly
+   * @static
+   * @memberof MyPalette
+   */
   static get styles () {
     return css`
       :host {
@@ -26,15 +48,31 @@ class MyPalette extends LitElement {
     `
   }
 
+  /**
+   * Creates an instance of MyPalette.
+   *
+   * @memberof MyPalette
+   */
   constructor () {
     super()
 
+    // Sets the default saturation and lightness.
     this.saturation = 90
     this.lightness = 60
 
+    // Creates an array of colors that is later used to generate color buttons.
     this.colors = this.createColorArray(10, this.saturation, this.lightness)
   }
 
+  /**
+   * Creates an array of HSL colors by looping around the color wheel.
+   *
+   * @param {Number} hueStepLength The step length for the color wheel loop.
+   * @param {Number} saturation The color saturation.
+   * @param {Number} lightness The color lightness.
+   * @returns An array of HSL colors.
+   * @memberof MyPalette
+   */
   createColorArray (hueStepLength, saturation, lightness) {
     const colorArray = []
 
@@ -46,19 +84,45 @@ class MyPalette extends LitElement {
     return colorArray
   }
 
+  /**
+   * Creates / formats a HSL color.
+   *
+   * @param {Number} hue The color hue.
+   * @param {Number} saturation The color saturation.
+   * @param {Number} lightness The color lightness.
+   * @returns A HSL color string.
+   * @memberof MyPalette
+   */
   createHSLColor (hue, saturation, lightness) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
   }
 
+  /**
+   * Handles the visual indication of which color is currently selected.
+   *
+   * @param {Event} event A focus event.
+   * @memberof MyPalette
+   */
   onFocus (event) {
     this.clearSelection()
     this.addSelection(event.target)
   }
 
+  /**
+   * Adds an visual indication to a specific color button.
+   *
+   * @param {HTMLElement} colorButton
+   * @memberof MyPalette
+   */
   addSelection (colorButton) {
     colorButton.shadowRoot.querySelector('button').classList.add('selected')
   }
 
+  /**
+   * Clears the visual indication of which color button is selected.
+   *
+   * @memberof MyPalette
+   */
   clearSelection () {
     this.shadowRoot.querySelectorAll('my-color-button')
       .forEach(colorButton => {
@@ -66,6 +130,11 @@ class MyPalette extends LitElement {
       })
   }
 
+  /**
+   * Decreases the saturation of the colors in the palette.
+   *
+   * @memberof MyPalette
+   */
   decreaseSaturation () {
     if (this.saturation > 0) {
       this.saturation -= 10
@@ -73,6 +142,11 @@ class MyPalette extends LitElement {
     this.updatePalette()
   }
 
+  /**
+   * Increases the saturation of the colors in the palette.
+   *
+   * @memberof MyPalette
+   */
   increaseSaturation () {
     if (this.saturation < 100) {
       this.saturation += 10
@@ -80,6 +154,11 @@ class MyPalette extends LitElement {
     this.updatePalette()
   }
 
+  /**
+   * Decreases the lightness of the colors in the palette.
+   *
+   * @memberof MyPalette
+   */
   decreaseLightness () {
     if (this.lightness > 0) {
       this.lightness -= 10
@@ -87,6 +166,11 @@ class MyPalette extends LitElement {
     this.updatePalette()
   }
 
+  /**
+   * Increases the lightness of the colors in the palette.
+   *
+   * @memberof MyPalette
+   */
   increaseLightness () {
     if (this.lightness < 100) {
       this.lightness += 10
@@ -94,11 +178,22 @@ class MyPalette extends LitElement {
     this.updatePalette()
   }
 
+  /**
+   * Updates the palette component so that new colors display.
+   *
+   * @memberof MyPalette
+   */
   updatePalette () {
     this.colors = this.createColorArray(10, this.saturation, this.lightness)
     super.performUpdate()
   }
 
+  /**
+   * Renders a template inside the components shadow root.
+   *
+   * @returns {TemplateResult} The template to render.
+   * @memberof MySideBar
+   */
   render () {
     return html`
       ${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}
@@ -112,4 +207,5 @@ class MyPalette extends LitElement {
   }
 }
 
+// Registers the custom element with the browser.
 window.customElements.define('my-palette', MyPalette)
