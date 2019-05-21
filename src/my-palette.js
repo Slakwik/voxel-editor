@@ -28,8 +28,9 @@ class MyPalette extends LitElement {
     super()
 
     this.saturation = 90
+    this.lightness = 60
 
-    this.colors = this.createColorArray(10, this.saturation, 60)
+    this.colors = this.createColorArray(10, this.saturation, this.lightness)
   }
 
   createColorArray (hueStepLength, saturation, lightness) {
@@ -58,7 +59,7 @@ class MyPalette extends LitElement {
       this.saturation -= 10
     }
 
-    this.colors = this.createColorArray(10, this.saturation, 60)
+    this.colors = this.createColorArray(10, this.saturation, this.lightness)
     super.performUpdate()
   }
 
@@ -67,7 +68,25 @@ class MyPalette extends LitElement {
       this.saturation += 10
     }
 
-    this.colors = this.createColorArray(10, this.saturation, 60)
+    this.colors = this.createColorArray(10, this.saturation, this.lightness)
+    super.performUpdate()
+  }
+
+  decreaseLightness () {
+    if (this.lightness > 0) {
+      this.lightness -= 10
+    }
+
+    this.colors = this.createColorArray(10, this.saturation, this.lightness)
+    super.performUpdate()
+  }
+
+  increaseLightness () {
+    if (this.lightness < 100) {
+      this.lightness += 10
+    }
+
+    this.colors = this.createColorArray(10, this.saturation, this.lightness)
     super.performUpdate()
   }
 
@@ -78,8 +97,8 @@ class MyPalette extends LitElement {
       <button @click="${this.decreaseSaturation}">▼</button>
       <button @click="${this.increaseSaturation}">▲</button>
       
-      <button>▼</button>
-      <button>▲</button>
+      <button @click="${this.decreaseLightness}">▼</button>
+      <button @click="${this.increaseLightness}">▲</button>
     `
   }
 }
