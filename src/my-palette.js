@@ -12,6 +12,15 @@ class MyPalette extends LitElement {
         padding: 5px;
         width: 100px;
       }
+      button {
+        padding: 0px;
+        font-size: 16px;
+        border: 1px solid white;
+        border-radius: 100%;
+        margin: 4px 2px;
+        cursor: pointer;
+        outline: none;
+      }
     `
   }
 
@@ -43,7 +52,15 @@ class MyPalette extends LitElement {
   }
 
   render () {
-    return html`${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}`
+    return html`
+      ${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}
+      
+      <button>▼</button>
+      <button>▲</button>
+      
+      <button>▼</button>
+      <button>▲</button>
+    `
   }
 }
 
