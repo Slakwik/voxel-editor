@@ -51,9 +51,19 @@ class MyPalette extends LitElement {
   }
 
   onFocus (event) {
+    this.clearSelection()
+    this.addSelection(event.target)
+  }
+
+  addSelection (colorButton) {
+    colorButton.shadowRoot.querySelector('button').classList.add('selected')
+  }
+
+  clearSelection () {
     this.shadowRoot.querySelectorAll('my-color-button')
-      .forEach(el => el.shadowRoot.querySelector('button').classList.remove('selected'))
-    event.target.shadowRoot.querySelector('button').classList.add('selected')
+      .forEach(colorButton => {
+        colorButton.shadowRoot.querySelector('button').classList.remove('selected')
+      })
   }
 
   decreaseSaturation () {
