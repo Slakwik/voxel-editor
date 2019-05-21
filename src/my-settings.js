@@ -1,7 +1,29 @@
+/**
+ * Module for the settings menu component.
+ *
+ * @module src/my-settings
+ * @author Elias Pekkala
+ * @version 1.0.0
+ */
+
+// Imports.
 import { LitElement, html, css } from 'lit-element'
 import { loadSettings, saveSettings } from './settings.js'
 
+/**
+ * The settings menu component.
+ *
+ * @class MySettings
+ * @extends {LitElement}
+ */
 class MySettings extends LitElement {
+  /**
+   * The component styles.
+   *
+   * @readonly
+   * @static
+   * @memberof MySettings
+   */
   static get styles () {
     return css`
       :host {
@@ -40,17 +62,37 @@ class MySettings extends LitElement {
     `
   }
 
+  /**
+   * The component properties.
+   *
+   * @readonly
+   * @static
+   * @memberof MySettings
+   */
   static get properties () {
     return {
       settings: { type: Object }
     }
   }
 
+  /**
+   * Creates an instance of MySettings.
+   *
+   * @memberof MySettings
+   */
   constructor () {
     super()
+
+    // Loads the current user settings.
     this.settings = loadSettings()
   }
 
+  /**
+   * Handles changes made to the settings.
+   *
+   * @param {Event} event A change event.
+   * @memberof MySettings
+   */
   onSettingChange (event) {
     switch (event.target.name) {
       case 'antiAliasing':
@@ -66,10 +108,21 @@ class MySettings extends LitElement {
     saveSettings(this.settings)
   }
 
+  /**
+   * Handles closing the settings menu.
+   *
+   * @memberof MySettings
+   */
   onCloseClick () {
     this.remove()
   }
 
+  /**
+   * Renders a template inside the components shadow root.
+   *
+   * @returns {TemplateResult} The template to render.
+   * @memberof MySettings
+   */
   render () {
     return html`
       <div class='close' @click=${this.onCloseClick}>x</div>
@@ -94,4 +147,5 @@ class MySettings extends LitElement {
   }
 }
 
+// Registers the custom element with the browser.
 window.customElements.define('my-settings', MySettings)

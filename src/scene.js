@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-// Connects to three.js (it doesn't support ES modules yet)
+// Define an alias for the three.js library.
 const THREE = window.THREE
 
 /**
