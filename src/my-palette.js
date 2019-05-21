@@ -27,7 +27,9 @@ class MyPalette extends LitElement {
   constructor () {
     super()
 
-    this.colors = this.createColorArray(10, 90, 60)
+    this.saturation = 90
+
+    this.colors = this.createColorArray(10, this.saturation, 60)
   }
 
   createColorArray (hueStepLength, saturation, lightness) {
@@ -51,12 +53,30 @@ class MyPalette extends LitElement {
     event.target.shadowRoot.querySelector('button').classList.add('selected')
   }
 
+  decreaseSaturation () {
+    if (this.saturation > 0) {
+      this.saturation -= 10
+    }
+
+    this.colors = this.createColorArray(10, this.saturation, 60)
+    super.performUpdate()
+  }
+
+  increaseSaturation () {
+    if (this.saturation < 100) {
+      this.saturation += 10
+    }
+
+    this.colors = this.createColorArray(10, this.saturation, 60)
+    super.performUpdate()
+  }
+
   render () {
     return html`
       ${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}
       
-      <button>▼</button>
-      <button>▲</button>
+      <button @click="${this.decreaseSaturation}">▼</button>
+      <button @click="${this.increaseSaturation}">▲</button>
       
       <button>▼</button>
       <button>▲</button>
