@@ -58,34 +58,31 @@ class MyPalette extends LitElement {
     if (this.saturation > 0) {
       this.saturation -= 10
     }
-
-    this.colors = this.createColorArray(10, this.saturation, this.lightness)
-    super.performUpdate()
+    this.updatePalette()
   }
 
   increaseSaturation () {
     if (this.saturation < 100) {
       this.saturation += 10
     }
-
-    this.colors = this.createColorArray(10, this.saturation, this.lightness)
-    super.performUpdate()
+    this.updatePalette()
   }
 
   decreaseLightness () {
     if (this.lightness > 0) {
       this.lightness -= 10
     }
-
-    this.colors = this.createColorArray(10, this.saturation, this.lightness)
-    super.performUpdate()
+    this.updatePalette()
   }
 
   increaseLightness () {
     if (this.lightness < 100) {
       this.lightness += 10
     }
+    this.updatePalette()
+  }
 
+  updatePalette () {
     this.colors = this.createColorArray(10, this.saturation, this.lightness)
     super.performUpdate()
   }
