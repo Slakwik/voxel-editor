@@ -13,13 +13,15 @@ class MyPalette extends LitElement {
         width: 100px;
       }
       button {
-        padding: 0px;
+        padding: 2px;
         font-size: 16px;
         border: 1px solid white;
         border-radius: 100%;
-        margin: 4px 2px;
+        margin: 4px 0px;
         cursor: pointer;
         outline: none;
+        background: none;
+        color: white;
       }
     `
   }
