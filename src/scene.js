@@ -1,5 +1,19 @@
+/**
+ * Module for managing scenes, etc.
+ *
+ * @module src/scene
+ * @author Elias Pekkala
+ * @version 1.0.0
+ */
+
+// Connects to three.js (it doesn't support ES modules yet)
 const THREE = window.THREE
 
+/**
+ * Exports the content of the scene to the computer.
+ *
+ * @param {THREE.Scene} scene The scene.
+ */
 function exportScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
@@ -15,6 +29,13 @@ function exportScene (scene) {
   }, options)
 }
 
+/**
+ * Merges meshes into a single mesh while preserving their individual
+ * positions and materials.
+ *
+ * @param {Array} meshes An array of meshes to merge.
+ * @returns The merged mesh.
+ */
 function mergeMeshes (meshes) {
   const geometries = []
   const materials = []
@@ -30,6 +51,11 @@ function mergeMeshes (meshes) {
   return mergedMesh
 }
 
+/**
+ * Saves scene content to local storage in glTF string format.
+ *
+ * @param {THREE.Scene} scene The scene to save.
+ */
 function saveScene (scene) {
   const exporter = new THREE.GLTFExporter()
   const options = {}
@@ -42,6 +68,11 @@ function saveScene (scene) {
   }, options)
 }
 
+/**
+ * Loads scene content from local storage and adds it to the specied scene.
+ *
+ * @param {THREE.Scene} scene The scene to load into.
+ */
 function loadScene (scene) {
   const loader = new THREE.GLTFLoader()
 
@@ -58,12 +89,24 @@ function loadScene (scene) {
   })
 }
 
+/**
+ * Takes a screenshot of the specified renderer.
+ *
+ * @param {THREE.WebGLRenderer} renderer The renderer to screenshot.
+ */
 function screenshot (renderer) {
   const imageData = renderer.domElement.toDataURL('image/png')
   const imageName = 'screenshot.png'
   download(imageData, imageName)
 }
 
+/**
+ * Creates a file with the specified name; containing the specified data
+ * and downloads it to the computer.
+ *
+ * @param {string} data The data to download.
+ * @param {string} fileName The name of the file.
+ */
 function download (data, fileName) {
   const a = document.createElement('a')
   a.href = data
@@ -71,4 +114,5 @@ function download (data, fileName) {
   a.click()
 }
 
+// Exports.
 export { saveScene, loadScene, exportScene, screenshot }

@@ -78,6 +78,7 @@ class MySideBar extends LitElement {
       bubbles: true,
       composed: true
     })
+
     this.dispatchEvent(modeChangeEvent)
   }
 

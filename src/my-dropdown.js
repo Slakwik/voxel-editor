@@ -1,6 +1,28 @@
+/**
+ * Module for the dropdown component.
+ *
+ * @module src/my-dropdown
+ * @author Elias Pekkala
+ * @version 1.0.0
+ */
+
+// Imports.
 import { LitElement, html, css } from 'lit-element'
 
+/**
+ * The dropdown component.
+ *
+ * @class MyDropdown
+ * @extends {LitElement}
+ */
 class MyDropdown extends LitElement {
+  /**
+   * The component styles.
+   *
+   * @readonly
+   * @static
+   * @memberof MyDropdown
+   */
   static get styles () {
     return css`
       :host {
@@ -32,17 +54,38 @@ class MyDropdown extends LitElement {
     `
   }
 
+  /**
+   * The component properties.
+   *
+   * @readonly
+   * @static
+   * @memberof MyDropdown
+   */
   static get properties () {
     return {
+      // The dropdown title. (title is reserved, thereby the name).
       titlex: { type: String },
+      // The dropdown content titles.
       content: { type: Array }
     }
   }
 
+  /**
+   * Handles showing and hiding the dropdown's content.
+   *
+   * @param {Event} event A click event.
+   * @memberof MyDropdown
+   */
   onTitleClick (event) {
     event.target.nextElementSibling.classList.toggle('hidden')
   }
 
+  /**
+   * Notifies other components of menu actions.
+   *
+   * @param {Event} event A click event
+   * @memberof MyDropdown
+   */
   onMenuClick (event) {
     if (!event.target.value) return
 
@@ -55,9 +98,16 @@ class MyDropdown extends LitElement {
     this.dispatchEvent(menuActionEvent)
   }
 
+  /**
+   * Renders a template inside the components shadow root.
+   *
+   * @returns {TemplateResult} The template to render.
+   * @memberof MyDropdown
+   */
   render () {
     return html`
       <button @click=${this.onTitleClick}>${this.titlex}</button>
+      
       <div class="content hidden" @click=${this.onMenuClick}>
         ${this.content.map(i => html`<button value="${i.toLowerCase()}">${i}</button>`)}
       </div>
@@ -65,4 +115,5 @@ class MyDropdown extends LitElement {
   }
 }
 
+// Registers the custom element with the browser.
 window.customElements.define('my-dropdown', MyDropdown)

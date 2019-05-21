@@ -1,7 +1,29 @@
+/**
+ * Module for the appbar component.
+ *
+ * @module src/my-appbar
+ * @author Elias Pekkala
+ * @version 1.0.0
+ */
+
+// Imports.
 import { LitElement, html, css } from 'lit-element'
 import './my-dropdown'
 
+/**
+ * The appbar component.
+ *
+ * @class MyAppBar
+ * @extends {LitElement}
+ */
 class MyAppBar extends LitElement {
+  /**
+   * The component styles.
+   *
+   * @readonly
+   * @static
+   * @memberof MyAppBar
+   */
   static get styles () {
     return css`
       :host {
@@ -23,6 +45,12 @@ class MyAppBar extends LitElement {
     `
   }
 
+  /**
+   * Renders a template inside the components shadow root.
+   *
+   * @returns {TemplateResult} The template to render.
+   * @memberof MyAppBar
+   */
   render () {
     return html`
       <h2>Voxel Editor</h2>
@@ -36,4 +64,5 @@ class MyAppBar extends LitElement {
   }
 }
 
+// Registers the custom element with the browser.
 window.customElements.define('my-appbar', MyAppBar)

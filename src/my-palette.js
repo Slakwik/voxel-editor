@@ -192,7 +192,7 @@ class MyPalette extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MySideBar
+   * @memberof MyPalette
    */
   render () {
     return html`
