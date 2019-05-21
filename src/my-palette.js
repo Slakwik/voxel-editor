@@ -45,6 +45,9 @@ class MyPalette extends LitElement {
         background: none;
         color: white;
       }
+      button:active {
+        transform: translateY(1px);
+      }
     `
   }
 
