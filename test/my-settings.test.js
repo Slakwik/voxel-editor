@@ -19,6 +19,12 @@ describe('my-settings', () => {
     global.assert.isOk(settingsWindow)
   })
 
+  it('should load the current user settings', async () => {
+    const actual = await page.evaluate(`${elementPath}.settings`)
+    const expected = { antiAliasing: true, pbrMaterials: true, skyBackground: true }
+    global.assert.strictEqual(JSON.stringify(actual), JSON.stringify(expected))
+  })
+
   it('should save settings after change a was made', async () => {
     await page.evaluate('document.querySelector("body > my-app").shadowRoot.querySelector("my-appbar").shadowRoot.querySelector("my-dropdown:nth-child(3)").shadowRoot.querySelector("div > button:nth-child(3)").click()')
     await page.evaluate('document.querySelector("body > my-app").shadowRoot.querySelector("my-appbar").shadowRoot.querySelector("my-dropdown:nth-child(3)").shadowRoot.querySelector("button").click()')
