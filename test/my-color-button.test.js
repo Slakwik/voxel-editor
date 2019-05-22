@@ -12,6 +12,12 @@ describe('my-color-button', () => {
     global.assert.isOk(element)
   })
 
+  it('should have the correct color', async () => {
+    const expected = await page.evaluate(`${elementPath}.color`)
+    const actual = await page.evaluate(`${elementPath}.shadowRoot.querySelector('style').textContent.split(' ').slice(3,6).join(' ').slice(0, 16)`)
+    global.assert.strictEqual(actual, expected)
+  })
+
   after(async () => {
     await page.close()
   })
