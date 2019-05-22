@@ -12,6 +12,12 @@ describe('my-sidebar', () => {
     global.assert.isOk(element)
   })
 
+  it('should contain four mode buttons', async () => {
+    const expected = 4
+    const actual = await page.evaluate(`${elementPath}.shadowRoot.querySelectorAll('input[type=image]').length`)
+    global.assert.strictEqual(actual, expected)
+  })
+
   after(async () => {
     await page.close()
   })
