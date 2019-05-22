@@ -53,6 +53,85 @@ describe('my-palette', () => {
     })
   })
 
+  describe('decreaseSaturation()', () => {
+    it('should decrease the saturation property by 10', async () => {
+      const expected = await page.evaluate(`${elementPath}.saturation`) - 10
+      await page.evaluate(`${elementPath}.decreaseSaturation()`)
+      const actual = await page.evaluate(`${elementPath}.saturation`)
+      global.assert.strictEqual(actual, expected)
+    })
+
+    it('should not decrease the saturation property past 0', async () => {
+      await page.evaluate(`${elementPath}.saturation = 0`)
+      const expected = await page.evaluate(`${elementPath}.saturation`)
+      await page.evaluate(`${elementPath}.decreaseSaturation()`)
+      const actual = await page.evaluate(`${elementPath}.saturation`)
+      global.assert.strictEqual(actual, expected)
+    })
+  })
+
+  describe('increaseSaturation()', () => {
+    it('should increase the saturation property by 10', async () => {
+      const expected = await page.evaluate(`${elementPath}.saturation`) + 10
+      await page.evaluate(`${elementPath}.increaseSaturation()`)
+      const actual = await page.evaluate(`${elementPath}.saturation`)
+      global.assert.strictEqual(actual, expected)
+    })
+
+    it('should not increase the saturation property past 100', async () => {
+      await page.evaluate(`${elementPath}.saturation = 100`)
+      const expected = await page.evaluate(`${elementPath}.saturation`)
+      await page.evaluate(`${elementPath}.increaseSaturation()`)
+      const actual = await page.evaluate(`${elementPath}.saturation`)
+      global.assert.strictEqual(actual, expected)
+    })
+  })
+
+  describe('decreaseLightness()', () => {
+    it('should decrease the lightness property by 10', async () => {
+      const expected = await page.evaluate(`${elementPath}.lightness`) - 10
+      await page.evaluate(`${elementPath}.decreaseLightness()`)
+      const actual = await page.evaluate(`${elementPath}.lightness`)
+      global.assert.strictEqual(actual, expected)
+    })
+
+    it('should not decrease the lightness property past 0', async () => {
+      await page.evaluate(`${elementPath}.lightness = 0`)
+      const expected = await page.evaluate(`${elementPath}.lightness`)
+      await page.evaluate(`${elementPath}.decreaseLightness()`)
+      const actual = await page.evaluate(`${elementPath}.lightness`)
+      global.assert.strictEqual(actual, expected)
+    })
+  })
+
+  describe('increaseLightness()', () => {
+    it('should increase the lightness property by 10', async () => {
+      const expected = await page.evaluate(`${elementPath}.lightness`) + 10
+      await page.evaluate(`${elementPath}.increaseLightness()`)
+      const actual = await page.evaluate(`${elementPath}.lightness`)
+      global.assert.strictEqual(actual, expected)
+    })
+
+    it('should not increase the lightness property past 100', async () => {
+      await page.evaluate(`${elementPath}.lightness = 100`)
+      const expected = await page.evaluate(`${elementPath}.lightness`)
+      await page.evaluate(`${elementPath}.increaseLightness()`)
+      const actual = await page.evaluate(`${elementPath}.lightness`)
+      global.assert.strictEqual(actual, expected)
+    })
+  })
+
+  describe('updatePalette()', () => {
+    it('should update the colors in the palette', async () => {
+      const old = await page.evaluate(`${elementPath}.colors`)
+      await page.evaluate(`${elementPath}.saturation = 50`)
+      await page.evaluate(`${elementPath}.lightness = 50`)
+      await page.evaluate(`${elementPath}.updatePalette()`)
+      const updated = await page.evaluate(`${elementPath}.colors`)
+      global.assert.notEqual(old, updated)
+    })
+  })
+
   after(async () => {
     await page.close()
   })
