@@ -28,7 +28,7 @@ class MySideBar extends LitElement {
       :host {
         display: block;
         position: absolute;
-        width: fit-content;
+        width: 110px;
         height: fit-content;
         max-height: 100%;
         user-select: none;
@@ -36,9 +36,6 @@ class MySideBar extends LitElement {
         left: 5px;
         transform: translateY(-40%);
         z-index: 1;
-      }
-      div {
-        width: 110px;
       }
       input {
         background: linear-gradient(to bottom, #ffe259, #ffa751);
@@ -90,16 +87,15 @@ class MySideBar extends LitElement {
    */
   render () {
     return html`
-      <div>
-        <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="build-mode" alt="Build" draggable="false"
-          src="./icons/build.png">
-        <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="color-mode" alt="Color" draggable="false"
-          src="./icons/color.png">
-        <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="move-mode" alt="Move" draggable="false"
-          src="./icons/move.png">
-        <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="extrude-mode" alt="Extrude"
-          draggable="false" src="./icons/extrude.png">
-      </div>
+      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="build-mode" alt="Build" draggable="false"
+        src="./icons/build.png">
+      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="color-mode" alt="Color" draggable="false"
+        src="./icons/color.png">
+      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="move-mode" alt="Move" draggable="false"
+        src="./icons/move.png">
+      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="extrude-mode" alt="Extrude" draggable="false"
+        src="./icons/extrude.png">
+      
       <my-palette></my-palette>
     `
   }
