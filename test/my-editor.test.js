@@ -13,7 +13,7 @@ describe('my-editor', () => {
   })
 
   it('should be resized dynamically', async () => {
-    const newSize = { width: 960, height: 540 }
+    const newSize = { width: 1280, height: 720 }
     const expected = newSize
     page.setViewport(newSize)
     const actual = {
