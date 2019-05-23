@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-// Imports modules and other components.
+// Imports modules and components.
 import { LitElement, html } from 'lit-element'
 import { loadSettings, saveSettings } from './settings.js'
 import './three'
@@ -34,7 +34,7 @@ class MyApp extends LitElement {
     return {
       // The currently active mode.
       mode: { type: String },
-      // The currently active color for building / coloring.
+      // The currently active color.
       color: { type: String }
     }
   }
@@ -57,11 +57,18 @@ class MyApp extends LitElement {
     }
   }
 
+  /**
+   * Gets called when the component updates for the first time.
+   *
+   * @memberof MyApp
+   */
   firstUpdated () {
+    // Handles opening the settings menu.
     this.addEventListener('menu-action', (event) => {
       if (event.detail.message === 'settings') {
         let settingsMenu = this.shadowRoot.querySelector('my-settings')
 
+        // Only opens the settings menu if there isn't one already.
         if (!this.shadowRoot.contains(settingsMenu)) {
           settingsMenu = document.createElement('my-settings')
           this.shadowRoot.appendChild(settingsMenu)

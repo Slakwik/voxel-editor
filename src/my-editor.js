@@ -11,7 +11,7 @@ import { LitElement, html, css } from 'lit-element'
 import { saveScene, loadScene, exportScene, screenshot } from './scene.js'
 import { loadSettings } from './settings.js'
 
-// Define an alias for the three.js library.
+// Defines an alias for the three.js library.
 const THREE = window.THREE
 
 /**
@@ -78,11 +78,11 @@ class MyEditor extends LitElement {
     grid.position.set(0, -5, 0)
     this.scene.add(grid)
 
-    // Ambient lightning
+    // Ambient light
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.6)
     this.scene.add(ambientLight)
 
-    // Point lightning
+    // Point light
     const pointLight = new THREE.PointLight(0xffffff, 0.8, 1000, 2)
     pointLight.position.set(150, 150, 150)
     this.scene.add(pointLight)
@@ -146,7 +146,7 @@ class MyEditor extends LitElement {
     this.mouse = new THREE.Vector2()
     this.raycaster = new THREE.Raycaster()
 
-    // Start the animate loop.
+    // Starts the animate loop.
     this.animate()
   }
 
@@ -156,17 +156,17 @@ class MyEditor extends LitElement {
    * @memberof MyEditor
    */
   firstUpdated () {
-    // Add the starter cube.
+    // Adds the starter voxel.
     this.addVoxel(new THREE.Vector3(0, 0, 0))
 
-    // Handle window resizing.
+    // Handles window resizing.
     window.addEventListener('resize', () => {
       this.camera.aspect = window.innerWidth / window.innerHeight
       this.camera.updateProjectionMatrix()
       this.renderer.setSize(window.innerWidth, window.innerHeight)
     })
 
-    // Handle menu actions.
+    // Handles menu actions.
     window.addEventListener('menu-action', (event) => {
       this.performAction(event.detail.message)
     })
@@ -300,14 +300,14 @@ class MyEditor extends LitElement {
     const firstIntersection = this.getFirstRaycastIntersection()
 
     // Cancels the selection and detaches the voxel controls
-    // if you click on something other than a voxel (sky, grid).
+    // when something other than a voxel is clicked (sky, grid).
     if (!this.isVoxel(firstIntersection.object)) {
       this.cancelSelection()
       this.voxelControls.detach(this.selection)
       return
     }
 
-    // Takes different actions on left clicks based on what mode is currently active.
+    // Chooses action based on what mode is currently active.
     switch (this.mode) {
       case 'build-mode':
         const placementPosition = this.calculatePlacementPosition(firstIntersection)
@@ -351,7 +351,7 @@ class MyEditor extends LitElement {
   }
 
   /**
-   * Adds a voxel to the selection.
+   * Removes a voxel from the selection.
    *
    * @param {THREE.Object3D} voxel The voxel to remove.
    * @memberof MyEditor
@@ -396,7 +396,7 @@ class MyEditor extends LitElement {
    */
   cancelSelection () {
     if (this.selection) {
-      // Empties the selection from its children.
+      // Empties all the selection's children.
       while (this.selection.children.length > 0) {
         this.removeFromSelection(this.selection.children[0])
       }
@@ -407,7 +407,7 @@ class MyEditor extends LitElement {
 
   /**
    * Calculates the placement position of the new voxel
-   * based on which voxel and which of its sides was clicked.
+   * based on which voxel - and which of its sides - was clicked.
    *
    * @param {Object} intersection The intersection object.
    * @returns An Vector3 with the placement postition.
@@ -428,7 +428,7 @@ class MyEditor extends LitElement {
   }
 
   /**
-   * Gets the first object that is intersects the raycaster ray.
+   * Gets the first object that intersects the raycaster ray.
    *
    * @returns The first intersecting object.
    * @memberof MyEditor
@@ -465,7 +465,7 @@ class MyEditor extends LitElement {
 
     this.renderer.render(this.scene, this.camera)
 
-    // Requests to call the animate method before the next browser repaint.
+    // Requests a call of the animate method before the next browser repaint.
     window.requestAnimationFrame(this.animate.bind(this))
   }
 
@@ -485,7 +485,7 @@ class MyEditor extends LitElement {
   /**
    * Performs the specified action.
    *
-   * @param {string} actionType The action to do.
+   * @param {string} actionType The action perform.
    * @memberof MyEditor
    */
   performAction (actionType) {

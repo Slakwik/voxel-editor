@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-// Define an alias for the three.js library.
+// Defines an alias for the three.js library.
 const THREE = window.THREE
 
 /**
@@ -30,7 +30,7 @@ function exportScene (scene) {
 }
 
 /**
- * Merges meshes into a single mesh while preserving their individual
+ * Merges multiple meshes into a single mesh while preserving their individual
  * positions and materials.
  *
  * @param {Array} meshes An array of meshes to merge.
@@ -52,7 +52,7 @@ function mergeMeshes (meshes) {
 }
 
 /**
- * Saves scene content to local storage in glTF string format.
+ * Saves a scene's content to local storage in glTF string format.
  *
  * @param {THREE.Scene} scene The scene to save.
  */

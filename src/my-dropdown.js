@@ -65,7 +65,7 @@ class MyDropdown extends LitElement {
     return {
       // The dropdown title. (title is reserved, thereby the name).
       titlex: { type: String },
-      // The dropdown content titles.
+      // The titles of the dropdown's content.
       content: { type: Array }
     }
   }

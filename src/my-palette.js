@@ -70,7 +70,7 @@ class MyPalette extends LitElement {
   /**
    * Creates an array of HSL colors by looping around the color wheel.
    *
-   * @param {Number} hueStepLength The step length for the color wheel loop.
+   * @param {Number} hueStepLength The step length of the color wheel loop.
    * @param {Number} saturation The color saturation.
    * @param {Number} lightness The color lightness.
    * @returns An array of HSL colors.

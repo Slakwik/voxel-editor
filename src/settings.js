@@ -16,7 +16,7 @@ function loadSettings () {
 }
 
 /**
- * Stringifies an object into JSON and saves it to local storage.
+ * Stringifies a settings object and saves it to local storage.
  *
  * @param {Object} settings An object with settings.
  */
