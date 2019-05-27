@@ -111,7 +111,9 @@ function download (data, fileName) {
   const a = document.createElement('a')
   a.href = data
   a.download = fileName
+  document.body.appendChild(a)
   a.click()
+  document.body.removeChild(a)
 }
 
 // Exports.
