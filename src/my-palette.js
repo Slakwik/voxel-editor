@@ -36,7 +36,10 @@ class MyPalette extends LitElement {
       }
       button {
         padding: 2px;
-        font-size: 16px;
+        font-size: 12px;
+        height: 22px;
+        width: 22px;
+        font-weight: bold;
         border: 1px solid white;
         border-radius: 100%;
         margin: 4px 0px;
@@ -201,11 +204,11 @@ class MyPalette extends LitElement {
     return html`
       ${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}
       
-      <button title="- Saturation" @click="${this.decreaseSaturation}">▼</button>
-      <button title="+ Saturation" @click="${this.increaseSaturation}">▲</button>
+      <button title="- Saturation" @click="${this.decreaseSaturation}">-S</button>
+      <button title="+ Saturation" @click="${this.increaseSaturation}">+S</button>
       
-      <button title="- Lightness" @click="${this.decreaseLightness}">▼</button>
-      <button title="+ Lightness" @click="${this.increaseLightness}">▲</button>
+      <button title="- Lightness" @click="${this.decreaseLightness}">-L</button>
+      <button title="+ Lightness" @click="${this.increaseLightness}">+L</button>
     `
   }
 }
