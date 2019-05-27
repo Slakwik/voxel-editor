@@ -49,6 +49,13 @@ class MySideBar extends LitElement {
         border: 2px solid #FEFEFE;
         margin: 0px;
       }
+      input:first-child {
+        display: block;
+        margin: 1px auto;
+      }
+      .selected:first-child {
+        margin: 0px auto;
+      }
     `
   }
 
@@ -89,9 +96,9 @@ class MySideBar extends LitElement {
     return html`
       <input type="image" title="Build" alt="Build" value="build-mode" src="./icons/build.png" draggable="false" @click="${this.onModeClick}"
         @focus="${this.onFocus}">
-      <input type="image" title="Color" alt="Color" value="color-mode" src="./icons/color.png" draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
       <input type="image" title="Move" alt="Move" value="move-mode" src="./icons/move.png" draggable="false" @click="${this.onModeClick}"
+        @focus="${this.onFocus}">
+      <input type="image" title="Color" alt="Color" value="color-mode" src="./icons/color.png" draggable="false" @click="${this.onModeClick}"
         @focus="${this.onFocus}">
       
       <my-palette></my-palette>
