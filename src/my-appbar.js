@@ -57,7 +57,7 @@ class MyAppBar extends LitElement {
       
       <my-dropdown titlex="File" .content="${['Save', 'Load', 'Export', 'Screenshot']}"></my-dropdown>
       
-      <my-dropdown titlex="Edit" .content="${['Undo', 'Redo', 'Settings']}"></my-dropdown>
+      <my-dropdown titlex="Edit" .content="${['Settings']}"></my-dropdown>
       
       <my-dropdown titlex="View" .content="${['Top', 'Right', 'Bottom', 'Left']}"></my-dropdown>
     `
