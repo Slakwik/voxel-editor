@@ -44,7 +44,8 @@ class MySideBar extends LitElement {
         padding: 6px;
         margin: 1px;
         border-radius: 100%;
-        outline:none;
+        outline: none;
+        -moz-user-select: none;
       }
       .selected {
         border: 2px solid #FEFEFE;
