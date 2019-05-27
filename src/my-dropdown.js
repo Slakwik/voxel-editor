@@ -42,6 +42,9 @@ class MyDropdown extends LitElement {
       button:active {
         transform: translateY(1px);
       }
+      button::-moz-focus-inner {
+        border: none;
+      }
       .content {
         display: inline;
       }

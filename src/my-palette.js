@@ -48,6 +48,9 @@ class MyPalette extends LitElement {
         background: none;
         color: white;
       }
+      button::-moz-focus-inner {
+        border: none;
+      }
       button:active {
         transform: translateY(1px);
       }

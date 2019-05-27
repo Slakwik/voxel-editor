@@ -60,6 +60,9 @@ class MySettings extends LitElement {
         width: 15px;
         height: 15px;
       }
+      input:focus {
+        outline: none;
+      }
     `
   }
 
