@@ -87,14 +87,14 @@ class MySideBar extends LitElement {
    */
   render () {
     return html`
-      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="build-mode" alt="Build" draggable="false"
-        src="./icons/build.png">
-      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="color-mode" alt="Color" draggable="false"
-        src="./icons/color.png">
-      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="move-mode" alt="Move" draggable="false"
-        src="./icons/move.png">
-      <input type="image" @click="${this.onModeClick}" @focus='${this.onFocus}' value="extrude-mode" alt="Extrude" draggable="false"
-        src="./icons/extrude.png">
+      <input type="image" title="Build" alt="Build" value="build-mode" src="./icons/build.png" draggable="false" @click="${this.onModeClick}"
+        @focus="${this.onFocus}">
+      <input type="image" title="Color" alt="Color" value="color-mode" src="./icons/color.png" draggable="false" @click="${this.onModeClick}"
+        @focus="${this.onFocus}">
+      <input type="image" title="Move" alt="Move" value="move-mode" src="./icons/move.png" draggable="false" @click="${this.onModeClick}"
+        @focus="${this.onFocus}">
+      <input type="image" title="Extrude" alt="Extrude" value="extrude-mode" src="./icons/extrude.png" draggable="false"
+        @click="${this.onModeClick}" @focus="${this.onFocus}">
       
       <my-palette></my-palette>
     `
