@@ -33,6 +33,7 @@ class MyAppBar extends LitElement {
         height: fit-content;
         background: linear-gradient(to right, #1488CC, #2B32B2);
         border-bottom: 1px solid #FEFEFE;
+        -moz-user-select: none;
         user-select: none;
         z-index: 2;
       }

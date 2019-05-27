@@ -31,6 +31,7 @@ class MySideBar extends LitElement {
         width: 110px;
         height: fit-content;
         max-height: 100%;
+        -moz-user-select: none;
         user-select: none;
         top: 40%;
         left: 5px;

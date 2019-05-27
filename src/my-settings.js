@@ -38,6 +38,7 @@ class MySettings extends LitElement {
         left: 50%;
         top: 20%;
         transform: translate(-50%, -20%);
+        -moz-user-select: none;
         user-select: none;
         color: white;
       }
