@@ -2,7 +2,6 @@
   "name": "ep222ue-project",
   "version": "1.0.0",
   "description": "Individual Software Development Project",
-  "main": "app.js",
   "scripts": {
     "start": "polymer serve",
     "test": "mocha test/setup.js test --timeout 20000",
