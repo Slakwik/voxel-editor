@@ -9,7 +9,6 @@
 // Imports modules and components.
 import { LitElement, html } from 'lit-element'
 import { loadSettings, saveSettings } from './settings.js'
-import './three'
 import './my-appbar'
 import './my-editor'
 import './my-sidebar'
