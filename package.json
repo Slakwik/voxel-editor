@@ -23,7 +23,7 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "polymer-cli": "^1.9.9",
-    "puppeteer": "^1.15.0",
+    "puppeteer": "^1.17.0",
     "standard": "^12.0.1"
   },
   "dependencies": {
