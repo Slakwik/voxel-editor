@@ -93,8 +93,6 @@ class MySideBar extends LitElement {
         @focus="${this.onFocus}">
       <input type="image" title="Move" alt="Move" value="move-mode" src="./icons/move.png" draggable="false" @click="${this.onModeClick}"
         @focus="${this.onFocus}">
-      <input type="image" title="Extrude" alt="Extrude" value="extrude-mode" src="./icons/extrude.png" draggable="false"
-        @click="${this.onModeClick}" @focus="${this.onFocus}">
       
       <my-palette></my-palette>
     `

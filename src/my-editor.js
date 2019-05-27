@@ -328,10 +328,6 @@ class MyEditor extends LitElement {
         this.addToSelection(firstIntersection.object)
         this.voxelControls.attach(this.selection)
         break
-
-      case 'extrude-mode':
-        console.log('Left-click in extrude mode!')
-        break
     }
   }
 
