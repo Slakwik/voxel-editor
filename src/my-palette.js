@@ -201,11 +201,11 @@ class MyPalette extends LitElement {
     return html`
       ${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}
       
-      <button @click="${this.decreaseSaturation}">▼</button>
-      <button @click="${this.increaseSaturation}">▲</button>
+      <button title="- Saturation" @click="${this.decreaseSaturation}">▼</button>
+      <button title="+ Saturation" @click="${this.increaseSaturation}">▲</button>
       
-      <button @click="${this.decreaseLightness}">▼</button>
-      <button @click="${this.increaseLightness}">▲</button>
+      <button title="- Lightness" @click="${this.decreaseLightness}">▼</button>
+      <button title="+ Lightness" @click="${this.increaseLightness}">▲</button>
     `
   }
 }
