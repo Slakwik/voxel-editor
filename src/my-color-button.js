@@ -3,7 +3,6 @@
  *
  * @module src/my-color-button
  * @author Elias Pekkala
- * @version 1.0.0
  */
 
 // Imports.

@@ -3,7 +3,6 @@
  *
  * @module src/my-palette
  * @author Elias Pekkala
- * @version 1.0.0
  */
 
 // Imports.

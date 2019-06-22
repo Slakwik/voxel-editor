@@ -3,7 +3,6 @@
  *
  * @module src/my-app
  * @author Elias Pekkala
- * @version 1.0.0
  */
 
 // Imports modules and components.

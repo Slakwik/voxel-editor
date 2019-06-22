@@ -3,7 +3,6 @@
  *
  * @module src/scene
  * @author Elias Pekkala
- * @version 1.0.0
  */
 
 // Defines an alias for the three.js library.
