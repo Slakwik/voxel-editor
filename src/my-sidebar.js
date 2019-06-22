@@ -96,12 +96,12 @@ class MySideBar extends LitElement {
    */
   render () {
     return html`
-      <input type="image" title="Build" alt="Build" value="build-mode" src="./icons/build.png" draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
-      <input type="image" title="Move" alt="Move" value="move-mode" src="./icons/move.png" draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
-      <input type="image" title="Color" alt="Color" value="color-mode" src="./icons/color.png" draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
+      <input type="image" title="Build" alt="Build" value="build-mode" src="./node_modules/material-design-icons/content/1x_web/ic_create_black_36dp.png"
+        draggable="false" @click="${this.onModeClick}" @focus="${this.onFocus}">
+      <input type="image" title="Move" alt="Move" value="move-mode" src="./node_modules/material-design-icons/action/1x_web/ic_open_with_black_36dp.png"
+        draggable="false" @click="${this.onModeClick}" @focus="${this.onFocus}">
+      <input type="image" title="Color" alt="Color" value="color-mode" src="./node_modules/material-design-icons/editor/1x_web/ic_format_color_fill_black_36dp.png"
+        draggable="false" @click="${this.onModeClick}" @focus="${this.onFocus}">
       
       <my-palette></my-palette>
     `
