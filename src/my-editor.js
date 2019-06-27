@@ -7,11 +7,12 @@
 
 // Imports.
 import { LitElement, html, css } from 'lit-element'
+import * as THREE from 'three'
+import { Sky } from '../node_modules/three/examples/jsm/objects/Sky.js'
+import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import { TransformControls } from '../node_modules/three/examples/jsm/controls/TransformControls.js'
 import { saveScene, loadScene, exportScene, screenshot } from './scene.js'
 import { loadSettings } from './settings.js'
-
-// Defines an alias for the three.js library.
-const THREE = window.THREE
 
 /**
  * The editor component.
@@ -105,7 +106,7 @@ class MyEditor extends LitElement {
     this.renderer.setSize(window.innerWidth, window.innerHeight)
 
     // Editor controls
-    this.orbitControls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
+    this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement)
     this.orbitControls.enableKeys = false
     this.orbitControls.enableDamping = true
     this.orbitControls.dampingFactor = 0.3
@@ -116,7 +117,7 @@ class MyEditor extends LitElement {
     this.orbitControls.zoomSpeed = 1.6
 
     // Voxel controls
-    this.voxelControls = new THREE.TransformControls(this.camera, this.renderer.domElement)
+    this.voxelControls = new TransformControls(this.camera, this.renderer.domElement)
     this.voxelControls.setMode('translate')
     this.voxelControls.setTranslationSnap(10)
     this.voxelControls.size += 0.3
@@ -129,7 +130,7 @@ class MyEditor extends LitElement {
 
     // Sky background
     if (this.settings.skyBackground) {
-      const sky = new THREE.Sky()
+      const sky = new Sky()
       sky.name = 'Sky: ' + sky.id
       sky.material.uniforms.turbidity.value = 10
       sky.material.uniforms.rayleigh.value = 0.5

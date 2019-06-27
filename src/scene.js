@@ -5,8 +5,11 @@
  * @author Elias Pekkala
  */
 
-// Defines an alias for the three.js library.
-const THREE = window.THREE
+// Imports.
+import { Mesh } from 'three'
+import { GLTFLoader } from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
+import { GLTFExporter } from '../node_modules/three/examples/jsm/exporters/GLTFExporter.js'
+import { BufferGeometryUtils } from '../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js'
 
 /**
  * Exports the content of the scene to the computer.
@@ -14,7 +17,7 @@ const THREE = window.THREE
  * @param {THREE.Scene} scene The scene.
  */
 function exportScene (scene) {
-  const exporter = new THREE.GLTFExporter()
+  const exporter = new GLTFExporter()
   const options = {}
 
   const voxels = scene.children.filter(child => child.name.slice(0, 5) === 'Voxel')
@@ -44,8 +47,8 @@ function mergeMeshes (meshes) {
     materials.push(meshes[i].material.clone())
   }
 
-  const mergedGeometry = THREE.BufferGeometryUtils.mergeBufferGeometries(geometries, true)
-  const mergedMesh = new THREE.Mesh(mergedGeometry, materials)
+  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(geometries, true)
+  const mergedMesh = new Mesh(mergedGeometry, materials)
 
   return mergedMesh
 }
@@ -56,7 +59,7 @@ function mergeMeshes (meshes) {
  * @param {THREE.Scene} scene The scene to save.
  */
 function saveScene (scene) {
-  const exporter = new THREE.GLTFExporter()
+  const exporter = new GLTFExporter()
   const options = {}
 
   const voxels = scene.children.filter(child => child.name.slice(0, 5) === 'Voxel')
@@ -73,7 +76,7 @@ function saveScene (scene) {
  * @param {THREE.Scene} scene The scene to load into.
  */
 function loadScene (scene) {
-  const loader = new THREE.GLTFLoader()
+  const loader = new GLTFLoader()
 
   const jsonScene = window.localStorage.getItem('scene')
 
