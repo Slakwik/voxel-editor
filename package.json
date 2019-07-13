@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "start": "polymer serve",
-    "build": "polymer build",
-    "test": "mocha test/setup.js test --timeout 20000"
+    "build": "polymer build"
   },
   "dependencies": {
     "lit-element": "^2.2.0",
