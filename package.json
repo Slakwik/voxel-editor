@@ -5,8 +5,8 @@
   "author": "eliaspekkala",
   "private": true,
   "scripts": {
-    "start": "polymer serve",
-    "build": "polymer build"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "lit-element": "^2.2.0",
@@ -14,7 +14,10 @@
     "material-design-icons": "^3.0.1"
   },
   "devDependencies": {
-    "polymer-cli": "^1.9.11",
+    "parcel-bundler": "^1.12.3",
     "standard": "^12.0.1"
-  }
+  },
+  "browserslist": [
+    "> 5%"
+  ]
 }
