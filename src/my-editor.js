@@ -26,7 +26,6 @@ class MyEditor extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyEditor
    */
   static get styles () {
     return css`
@@ -48,7 +47,6 @@ class MyEditor extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyEditor
    */
   static get properties () {
     return {
@@ -61,8 +59,6 @@ class MyEditor extends LitElement {
 
   /**
    * Creates an instance of MyEditor.
-   *
-   * @memberof MyEditor
    */
   constructor () {
     super()
@@ -152,8 +148,6 @@ class MyEditor extends LitElement {
 
   /**
    * Gets called when the component updates for the first time.
-   *
-   * @memberof MyEditor
    */
   firstUpdated () {
     // Adds the starter voxel.
@@ -177,7 +171,6 @@ class MyEditor extends LitElement {
    * every time the mouse moves.
    *
    * @param {Event} event A mouse move event.
-   * @memberof MyEditor
    */
   onMouseMove (event) {
     const rendererWidth = window.innerWidth
@@ -198,7 +191,6 @@ class MyEditor extends LitElement {
    * Adds a voxel to the specified position in the scene.
    *
    * @param {THREE.Vector3} position The position to add the voxel.
-   * @memberof MyEditor
    */
   addVoxel (position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
@@ -219,7 +211,6 @@ class MyEditor extends LitElement {
    * Removes the specified voxel from the scene.
    *
    * @param {THREE.Object3D} voxelReference The voxel to remove.
-   * @memberof MyEditor
    */
   removeVoxel (voxelReference) {
     this.scene.remove(voxelReference)
@@ -229,7 +220,6 @@ class MyEditor extends LitElement {
    * Changes the color of the specified voxel.
    *
    * @param {THREE.Object3D} voxelReference The voxel to color.
-   * @memberof MyEditor
    */
   colorVoxel (voxelReference) {
     voxelReference.material.color.set(this.color)
@@ -240,7 +230,6 @@ class MyEditor extends LitElement {
    *
    * @param {THREE.Object3D} object The object to check.
    * @returns True or false.
-   * @memberof MyEditor
    */
   isVoxel (object) {
     return object.name.slice(0, 5) === 'Voxel'
@@ -250,7 +239,6 @@ class MyEditor extends LitElement {
    * Records the coordinates of where the mouse was pressed down.
    *
    * @param {Event} event A mouse down event.
-   * @memberof MyEditor
    */
   onMouseDown (event) {
     this.mouseDownX = event.clientX
@@ -261,7 +249,6 @@ class MyEditor extends LitElement {
    * Handles mouse up events.
    *
    * @param {Event} event A mouse up event.
-   * @memberof MyEditor
    */
   onMouseUp (event) {
     const mouseUpX = event.clientX
@@ -292,8 +279,6 @@ class MyEditor extends LitElement {
 
   /**
    * Handles left mouse button clicks.
-   *
-   * @memberof MyEditor
    */
   onLeftClick () {
     // The object in 3D space that was clicked.
@@ -335,7 +320,6 @@ class MyEditor extends LitElement {
    * Adds a voxel to the selection.
    *
    * @param {THREE.Object3D} voxel The voxel to add.
-   * @memberof MyEditor
    */
   addToSelection (voxel) {
     this.attachOutline(voxel)
@@ -350,7 +334,6 @@ class MyEditor extends LitElement {
    * Removes a voxel from the selection.
    *
    * @param {THREE.Object3D} voxel The voxel to remove.
-   * @memberof MyEditor
    */
   removeFromSelection (voxel) {
     this.detachOutline(voxel)
@@ -362,7 +345,6 @@ class MyEditor extends LitElement {
    * Attaches an outline to an object.
    *
    * @param {THREE.Object3D} object The object to attach on.
-   * @memberof MyEditor
    */
   attachOutline (object) {
     const outline = new THREE.BoxHelper(object, 0xFFFFFF)
@@ -378,7 +360,6 @@ class MyEditor extends LitElement {
    * Detaches the outline from the specified object.
    *
    * @param {THREE.Object3D} object The object to detach from.
-   * @memberof MyEditor
    */
   detachOutline (object) {
     const outline = object.children.find(child => child.name.slice(0, 7) === 'Outline')
@@ -387,8 +368,6 @@ class MyEditor extends LitElement {
 
   /**
    * Cancels the selection.
-   *
-   * @memberof MyEditor
    */
   cancelSelection () {
     if (this.selection) {
@@ -407,7 +386,6 @@ class MyEditor extends LitElement {
    *
    * @param {Object} intersection The intersection object.
    * @returns An Vector3 with the placement postition.
-   * @memberof MyEditor
    */
   calculatePlacementPosition (intersection) {
     const clickedVoxelPosition = new THREE.Vector3(
@@ -427,7 +405,6 @@ class MyEditor extends LitElement {
    * Gets the first object that intersects the raycaster ray.
    *
    * @returns The first intersecting object.
-   * @memberof MyEditor
    */
   getFirstRaycastIntersection () {
     this.raycaster.setFromCamera(this.mouse, this.camera)
@@ -439,8 +416,6 @@ class MyEditor extends LitElement {
 
   /**
    * Handles right mouse button clicks.
-   *
-   * @memberof MyEditor
    */
   onRightClick () {
     const clickedObject = this.getFirstRaycastIntersection().object
@@ -453,8 +428,6 @@ class MyEditor extends LitElement {
   /**
    * The animate loop calls itself about 60 times a second
    * and updates controls and rendering.
-   *
-   * @memberof MyEditor
    */
   animate () {
     this.orbitControls.update()
@@ -471,7 +444,6 @@ class MyEditor extends LitElement {
    * @param {Number} x The x coordinate.
    * @param {Number} y The y coordinate.
    * @param {Number} z The z coordinate.
-   * @memberof MyEditor
    */
   moveCameraTo (x, y, z) {
     this.orbitControls.reset()
@@ -482,7 +454,6 @@ class MyEditor extends LitElement {
    * Performs the specified action.
    *
    * @param {string} actionType The action perform.
-   * @memberof MyEditor
    */
   performAction (actionType) {
     switch (actionType) {
@@ -517,7 +488,6 @@ class MyEditor extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MyEditor
    */
   render () {
     return html`

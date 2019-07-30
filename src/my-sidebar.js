@@ -23,7 +23,6 @@ class MySideBar extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MySideBar
    */
   static get styles () {
     return css`
@@ -67,7 +66,6 @@ class MySideBar extends LitElement {
    * Handles the visual indication of which mode is currently selected.
    *
    * @param {Event} event A focus event.
-   * @memberof MySideBar
    */
   onFocus (event) {
     this.shadowRoot.querySelectorAll('input').forEach(el => el.classList.remove('selected'))
@@ -78,7 +76,6 @@ class MySideBar extends LitElement {
    * Notifies other components of mode changes.
    *
    * @param {Event} event A click event.
-   * @memberof MySideBar
    */
   onModeClick (event) {
     const modeChangeEvent = new window.CustomEvent('mode-change', {
@@ -94,7 +91,6 @@ class MySideBar extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MySideBar
    */
   render () {
     return html`

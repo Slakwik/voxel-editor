@@ -21,7 +21,6 @@ class MyPalette extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyPalette
    */
   static get styles () {
     return css`
@@ -58,8 +57,6 @@ class MyPalette extends LitElement {
 
   /**
    * Creates an instance of MyPalette.
-   *
-   * @memberof MyPalette
    */
   constructor () {
     super()
@@ -79,7 +76,6 @@ class MyPalette extends LitElement {
    * @param {Number} saturation The color saturation.
    * @param {Number} lightness The color lightness.
    * @returns An array of HSL colors.
-   * @memberof MyPalette
    */
   createColorArray (hueStepLength, saturation, lightness) {
     const colorArray = []
@@ -99,7 +95,6 @@ class MyPalette extends LitElement {
    * @param {Number} saturation The color saturation.
    * @param {Number} lightness The color lightness.
    * @returns A HSL color string.
-   * @memberof MyPalette
    */
   createHSLColor (hue, saturation, lightness) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
@@ -109,7 +104,6 @@ class MyPalette extends LitElement {
    * Handles the visual indication of which color is currently selected.
    *
    * @param {Event} event A focus event.
-   * @memberof MyPalette
    */
   onFocus (event) {
     this.clearSelection()
@@ -120,7 +114,6 @@ class MyPalette extends LitElement {
    * Adds an visual indication to a specific color button.
    *
    * @param {HTMLElement} colorButton
-   * @memberof MyPalette
    */
   addSelection (colorButton) {
     colorButton.shadowRoot.querySelector('button').classList.add('selected')
@@ -128,8 +121,6 @@ class MyPalette extends LitElement {
 
   /**
    * Clears the visual indication of which color button is selected.
-   *
-   * @memberof MyPalette
    */
   clearSelection () {
     this.shadowRoot.querySelectorAll('my-color-button')
@@ -140,8 +131,6 @@ class MyPalette extends LitElement {
 
   /**
    * Decreases the saturation of the colors in the palette.
-   *
-   * @memberof MyPalette
    */
   decreaseSaturation () {
     if (this.saturation > 0) {
@@ -152,8 +141,6 @@ class MyPalette extends LitElement {
 
   /**
    * Increases the saturation of the colors in the palette.
-   *
-   * @memberof MyPalette
    */
   increaseSaturation () {
     if (this.saturation < 100) {
@@ -164,8 +151,6 @@ class MyPalette extends LitElement {
 
   /**
    * Decreases the lightness of the colors in the palette.
-   *
-   * @memberof MyPalette
    */
   decreaseLightness () {
     if (this.lightness > 0) {
@@ -176,8 +161,6 @@ class MyPalette extends LitElement {
 
   /**
    * Increases the lightness of the colors in the palette.
-   *
-   * @memberof MyPalette
    */
   increaseLightness () {
     if (this.lightness < 100) {
@@ -188,8 +171,6 @@ class MyPalette extends LitElement {
 
   /**
    * Updates the palette component so that new colors display.
-   *
-   * @memberof MyPalette
    */
   updatePalette () {
     this.colors = this.createColorArray(10, this.saturation, this.lightness)
@@ -200,7 +181,6 @@ class MyPalette extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MyPalette
    */
   render () {
     return html`

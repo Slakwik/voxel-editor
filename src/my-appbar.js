@@ -21,7 +21,6 @@ class MyAppBar extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyAppBar
    */
   static get styles () {
     return css`
@@ -49,7 +48,6 @@ class MyAppBar extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MyAppBar
    */
   render () {
     return html`

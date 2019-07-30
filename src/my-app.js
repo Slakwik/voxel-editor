@@ -26,7 +26,6 @@ class MyApp extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyApp
    */
   static get properties () {
     return {
@@ -39,8 +38,6 @@ class MyApp extends LitElement {
 
   /**
    * Creates an instance of MyApp.
-   *
-   * @memberof MyApp
    */
   constructor () {
     super()
@@ -57,8 +54,6 @@ class MyApp extends LitElement {
 
   /**
    * Gets called when the component updates for the first time.
-   *
-   * @memberof MyApp
    */
   firstUpdated () {
     // Handles opening the settings menu.
@@ -79,7 +74,6 @@ class MyApp extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MyApp
    */
   render () {
     return html`

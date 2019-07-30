@@ -20,7 +20,6 @@ class MyDropdown extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyDropdown
    */
   static get styles () {
     return css`
@@ -61,7 +60,6 @@ class MyDropdown extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyDropdown
    */
   static get properties () {
     return {
@@ -76,7 +74,6 @@ class MyDropdown extends LitElement {
    * Handles showing and hiding the dropdown's content.
    *
    * @param {Event} event A click event.
-   * @memberof MyDropdown
    */
   onTitleClick (event) {
     event.target.nextElementSibling.classList.toggle('hidden')
@@ -86,7 +83,6 @@ class MyDropdown extends LitElement {
    * Notifies other components of menu actions.
    *
    * @param {Event} event A click event
-   * @memberof MyDropdown
    */
   onMenuClick (event) {
     if (!event.target.value) return
@@ -104,7 +100,6 @@ class MyDropdown extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MyDropdown
    */
   render () {
     return html`

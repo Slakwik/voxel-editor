@@ -21,7 +21,6 @@ class MySettings extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MySettings
    */
   static get styles () {
     return css`
@@ -70,7 +69,6 @@ class MySettings extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MySettings
    */
   static get properties () {
     return {
@@ -80,8 +78,6 @@ class MySettings extends LitElement {
 
   /**
    * Creates an instance of MySettings.
-   *
-   * @memberof MySettings
    */
   constructor () {
     super()
@@ -94,7 +90,6 @@ class MySettings extends LitElement {
    * Handles changes made to the settings.
    *
    * @param {Event} event A change event.
-   * @memberof MySettings
    */
   onSettingChange (event) {
     switch (event.target.name) {
@@ -113,8 +108,6 @@ class MySettings extends LitElement {
 
   /**
    * Handles closing the settings menu.
-   *
-   * @memberof MySettings
    */
   onCloseClick () {
     this.remove()
@@ -124,7 +117,6 @@ class MySettings extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MySettings
    */
   render () {
     return html`

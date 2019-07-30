@@ -20,7 +20,6 @@ class MyColorButton extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyColorButton
    */
   static get styles () {
     return css`
@@ -47,7 +46,6 @@ class MyColorButton extends LitElement {
    *
    * @readonly
    * @static
-   * @memberof MyColorButton
    */
   static get properties () {
     return {
@@ -60,7 +58,6 @@ class MyColorButton extends LitElement {
    * Notifies other components of color changes.
    *
    * @param {Event} event A click event.
-   * @memberof MyColorButton
    */
   onClick (event) {
     const colorChangeEvent = new window.CustomEvent('color-change', {
@@ -76,7 +73,6 @@ class MyColorButton extends LitElement {
    * Renders a template inside the components shadow root.
    *
    * @returns {TemplateResult} The template to render.
-   * @memberof MyColorButton
    */
   render () {
     return html`
