@@ -123,7 +123,7 @@ class ColorPicker extends LitElement {
    * Clears the visual indication of which color button is selected.
    */
   clearSelection () {
-    this.shadowRoot.querySelectorAll('my-color-button')
+    this.shadowRoot.querySelectorAll('my-color-picker-button')
       .forEach(colorButton => {
         colorButton.shadowRoot.querySelector('button').classList.remove('selected')
       })
