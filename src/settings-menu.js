@@ -7,7 +7,7 @@
 
 // Imports.
 import { LitElement, html, css } from 'lit-element'
-import { loadSettings, saveSettings } from './settings.js'
+import { loadSettings, saveSettings } from './settings-manager.js'
 
 /**
  * The settings menu component.

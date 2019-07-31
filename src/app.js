@@ -7,12 +7,12 @@
 
 // Imports modules and components.
 import { LitElement, html } from 'lit-element'
-import { loadSettings, saveSettings } from './settings.js'
-import './my-appbar'
-import './my-editor'
-import './my-sidebar'
-import './my-palette'
-import './my-settings'
+import { loadSettings, saveSettings } from './settings-manager.js'
+import './app-bar.js'
+import './voxel-editor.js'
+import './side-bar.js'
+import './color-picker.js'
+import './settings-menu.js'
 
 /**
  * The main app component.

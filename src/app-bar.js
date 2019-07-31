@@ -7,7 +7,7 @@
 
 // Imports.
 import { LitElement, html, css } from 'lit-element'
-import './my-dropdown'
+import './app-bar-menu.js'
 
 /**
  * The appbar component.

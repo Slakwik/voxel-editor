@@ -7,7 +7,7 @@
 
 // Imports.
 import { LitElement, html, css } from 'lit-element'
-import './my-color-button'
+import './color-picker-button.js'
 
 /**
  * The palette component.
