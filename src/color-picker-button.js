@@ -14,7 +14,7 @@ import { LitElement, html, css } from 'lit-element'
  * @class MyColorButton
  * @extends {LitElement}
  */
-class MyColorButton extends LitElement {
+class ColorPickerButton extends LitElement {
   /**
    * The component styles.
    *
@@ -83,4 +83,4 @@ class MyColorButton extends LitElement {
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-color-button', MyColorButton)
+window.customElements.define('my-color-picker-button', ColorPickerButton)

@@ -15,7 +15,7 @@ import './app-bar-menu.js'
  * @class MyAppBar
  * @extends {LitElement}
  */
-class MyAppBar extends LitElement {
+class AppBar extends LitElement {
   /**
    * The component styles.
    *
@@ -53,14 +53,14 @@ class MyAppBar extends LitElement {
     return html`
       <h2>Voxel Editor</h2>
       
-      <my-dropdown titlex="File" .content="${['Save', 'Load', 'Export', 'Screenshot']}"></my-dropdown>
+      <my-app-bar-menu titlex="File" .content="${['Save', 'Load', 'Export', 'Screenshot']}"></my-app-bar-menu>
       
-      <my-dropdown titlex="Edit" .content="${['Settings']}"></my-dropdown>
+      <my-app-bar-menu titlex="Edit" .content="${['Settings']}"></my-app-bar-menu>
       
-      <my-dropdown titlex="View" .content="${['Top', 'Right', 'Bottom', 'Left']}"></my-dropdown>
+      <my-app-bar-menu titlex="View" .content="${['Top', 'Right', 'Bottom', 'Left']}"></my-app-bar-menu>
     `
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-appbar', MyAppBar)
+window.customElements.define('my-app-bar', AppBar)

@@ -20,7 +20,7 @@ import { loadSettings } from './settings-manager.js'
  * @class MyEditor
  * @extends {LitElement}
  */
-class MyEditor extends LitElement {
+class VoxelEditor extends LitElement {
   /**
    * The component styles.
    *
@@ -499,4 +499,4 @@ class MyEditor extends LitElement {
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-editor', MyEditor)
+window.customElements.define('my-voxel-editor', VoxelEditor)

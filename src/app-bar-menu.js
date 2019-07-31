@@ -14,7 +14,7 @@ import { LitElement, html, css } from 'lit-element'
  * @class MyDropdown
  * @extends {LitElement}
  */
-class MyDropdown extends LitElement {
+class AppBarMenu extends LitElement {
   /**
    * The component styles.
    *
@@ -113,4 +113,4 @@ class MyDropdown extends LitElement {
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-dropdown', MyDropdown)
+window.customElements.define('my-app-bar-menu', AppBarMenu)

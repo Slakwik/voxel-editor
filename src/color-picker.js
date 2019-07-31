@@ -15,7 +15,7 @@ import './color-picker-button.js'
  * @class MyPalette
  * @extends {LitElement}
  */
-class MyPalette extends LitElement {
+class ColorPicker extends LitElement {
   /**
    * The component styles.
    *
@@ -184,7 +184,7 @@ class MyPalette extends LitElement {
    */
   render () {
     return html`
-      ${this.colors.map(i => html`<my-color-button .color=${i} @focus='${this.onFocus}'></my-color-button>`)}
+      ${this.colors.map(i => html`<my-color-picker-button .color=${i} @focus='${this.onFocus}'></my-color-picker-button>`)}
       
       <button title="- Saturation" @click="${this.decreaseSaturation}">-S</button>
       <button title="+ Saturation" @click="${this.increaseSaturation}">+S</button>
@@ -196,4 +196,4 @@ class MyPalette extends LitElement {
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-palette', MyPalette)
+window.customElements.define('my-color-picker', ColorPicker)

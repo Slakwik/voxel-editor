@@ -17,7 +17,7 @@ import colorModeIcon from '../node_modules/material-design-icons/editor/1x_web/i
  * @class MySideBar
  * @extends {LitElement}
  */
-class MySideBar extends LitElement {
+class SideBar extends LitElement {
   /**
    * The component styles.
    *
@@ -101,10 +101,10 @@ class MySideBar extends LitElement {
       <input type="image" title="Color" alt="Color" value="color-mode" src=${colorModeIcon} draggable="false" @click="${this.onModeClick}"
         @focus="${this.onFocus}">
       
-      <my-palette></my-palette>
+      <my-color-picker></my-color-picker>
     `
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-sidebar', MySideBar)
+window.customElements.define('my-side-bar', SideBar)

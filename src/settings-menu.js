@@ -15,7 +15,7 @@ import { loadSettings, saveSettings } from './settings-manager.js'
  * @class MySettings
  * @extends {LitElement}
  */
-class MySettings extends LitElement {
+class SettingsMenu extends LitElement {
   /**
    * The component styles.
    *
@@ -143,4 +143,4 @@ class MySettings extends LitElement {
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-settings', MySettings)
+window.customElements.define('my-settings-menu', SettingsMenu)

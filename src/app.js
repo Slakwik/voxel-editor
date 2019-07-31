@@ -20,7 +20,7 @@ import './settings-menu.js'
  * @class MyApp
  * @extends {LitElement}
  */
-class MyApp extends LitElement {
+class App extends LitElement {
   /**
    * The component properties.
    *
@@ -77,14 +77,14 @@ class MyApp extends LitElement {
    */
   render () {
     return html`
-      <my-appbar></my-appbar>
+      <my-app-bar></my-app-bar>
       
-      <my-editor .mode=${this.mode} .color=${this.color}></my-editor>
+      <my-voxel-editor .mode=${this.mode} .color=${this.color}></my-voxel-editor>
       
-      <my-sidebar @mode-change="${(e) => { this.mode = e.detail.message }}" @color-change="${(e) => { this.color = e.detail.message }}"></my-sidebar>
+      <my-side-bar @mode-change="${(e) => { this.mode = e.detail.message }}" @color-change="${(e) => { this.color = e.detail.message }}"></my-side-bar>
     `
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-app', MyApp)
+window.customElements.define('my-app', App)
