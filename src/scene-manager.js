@@ -7,9 +7,9 @@
 
 // Imports.
 import { Mesh } from 'three'
-import { GLTFLoader } from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
-import { GLTFExporter } from '../node_modules/three/examples/jsm/exporters/GLTFExporter.js'
-import { BufferGeometryUtils } from '../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
+import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 
 /**
  * Exports the content of the scene to the computer.

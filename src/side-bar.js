@@ -7,9 +7,9 @@
 
 // Imports.
 import { LitElement, html, css } from 'lit-element'
-import buildModeIcon from '../node_modules/material-design-icons/content/1x_web/ic_create_black_36dp.png'
-import moveModeIcon from '../node_modules/material-design-icons/action/1x_web/ic_open_with_black_36dp.png'
-import colorModeIcon from '../node_modules/material-design-icons/editor/1x_web/ic_format_color_fill_black_36dp.png'
+import buildModeIcon from 'material-design-icons/content/1x_web/ic_create_black_36dp.png'
+import moveModeIcon from 'material-design-icons/action/1x_web/ic_open_with_black_36dp.png'
+import colorModeIcon from 'material-design-icons/editor/1x_web/ic_format_color_fill_black_36dp.png'
 
 /**
  * The sidebar component.

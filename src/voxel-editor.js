@@ -8,9 +8,9 @@
 // Imports.
 import { LitElement, html, css } from 'lit-element'
 import * as THREE from 'three'
-import { Sky } from '../node_modules/three/examples/jsm/objects/Sky.js'
-import { OrbitControls } from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
-import { TransformControls } from '../node_modules/three/examples/jsm/controls/TransformControls.js'
+import { Sky } from 'three/examples/jsm/objects/Sky.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js'
 import { saveScene, loadScene, exportScene, screenshot } from './scene-manager.js'
 import { loadSettings } from './settings-manager.js'
 
