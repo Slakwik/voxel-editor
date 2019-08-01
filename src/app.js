@@ -59,11 +59,9 @@ class App extends LitElement {
     // Handles opening the settings menu.
     this.addEventListener('menu-action', (event) => {
       if (event.detail.message === 'settings') {
-        let settingsMenu = this.shadowRoot.querySelector('my-settings-menu')
-
-        // Only opens the settings menu if there isn't one already.
-        if (!this.shadowRoot.contains(settingsMenu)) {
-          settingsMenu = document.createElement('my-settings-menu')
+        // Only opens one settings menu.
+        if (!this.shadowRoot.querySelector('my-settings-menu')) {
+          const settingsMenu = document.createElement('my-settings-menu')
           this.shadowRoot.appendChild(settingsMenu)
         }
       }
