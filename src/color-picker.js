@@ -6,8 +6,8 @@
  */
 
 // Imports.
-import { LitElement, html, css } from 'lit-element'
-import './color-picker-button.js'
+import { LitElement, html, css } from 'lit-element';
+import './color-picker-button.js';
 
 /**
  * The palette component.
@@ -22,11 +22,11 @@ class ColorPicker extends LitElement {
    * @readonly
    * @static
    */
-  static get styles () {
+  static get styles() {
     return css`
       :host {
         display: block;
-        border: 1px solid #FEFEFE;
+        border: 1px solid #fefefe;
         background-color: rgba(20, 140, 200, 0.2);
         border-radius: 4px;
         padding: 5px;
@@ -52,21 +52,21 @@ class ColorPicker extends LitElement {
       button:active {
         transform: translateY(1px);
       }
-    `
+    `;
   }
 
   /**
    * Creates an instance of MyPalette.
    */
-  constructor () {
-    super()
+  constructor() {
+    super();
 
     // Sets the default saturation and lightness.
-    this.saturation = 90
-    this.lightness = 60
+    this.saturation = 90;
+    this.lightness = 60;
 
     // Creates an array of colors that is later used to generate color buttons.
-    this.colors = this.createColorArray(10, this.saturation, this.lightness)
+    this.colors = this.createColorArray(10, this.saturation, this.lightness);
   }
 
   /**
@@ -77,15 +77,15 @@ class ColorPicker extends LitElement {
    * @param {Number} lightness The color lightness.
    * @returns An array of HSL colors.
    */
-  createColorArray (hueStepLength, saturation, lightness) {
-    const colorArray = []
+  createColorArray(hueStepLength, saturation, lightness) {
+    const colorArray = [];
 
     for (let hue = 0; hue < 360; hue += hueStepLength) {
-      const hsl = this.createHSLColor(hue, saturation, lightness)
-      colorArray.push(hsl)
+      const hsl = this.createHSLColor(hue, saturation, lightness);
+      colorArray.push(hsl);
     }
 
-    return colorArray
+    return colorArray;
   }
 
   /**
@@ -96,8 +96,8 @@ class ColorPicker extends LitElement {
    * @param {Number} lightness The color lightness.
    * @returns A HSL color string.
    */
-  createHSLColor (hue, saturation, lightness) {
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+  createHSLColor(hue, saturation, lightness) {
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 
   /**
@@ -105,9 +105,9 @@ class ColorPicker extends LitElement {
    *
    * @param {Event} event A focus event.
    */
-  onFocus (event) {
-    this.clearSelection()
-    this.addSelection(event.target)
+  onFocus(event) {
+    this.clearSelection();
+    this.addSelection(event.target);
   }
 
   /**
@@ -115,66 +115,69 @@ class ColorPicker extends LitElement {
    *
    * @param {HTMLElement} colorButton
    */
-  addSelection (colorButton) {
-    colorButton.shadowRoot.querySelector('button').classList.add('selected')
+  addSelection(colorButton) {
+    colorButton.shadowRoot.querySelector('button').classList.add('selected');
   }
 
   /**
    * Clears the visual indication of which color button is selected.
    */
-  clearSelection () {
-    this.shadowRoot.querySelectorAll('my-color-picker-button')
+  clearSelection() {
+    this.shadowRoot
+      .querySelectorAll('my-color-picker-button')
       .forEach(colorButton => {
-        colorButton.shadowRoot.querySelector('button').classList.remove('selected')
-      })
+        colorButton.shadowRoot
+          .querySelector('button')
+          .classList.remove('selected');
+      });
   }
 
   /**
    * Decreases the saturation of the colors in the palette.
    */
-  decreaseSaturation () {
+  decreaseSaturation() {
     if (this.saturation > 0) {
-      this.saturation -= 10
+      this.saturation -= 10;
     }
-    this.updatePalette()
+    this.updatePalette();
   }
 
   /**
    * Increases the saturation of the colors in the palette.
    */
-  increaseSaturation () {
+  increaseSaturation() {
     if (this.saturation < 100) {
-      this.saturation += 10
+      this.saturation += 10;
     }
-    this.updatePalette()
+    this.updatePalette();
   }
 
   /**
    * Decreases the lightness of the colors in the palette.
    */
-  decreaseLightness () {
+  decreaseLightness() {
     if (this.lightness > 0) {
-      this.lightness -= 10
+      this.lightness -= 10;
     }
-    this.updatePalette()
+    this.updatePalette();
   }
 
   /**
    * Increases the lightness of the colors in the palette.
    */
-  increaseLightness () {
+  increaseLightness() {
     if (this.lightness < 100) {
-      this.lightness += 10
+      this.lightness += 10;
     }
-    this.updatePalette()
+    this.updatePalette();
   }
 
   /**
    * Updates the palette component so that new colors display.
    */
-  updatePalette () {
-    this.colors = this.createColorArray(10, this.saturation, this.lightness)
-    super.performUpdate()
+  updatePalette() {
+    this.colors = this.createColorArray(10, this.saturation, this.lightness);
+    super.performUpdate();
   }
 
   /**
@@ -182,18 +185,30 @@ class ColorPicker extends LitElement {
    *
    * @returns {TemplateResult} The template to render.
    */
-  render () {
+  render() {
     return html`
-      ${this.colors.map(i => html`<my-color-picker-button .color=${i} @focus='${this.onFocus}'></my-color-picker-button>`)}
-      
-      <button title="- Saturation" @click="${this.decreaseSaturation}">-S</button>
-      <button title="+ Saturation" @click="${this.increaseSaturation}">+S</button>
-      
+      ${this.colors.map(
+        i =>
+          html`
+            <my-color-picker-button
+              .color=${i}
+              @focus="${this.onFocus}"
+            ></my-color-picker-button>
+          `
+      )}
+
+      <button title="- Saturation" @click="${this.decreaseSaturation}">
+        -S
+      </button>
+      <button title="+ Saturation" @click="${this.increaseSaturation}">
+        +S
+      </button>
+
       <button title="- Lightness" @click="${this.decreaseLightness}">-L</button>
       <button title="+ Lightness" @click="${this.increaseLightness}">+L</button>
-    `
+    `;
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-color-picker', ColorPicker)
+window.customElements.define('my-color-picker', ColorPicker);

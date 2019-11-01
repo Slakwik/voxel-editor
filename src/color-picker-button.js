@@ -6,7 +6,7 @@
  */
 
 // Imports.
-import { LitElement, html, css } from 'lit-element'
+import { LitElement, html, css } from 'lit-element';
 
 /**
  * The color button component.
@@ -21,24 +21,24 @@ class ColorPickerButton extends LitElement {
    * @readonly
    * @static
    */
-  static get styles () {
+  static get styles() {
     return css`
       :host {
         display: inline;
       }
-      button {     
+      button {
         padding: 12px;
         border: 1px solid white;
         border-radius: 4px;
         margin: 4px 2px;
         cursor: pointer;
-        outline:none;
+        outline: none;
       }
       .selected {
-        border: 2px solid #FEFEFE;
-        margin: 2px 1px
+        border: 2px solid #fefefe;
+        margin: 2px 1px;
       }
-    `
+    `;
   }
 
   /**
@@ -47,11 +47,11 @@ class ColorPickerButton extends LitElement {
    * @readonly
    * @static
    */
-  static get properties () {
+  static get properties() {
     return {
       // The color of the button.
       color: { type: String }
-    }
+    };
   }
 
   /**
@@ -59,14 +59,14 @@ class ColorPickerButton extends LitElement {
    *
    * @param {Event} event A click event.
    */
-  onClick (event) {
+  onClick(event) {
     const colorChangeEvent = new window.CustomEvent('color-change', {
       detail: { message: event.target.value },
       bubbles: true,
       composed: true
-    })
+    });
 
-    this.dispatchEvent(colorChangeEvent)
+    this.dispatchEvent(colorChangeEvent);
   }
 
   /**
@@ -74,13 +74,17 @@ class ColorPickerButton extends LitElement {
    *
    * @returns {TemplateResult} The template to render.
    */
-  render () {
+  render() {
     return html`
-      <style>button { background-color: ${this.color}; }</style>
-      <button value='${this.color}' @click='${this.onClick}'></button>
-    `
+      <style>
+        button {
+          background-color: ${this.color};
+        }
+      </style>
+      <button value="${this.color}" @click="${this.onClick}"></button>
+    `;
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-color-picker-button', ColorPickerButton)
+window.customElements.define('my-color-picker-button', ColorPickerButton);

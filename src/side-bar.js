@@ -6,10 +6,10 @@
  */
 
 // Imports.
-import { LitElement, html, css } from 'lit-element'
-import buildModeIcon from 'material-design-icons/content/1x_web/ic_create_black_36dp.png'
-import moveModeIcon from 'material-design-icons/action/1x_web/ic_open_with_black_36dp.png'
-import colorModeIcon from 'material-design-icons/editor/1x_web/ic_format_color_fill_black_36dp.png'
+import { LitElement, html, css } from 'lit-element';
+import buildModeIcon from 'material-design-icons/content/1x_web/ic_create_black_36dp.png';
+import moveModeIcon from 'material-design-icons/action/1x_web/ic_open_with_black_36dp.png';
+import colorModeIcon from 'material-design-icons/editor/1x_web/ic_format_color_fill_black_36dp.png';
 
 /**
  * The sidebar component.
@@ -24,7 +24,7 @@ class SideBar extends LitElement {
    * @readonly
    * @static
    */
-  static get styles () {
+  static get styles() {
     return css`
       :host {
         display: block;
@@ -41,7 +41,7 @@ class SideBar extends LitElement {
       }
       input {
         background: linear-gradient(to bottom, #ffe259, #ffa751);
-        border: 1px solid #FEFEFE;
+        border: 1px solid #fefefe;
         padding: 6px;
         margin: 1px;
         border-radius: 100%;
@@ -49,7 +49,7 @@ class SideBar extends LitElement {
         -moz-user-select: none;
       }
       .selected {
-        border: 2px solid #FEFEFE;
+        border: 2px solid #fefefe;
         margin: 0px;
       }
       input:first-child {
@@ -59,7 +59,7 @@ class SideBar extends LitElement {
       .selected:first-child {
         margin: 0px auto;
       }
-    `
+    `;
   }
 
   /**
@@ -67,9 +67,11 @@ class SideBar extends LitElement {
    *
    * @param {Event} event A focus event.
    */
-  onFocus (event) {
-    this.shadowRoot.querySelectorAll('input').forEach(el => el.classList.remove('selected'))
-    event.target.classList.add('selected')
+  onFocus(event) {
+    this.shadowRoot
+      .querySelectorAll('input')
+      .forEach(el => el.classList.remove('selected'));
+    event.target.classList.add('selected');
   }
 
   /**
@@ -77,14 +79,14 @@ class SideBar extends LitElement {
    *
    * @param {Event} event A click event.
    */
-  onModeClick (event) {
+  onModeClick(event) {
     const modeChangeEvent = new window.CustomEvent('mode-change', {
       detail: { message: event.target.value },
       bubbles: true,
       composed: true
-    })
+    });
 
-    this.dispatchEvent(modeChangeEvent)
+    this.dispatchEvent(modeChangeEvent);
   }
 
   /**
@@ -92,19 +94,43 @@ class SideBar extends LitElement {
    *
    * @returns {TemplateResult} The template to render.
    */
-  render () {
+  render() {
     return html`
-      <input type="image" title="Build" alt="Build" value="build-mode" src=${buildModeIcon} draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
-      <input type="image" title="Move" alt="Move" value="move-mode" src=${moveModeIcon} draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
-      <input type="image" title="Color" alt="Color" value="color-mode" src=${colorModeIcon} draggable="false" @click="${this.onModeClick}"
-        @focus="${this.onFocus}">
-      
+      <input
+        type="image"
+        title="Build"
+        alt="Build"
+        value="build-mode"
+        src=${buildModeIcon}
+        draggable="false"
+        @click="${this.onModeClick}"
+        @focus="${this.onFocus}"
+      />
+      <input
+        type="image"
+        title="Move"
+        alt="Move"
+        value="move-mode"
+        src=${moveModeIcon}
+        draggable="false"
+        @click="${this.onModeClick}"
+        @focus="${this.onFocus}"
+      />
+      <input
+        type="image"
+        title="Color"
+        alt="Color"
+        value="color-mode"
+        src=${colorModeIcon}
+        draggable="false"
+        @click="${this.onModeClick}"
+        @focus="${this.onFocus}"
+      />
+
       <my-color-picker></my-color-picker>
-    `
+    `;
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-side-bar', SideBar)
+window.customElements.define('my-side-bar', SideBar);

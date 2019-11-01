@@ -6,8 +6,8 @@
  */
 
 // Imports.
-import { LitElement, html, css } from 'lit-element'
-import { loadSettings, saveSettings } from './settings-manager.js'
+import { LitElement, html, css } from 'lit-element';
+import { loadSettings, saveSettings } from './settings-manager.js';
 
 /**
  * The settings menu component.
@@ -22,12 +22,12 @@ class SettingsMenu extends LitElement {
    * @readonly
    * @static
    */
-  static get styles () {
+  static get styles() {
     return css`
       :host {
         display: block;
         position: absolute;
-        border: 1px solid #FEFEFE;
+        border: 1px solid #fefefe;
         background-color: rgba(20, 140, 200, 0.5);
         border-radius: 4px;
         padding: 5px;
@@ -61,7 +61,7 @@ class SettingsMenu extends LitElement {
       input:focus {
         outline: none;
       }
-    `
+    `;
   }
 
   /**
@@ -70,20 +70,20 @@ class SettingsMenu extends LitElement {
    * @readonly
    * @static
    */
-  static get properties () {
+  static get properties() {
     return {
       settings: { type: Object }
-    }
+    };
   }
 
   /**
    * Creates an instance of MySettings.
    */
-  constructor () {
-    super()
+  constructor() {
+    super();
 
     // Loads the current user settings.
-    this.settings = loadSettings()
+    this.settings = loadSettings();
   }
 
   /**
@@ -91,26 +91,26 @@ class SettingsMenu extends LitElement {
    *
    * @param {Event} event A change event.
    */
-  onSettingChange (event) {
+  onSettingChange(event) {
     switch (event.target.name) {
       case 'antiAliasing':
-        this.settings.antiAliasing = event.target.checked
-        break
+        this.settings.antiAliasing = event.target.checked;
+        break;
       case 'pbrMaterials':
-        this.settings.pbrMaterials = event.target.checked
-        break
+        this.settings.pbrMaterials = event.target.checked;
+        break;
       case 'skyBackground':
-        this.settings.skyBackground = event.target.checked
-        break
+        this.settings.skyBackground = event.target.checked;
+        break;
     }
-    saveSettings(this.settings)
+    saveSettings(this.settings);
   }
 
   /**
    * Handles closing the settings menu.
    */
-  onCloseClick () {
-    this.remove()
+  onCloseClick() {
+    this.remove();
   }
 
   /**
@@ -118,29 +118,44 @@ class SettingsMenu extends LitElement {
    *
    * @returns {TemplateResult} The template to render.
    */
-  render () {
+  render() {
     return html`
-      <div class='close' @click=${this.onCloseClick}>x</div>
-      
+      <div class="close" @click=${this.onCloseClick}>x</div>
+
       <h3>Settings</h3>
-      
-      <div class='setting'>
-        <input type="checkbox" name="antiAliasing" @change="${this.onSettingChange}" ?checked="${this.settings.antiAliasing}">
+
+      <div class="setting">
+        <input
+          type="checkbox"
+          name="antiAliasing"
+          @change="${this.onSettingChange}"
+          ?checked="${this.settings.antiAliasing}"
+        />
         <label>Anti-aliasing</label>
       </div>
-      
-      <div class='setting'>
-        <input type="checkbox" name="pbrMaterials" @change="${this.onSettingChange}" ?checked="${this.settings.pbrMaterials}">
+
+      <div class="setting">
+        <input
+          type="checkbox"
+          name="pbrMaterials"
+          @change="${this.onSettingChange}"
+          ?checked="${this.settings.pbrMaterials}"
+        />
         <label>PBR materials</label>
       </div>
-      
-      <div class='setting'>
-        <input type="checkbox" name="skyBackground" @change="${this.onSettingChange}" ?checked="${this.settings.skyBackground}">
+
+      <div class="setting">
+        <input
+          type="checkbox"
+          name="skyBackground"
+          @change="${this.onSettingChange}"
+          ?checked="${this.settings.skyBackground}"
+        />
         <label>Sky background</label>
       </div>
-    `
+    `;
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-settings-menu', SettingsMenu)
+window.customElements.define('my-settings-menu', SettingsMenu);

@@ -6,13 +6,18 @@
  */
 
 // Imports.
-import { LitElement, html, css } from 'lit-element'
-import * as THREE from 'three'
-import { Sky } from 'three/examples/jsm/objects/Sky.js'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js'
-import { saveScene, loadScene, exportScene, screenshot } from './scene-manager.js'
-import { loadSettings } from './settings-manager.js'
+import { LitElement, html, css } from 'lit-element';
+import * as THREE from 'three';
+import { Sky } from 'three/examples/jsm/objects/Sky.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
+import {
+  saveScene,
+  loadScene,
+  exportScene,
+  screenshot
+} from './scene-manager.js';
+import { loadSettings } from './settings-manager.js';
 
 /**
  * The editor component.
@@ -27,7 +32,7 @@ class VoxelEditor extends LitElement {
    * @readonly
    * @static
    */
-  static get styles () {
+  static get styles() {
     return css`
       :host {
         display: block;
@@ -39,7 +44,7 @@ class VoxelEditor extends LitElement {
       p {
         margin: 0;
       }
-    `
+    `;
   }
 
   /**
@@ -48,122 +53,132 @@ class VoxelEditor extends LitElement {
    * @readonly
    * @static
    */
-  static get properties () {
+  static get properties() {
     return {
       // The currently active mode.
       mode: { type: String },
       // The currently active color.
       color: { type: String }
-    }
+    };
   }
 
   /**
    * Creates an instance of MyEditor.
    */
-  constructor () {
-    super()
+  constructor() {
+    super();
 
     // Scene
-    this.scene = new THREE.Scene()
-    this.scene.background = new THREE.Color(0xdaeaf1)
+    this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0xdaeaf1);
 
     // Grid
-    const grid = new THREE.GridHelper(250, 25)
-    grid.material = new THREE.MeshBasicMaterial({ color: 0x888888 })
-    grid.name = 'Grid: ' + grid.id
-    grid.position.set(0, -5, 0)
-    this.scene.add(grid)
+    const grid = new THREE.GridHelper(250, 25);
+    grid.material = new THREE.MeshBasicMaterial({ color: 0x888888 });
+    grid.name = 'Grid: ' + grid.id;
+    grid.position.set(0, -5, 0);
+    this.scene.add(grid);
 
     // Ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.6)
-    this.scene.add(ambientLight)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.6);
+    this.scene.add(ambientLight);
 
     // Point light
-    const pointLight = new THREE.PointLight(0xffffff, 0.8, 1000, 2)
-    pointLight.position.set(150, 150, 150)
-    this.scene.add(pointLight)
+    const pointLight = new THREE.PointLight(0xffffff, 0.8, 1000, 2);
+    pointLight.position.set(150, 150, 150);
+    this.scene.add(pointLight);
 
     // Camera
-    const fov = 75
-    const aspect = window.innerWidth / window.innerHeight
-    const near = 0.1
-    const far = 1000
-    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
-    this.camera.position.set(0, 10, 50)
+    const fov = 75;
+    const aspect = window.innerWidth / window.innerHeight;
+    const near = 0.1;
+    const far = 1000;
+    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    this.camera.position.set(0, 10, 50);
 
     // Settings
-    this.settings = loadSettings()
+    this.settings = loadSettings();
 
     // Renderer
-    this.renderer = new THREE.WebGLRenderer(({
+    this.renderer = new THREE.WebGLRenderer({
       preserveDrawingBuffer: true,
       antialias: this.settings.antiAliasing
-    }))
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    });
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     // Editor controls
-    this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement)
-    this.orbitControls.enableKeys = false
-    this.orbitControls.enableDamping = true
-    this.orbitControls.dampingFactor = 0.3
-    this.orbitControls.maxDistance = 600
-    this.orbitControls.minDistance = 30
-    this.orbitControls.rotateSpeed = 0.3
-    this.orbitControls.panSpeed = 0.3
-    this.orbitControls.zoomSpeed = 1.6
+    this.orbitControls = new OrbitControls(
+      this.camera,
+      this.renderer.domElement
+    );
+    this.orbitControls.enableKeys = false;
+    this.orbitControls.enableDamping = true;
+    this.orbitControls.dampingFactor = 0.3;
+    this.orbitControls.maxDistance = 600;
+    this.orbitControls.minDistance = 30;
+    this.orbitControls.rotateSpeed = 0.3;
+    this.orbitControls.panSpeed = 0.3;
+    this.orbitControls.zoomSpeed = 1.6;
 
     // Voxel controls
-    this.voxelControls = new TransformControls(this.camera, this.renderer.domElement)
-    this.voxelControls.setMode('translate')
-    this.voxelControls.setTranslationSnap(10)
-    this.voxelControls.size += 0.3
-    this.scene.add(this.voxelControls)
+    this.voxelControls = new TransformControls(
+      this.camera,
+      this.renderer.domElement
+    );
+    this.voxelControls.setMode('translate');
+    this.voxelControls.setTranslationSnap(10);
+    this.voxelControls.size += 0.3;
+    this.scene.add(this.voxelControls);
 
     // Disable editor controls when voxel controls are being used.
-    this.voxelControls.addEventListener('dragging-changed', (event) => {
-      this.orbitControls.enabled = !event.value
-    })
+    this.voxelControls.addEventListener('dragging-changed', event => {
+      this.orbitControls.enabled = !event.value;
+    });
 
     // Sky background
     if (this.settings.skyBackground) {
-      const sky = new Sky()
-      sky.name = 'Sky: ' + sky.id
-      sky.material.uniforms.turbidity.value = 10
-      sky.material.uniforms.rayleigh.value = 0.5
-      sky.material.uniforms.luminance.value = 0.16
-      sky.material.uniforms.mieCoefficient.value = 0.01
-      sky.material.uniforms.mieDirectionalG.value = 0.95
-      sky.material.uniforms.sunPosition.value = new THREE.Vector3(100, 200, 100)
-      sky.scale.setScalar(2000)
-      this.scene.add(sky)
+      const sky = new Sky();
+      sky.name = 'Sky: ' + sky.id;
+      sky.material.uniforms.turbidity.value = 10;
+      sky.material.uniforms.rayleigh.value = 0.5;
+      sky.material.uniforms.luminance.value = 0.16;
+      sky.material.uniforms.mieCoefficient.value = 0.01;
+      sky.material.uniforms.mieDirectionalG.value = 0.95;
+      sky.material.uniforms.sunPosition.value = new THREE.Vector3(
+        100,
+        200,
+        100
+      );
+      sky.scale.setScalar(2000);
+      this.scene.add(sky);
     }
 
     // Mouse & raycaster
-    this.mouse = new THREE.Vector2()
-    this.raycaster = new THREE.Raycaster()
+    this.mouse = new THREE.Vector2();
+    this.raycaster = new THREE.Raycaster();
 
     // Starts the animate loop.
-    this.animate()
+    this.animate();
   }
 
   /**
    * Gets called when the component updates for the first time.
    */
-  firstUpdated () {
+  firstUpdated() {
     // Adds the starter voxel.
-    this.addVoxel(new THREE.Vector3(0, 0, 0))
+    this.addVoxel(new THREE.Vector3(0, 0, 0));
 
     // Handles window resizing.
     window.addEventListener('resize', () => {
-      this.camera.aspect = window.innerWidth / window.innerHeight
-      this.camera.updateProjectionMatrix()
-      this.renderer.setSize(window.innerWidth, window.innerHeight)
-    })
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 
     // Handles menu actions.
-    window.addEventListener('menu-action', (event) => {
-      this.performAction(event.detail.message)
-    })
+    window.addEventListener('menu-action', event => {
+      this.performAction(event.detail.message);
+    });
   }
 
   /**
@@ -172,19 +187,19 @@ class VoxelEditor extends LitElement {
    *
    * @param {Event} event A mouse move event.
    */
-  onMouseMove (event) {
-    const rendererWidth = window.innerWidth
-    const rendererHeight = window.innerHeight
+  onMouseMove(event) {
+    const rendererWidth = window.innerWidth;
+    const rendererHeight = window.innerHeight;
 
-    const mouseX = event.clientX
-    const mouseY = event.clientY
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
 
     // Normalize coordinates so they are between -1 and +1.
-    const mouseNormalizedX = mouseX / rendererWidth * 2 - 1
-    const mouseNormalizedY = mouseY / rendererHeight * -2 + 1
+    const mouseNormalizedX = (mouseX / rendererWidth) * 2 - 1;
+    const mouseNormalizedY = (mouseY / rendererHeight) * -2 + 1;
 
-    this.mouse.x = mouseNormalizedX
-    this.mouse.y = mouseNormalizedY
+    this.mouse.x = mouseNormalizedX;
+    this.mouse.y = mouseNormalizedY;
   }
 
   /**
@@ -192,19 +207,19 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Vector3} position The position to add the voxel.
    */
-  addVoxel (position) {
-    const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10)
+  addVoxel(position) {
+    const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10);
 
     // Choose material type based on user settings.
-    let coloredMaterial = (this.settings.pbrMaterials)
+    let coloredMaterial = this.settings.pbrMaterials
       ? new THREE.MeshStandardMaterial({ color: this.color })
-      : new THREE.MeshBasicMaterial({ color: this.color })
+      : new THREE.MeshBasicMaterial({ color: this.color });
 
-    const voxel = new THREE.Mesh(boxGeometry, coloredMaterial)
-    voxel.name = 'Voxel: ' + voxel.id
-    voxel.position.set(position.x, position.y, position.z)
+    const voxel = new THREE.Mesh(boxGeometry, coloredMaterial);
+    voxel.name = 'Voxel: ' + voxel.id;
+    voxel.position.set(position.x, position.y, position.z);
 
-    this.scene.add(voxel)
+    this.scene.add(voxel);
   }
 
   /**
@@ -212,8 +227,8 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Object3D} voxelReference The voxel to remove.
    */
-  removeVoxel (voxelReference) {
-    this.scene.remove(voxelReference)
+  removeVoxel(voxelReference) {
+    this.scene.remove(voxelReference);
   }
 
   /**
@@ -221,8 +236,8 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Object3D} voxelReference The voxel to color.
    */
-  colorVoxel (voxelReference) {
-    voxelReference.material.color.set(this.color)
+  colorVoxel(voxelReference) {
+    voxelReference.material.color.set(this.color);
   }
 
   /**
@@ -231,8 +246,8 @@ class VoxelEditor extends LitElement {
    * @param {THREE.Object3D} object The object to check.
    * @returns True or false.
    */
-  isVoxel (object) {
-    return object.name.slice(0, 5) === 'Voxel'
+  isVoxel(object) {
+    return object.name.slice(0, 5) === 'Voxel';
   }
 
   /**
@@ -240,9 +255,9 @@ class VoxelEditor extends LitElement {
    *
    * @param {Event} event A mouse down event.
    */
-  onMouseDown (event) {
-    this.mouseDownX = event.clientX
-    this.mouseDownY = event.clientY
+  onMouseDown(event) {
+    this.mouseDownX = event.clientX;
+    this.mouseDownY = event.clientY;
   }
 
   /**
@@ -250,69 +265,75 @@ class VoxelEditor extends LitElement {
    *
    * @param {Event} event A mouse up event.
    */
-  onMouseUp (event) {
-    const mouseUpX = event.clientX
-    const mouseUpY = event.clientY
+  onMouseUp(event) {
+    const mouseUpX = event.clientX;
+    const mouseUpY = event.clientY;
 
-    const mousePressedMovementX = Math.abs(this.mouseDownX - mouseUpX)
-    const mousePressedMovementY = Math.abs(this.mouseDownY - mouseUpY)
+    const mousePressedMovementX = Math.abs(this.mouseDownX - mouseUpX);
+    const mousePressedMovementY = Math.abs(this.mouseDownY - mouseUpY);
 
     // The allowed mouse movement in pixels while the mouse is pressed down.
-    const movementThreshold = 6
+    const movementThreshold = 6;
 
     // Cancels the event if the mouse has travelled to far while pressed down.
-    if (mousePressedMovementX > movementThreshold ||
-      mousePressedMovementY > movementThreshold) {
-      return
+    if (
+      mousePressedMovementX > movementThreshold ||
+      mousePressedMovementY > movementThreshold
+    ) {
+      return;
     }
 
     // Redirects the event depending on the mouse button.
     switch (event.button) {
       case 0:
-        this.onLeftClick()
-        break
+        this.onLeftClick();
+        break;
       case 2:
-        this.onRightClick()
-        break
+        this.onRightClick();
+        break;
     }
   }
 
   /**
    * Handles left mouse button clicks.
    */
-  onLeftClick () {
+  onLeftClick() {
     // The object in 3D space that was clicked.
-    const firstIntersection = this.getFirstRaycastIntersection()
+    const firstIntersection = this.getFirstRaycastIntersection();
 
     // Cancels the selection and detaches the voxel controls
     // when something other than a voxel is clicked (sky, grid).
     if (!this.isVoxel(firstIntersection.object)) {
-      this.cancelSelection()
-      this.voxelControls.detach(this.selection)
-      return
+      this.cancelSelection();
+      this.voxelControls.detach(this.selection);
+      return;
     }
 
     // Chooses action based on what mode is currently active.
     switch (this.mode) {
       case 'build-mode':
-        const placementPosition = this.calculatePlacementPosition(firstIntersection)
-        this.addVoxel(placementPosition)
-        break
+        const placementPosition = this.calculatePlacementPosition(
+          firstIntersection
+        );
+        this.addVoxel(placementPosition);
+        break;
 
       case 'color-mode':
-        this.colorVoxel(firstIntersection.object)
-        break
+        this.colorVoxel(firstIntersection.object);
+        break;
 
       case 'move-mode':
         // Creates a selection if there isn't one already.
         if (!this.selection) {
-          this.selection = new THREE.Group()
-          this.selection.position.setFromMatrixPosition(firstIntersection.object.matrixWorld)
-          this.scene.add(this.selection)
+          this.selection = new THREE.Group();
+          this.selection.position.setFromMatrixPosition(
+            firstIntersection.object.matrixWorld
+          );
+          this.scene.add(this.selection);
         }
-        this.addToSelection(firstIntersection.object)
-        this.voxelControls.attach(this.selection)
-        break
+        this.addToSelection(firstIntersection.object);
+        this.voxelControls.attach(this.selection);
+        break;
     }
   }
 
@@ -321,13 +342,13 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Object3D} voxel The voxel to add.
    */
-  addToSelection (voxel) {
-    this.attachOutline(voxel)
-    this.selection.add(voxel)
+  addToSelection(voxel) {
+    this.attachOutline(voxel);
+    this.selection.add(voxel);
 
     // Adjusts for the switch from world coordinates to local coordinates.
-    voxel.position.sub(this.selection.position)
-    voxel.updateMatrix()
+    voxel.position.sub(this.selection.position);
+    voxel.updateMatrix();
   }
 
   /**
@@ -335,10 +356,10 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Object3D} voxel The voxel to remove.
    */
-  removeFromSelection (voxel) {
-    this.detachOutline(voxel)
-    voxel.position.setFromMatrixPosition(voxel.matrixWorld)
-    this.scene.add(voxel)
+  removeFromSelection(voxel) {
+    this.detachOutline(voxel);
+    voxel.position.setFromMatrixPosition(voxel.matrixWorld);
+    this.scene.add(voxel);
   }
 
   /**
@@ -346,14 +367,14 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Object3D} object The object to attach on.
    */
-  attachOutline (object) {
-    const outline = new THREE.BoxHelper(object, 0xFFFFFF)
-    outline.name = 'Outline: ' + outline.id
-    object.add(outline)
+  attachOutline(object) {
+    const outline = new THREE.BoxHelper(object, 0xffffff);
+    outline.name = 'Outline: ' + outline.id;
+    object.add(outline);
 
     // Adjusts for the switch from world coordinates to local coordinates.
-    outline.position.sub(object.position)
-    outline.updateMatrix()
+    outline.position.sub(object.position);
+    outline.updateMatrix();
   }
 
   /**
@@ -361,22 +382,24 @@ class VoxelEditor extends LitElement {
    *
    * @param {THREE.Object3D} object The object to detach from.
    */
-  detachOutline (object) {
-    const outline = object.children.find(child => child.name.slice(0, 7) === 'Outline')
-    object.remove(outline)
+  detachOutline(object) {
+    const outline = object.children.find(
+      child => child.name.slice(0, 7) === 'Outline'
+    );
+    object.remove(outline);
   }
 
   /**
    * Cancels the selection.
    */
-  cancelSelection () {
+  cancelSelection() {
     if (this.selection) {
       // Empties all the selection's children.
       while (this.selection.children.length > 0) {
-        this.removeFromSelection(this.selection.children[0])
+        this.removeFromSelection(this.selection.children[0]);
       }
-      this.scene.remove(this.selection)
-      this.selection = undefined
+      this.scene.remove(this.selection);
+      this.selection = undefined;
     }
   }
 
@@ -387,18 +410,18 @@ class VoxelEditor extends LitElement {
    * @param {Object} intersection The intersection object.
    * @returns An Vector3 with the placement postition.
    */
-  calculatePlacementPosition (intersection) {
+  calculatePlacementPosition(intersection) {
     const clickedVoxelPosition = new THREE.Vector3(
       intersection.object.position.x,
       intersection.object.position.y,
       intersection.object.position.z
-    )
+    );
 
-    const placementDirection = intersection.face.normal
-    const placementOffset = placementDirection.multiplyScalar(10)
-    const placementPosition = clickedVoxelPosition.add(placementOffset)
+    const placementDirection = intersection.face.normal;
+    const placementOffset = placementDirection.multiplyScalar(10);
+    const placementPosition = clickedVoxelPosition.add(placementOffset);
 
-    return placementPosition
+    return placementPosition;
   }
 
   /**
@@ -406,22 +429,22 @@ class VoxelEditor extends LitElement {
    *
    * @returns The first intersecting object.
    */
-  getFirstRaycastIntersection () {
-    this.raycaster.setFromCamera(this.mouse, this.camera)
+  getFirstRaycastIntersection() {
+    this.raycaster.setFromCamera(this.mouse, this.camera);
 
-    const intersections = this.raycaster.intersectObjects(this.scene.children)
+    const intersections = this.raycaster.intersectObjects(this.scene.children);
 
-    if (intersections.length > 0) return intersections[0]
+    if (intersections.length > 0) return intersections[0];
   }
 
   /**
    * Handles right mouse button clicks.
    */
-  onRightClick () {
-    const clickedObject = this.getFirstRaycastIntersection().object
+  onRightClick() {
+    const clickedObject = this.getFirstRaycastIntersection().object;
 
     if (this.isVoxel(clickedObject)) {
-      this.removeVoxel(clickedObject)
+      this.removeVoxel(clickedObject);
     }
   }
 
@@ -429,13 +452,13 @@ class VoxelEditor extends LitElement {
    * The animate loop calls itself about 60 times a second
    * and updates controls and rendering.
    */
-  animate () {
-    this.orbitControls.update()
+  animate() {
+    this.orbitControls.update();
 
-    this.renderer.render(this.scene, this.camera)
+    this.renderer.render(this.scene, this.camera);
 
     // Requests a call of the animate method before the next browser repaint.
-    window.requestAnimationFrame(this.animate.bind(this))
+    window.requestAnimationFrame(this.animate.bind(this));
   }
 
   /**
@@ -445,9 +468,9 @@ class VoxelEditor extends LitElement {
    * @param {Number} y The y coordinate.
    * @param {Number} z The z coordinate.
    */
-  moveCameraTo (x, y, z) {
-    this.orbitControls.reset()
-    this.camera.position.set(x, y, z)
+  moveCameraTo(x, y, z) {
+    this.orbitControls.reset();
+    this.camera.position.set(x, y, z);
   }
 
   /**
@@ -455,32 +478,32 @@ class VoxelEditor extends LitElement {
    *
    * @param {string} actionType The action perform.
    */
-  performAction (actionType) {
+  performAction(actionType) {
     switch (actionType) {
       case 'save':
-        saveScene(this.scene)
-        break
+        saveScene(this.scene);
+        break;
       case 'load':
-        loadScene(this.scene)
-        break
+        loadScene(this.scene);
+        break;
       case 'export':
-        exportScene(this.scene)
-        break
+        exportScene(this.scene);
+        break;
       case 'screenshot':
-        screenshot(this.renderer)
-        break
+        screenshot(this.renderer);
+        break;
       case 'top':
-        this.moveCameraTo(0, 100, 0)
-        break
+        this.moveCameraTo(0, 100, 0);
+        break;
       case 'right':
-        this.moveCameraTo(100, 0, 0)
-        break
+        this.moveCameraTo(100, 0, 0);
+        break;
       case 'bottom':
-        this.moveCameraTo(0, -100, 0)
-        break
+        this.moveCameraTo(0, -100, 0);
+        break;
       case 'left':
-        this.moveCameraTo(-100, 0, 0)
-        break
+        this.moveCameraTo(-100, 0, 0);
+        break;
     }
   }
 
@@ -489,14 +512,18 @@ class VoxelEditor extends LitElement {
    *
    * @returns {TemplateResult} The template to render.
    */
-  render () {
+  render() {
     return html`
-      <div @mousemove=${this.onMouseMove} @mousedown=${this.onMouseDown} @mouseup=${this.onMouseUp}>
+      <div
+        @mousemove=${this.onMouseMove}
+        @mousedown=${this.onMouseDown}
+        @mouseup=${this.onMouseUp}
+      >
         ${this.renderer.domElement}
       </div>
-    `
+    `;
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-voxel-editor', VoxelEditor)
+window.customElements.define('my-voxel-editor', VoxelEditor);

@@ -6,7 +6,7 @@
  */
 
 // Imports.
-import { LitElement, html, css } from 'lit-element'
+import { LitElement, html, css } from 'lit-element';
 
 /**
  * The dropdown component.
@@ -21,14 +21,14 @@ class AppBarMenu extends LitElement {
    * @readonly
    * @static
    */
-  static get styles () {
+  static get styles() {
     return css`
       :host {
         display: inline;
       }
       button {
-        background-color: rgba(0,0,0,0);
-        border: 1px solid #FEFEFE;
+        background-color: rgba(0, 0, 0, 0);
+        border: 1px solid #fefefe;
         color: white;
         padding: 4px 10px;
         margin: 5px 3px;
@@ -47,12 +47,12 @@ class AppBarMenu extends LitElement {
         display: inline;
       }
       .content button {
-        border: 1px dotted #FEFEFE;
+        border: 1px dotted #fefefe;
       }
       .hidden {
         display: none;
       }
-    `
+    `;
   }
 
   /**
@@ -61,13 +61,13 @@ class AppBarMenu extends LitElement {
    * @readonly
    * @static
    */
-  static get properties () {
+  static get properties() {
     return {
       // The dropdown title. (title is reserved, thereby the name).
       titlex: { type: String },
       // The titles of the dropdown's content.
       content: { type: Array }
-    }
+    };
   }
 
   /**
@@ -75,8 +75,8 @@ class AppBarMenu extends LitElement {
    *
    * @param {Event} event A click event.
    */
-  onTitleClick (event) {
-    event.target.nextElementSibling.classList.toggle('hidden')
+  onTitleClick(event) {
+    event.target.nextElementSibling.classList.toggle('hidden');
   }
 
   /**
@@ -84,16 +84,16 @@ class AppBarMenu extends LitElement {
    *
    * @param {Event} event A click event
    */
-  onMenuClick (event) {
-    if (!event.target.value) return
+  onMenuClick(event) {
+    if (!event.target.value) return;
 
     const menuActionEvent = new window.CustomEvent('menu-action', {
       detail: { message: event.target.value },
       bubbles: true,
       composed: true
-    })
+    });
 
-    this.dispatchEvent(menuActionEvent)
+    this.dispatchEvent(menuActionEvent);
   }
 
   /**
@@ -101,16 +101,21 @@ class AppBarMenu extends LitElement {
    *
    * @returns {TemplateResult} The template to render.
    */
-  render () {
+  render() {
     return html`
       <button @click=${this.onTitleClick}>${this.titlex}</button>
-      
+
       <div class="content hidden" @click=${this.onMenuClick}>
-        ${this.content.map(i => html`<button value="${i.toLowerCase()}">${i}</button>`)}
+        ${this.content.map(
+          i =>
+            html`
+              <button value="${i.toLowerCase()}">${i}</button>
+            `
+        )}
       </div>
-    `
+    `;
   }
 }
 
 // Registers the custom element with the browser.
-window.customElements.define('my-app-bar-menu', AppBarMenu)
+window.customElements.define('my-app-bar-menu', AppBarMenu);

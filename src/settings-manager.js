@@ -10,8 +10,8 @@
  *
  * @returns An object with settings.
  */
-function loadSettings () {
-  return JSON.parse(window.localStorage.getItem('settings'))
+function loadSettings() {
+  return JSON.parse(window.localStorage.getItem('settings'));
 }
 
 /**
@@ -19,9 +19,9 @@ function loadSettings () {
  *
  * @param {Object} settings An object with settings.
  */
-function saveSettings (settings) {
-  window.localStorage.setItem('settings', JSON.stringify(settings))
+function saveSettings(settings) {
+  window.localStorage.setItem('settings', JSON.stringify(settings));
 }
 
 // Exports.
-export { loadSettings, saveSettings }
+export { loadSettings, saveSettings };
