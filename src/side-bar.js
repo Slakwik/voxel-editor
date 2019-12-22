@@ -7,9 +7,6 @@
 
 // Imports.
 import { LitElement, html, css } from 'lit-element';
-import buildModeIcon from 'material-design-icons/content/1x_web/ic_create_black_36dp.png';
-import moveModeIcon from 'material-design-icons/action/1x_web/ic_open_with_black_36dp.png';
-import colorModeIcon from 'material-design-icons/editor/1x_web/ic_format_color_fill_black_36dp.png';
 
 /**
  * The sidebar component.
@@ -39,25 +36,26 @@ class SideBar extends LitElement {
         transform: translateY(-40%);
         z-index: 1;
       }
-      input {
+      button {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
         background: linear-gradient(to bottom, #ffe259, #ffa751);
         border: 1px solid #fefefe;
-        padding: 6px;
-        margin: 1px;
+        padding: 0px;
+        margin: 2px;
         border-radius: 100%;
         outline: none;
         -moz-user-select: none;
       }
+      button:first-child {
+        display: block;
+        margin: 0px auto;
+      }
       .selected {
         border: 2px solid #fefefe;
-        margin: 0px;
-      }
-      input:first-child {
-        display: block;
-        margin: 1px auto;
-      }
-      .selected:first-child {
-        margin: 0px auto;
       }
     `;
   }
@@ -69,7 +67,7 @@ class SideBar extends LitElement {
    */
   onFocus(event) {
     this.shadowRoot
-      .querySelectorAll('input')
+      .querySelectorAll('button')
       .forEach(el => el.classList.remove('selected'));
     event.target.classList.add('selected');
   }
@@ -96,36 +94,32 @@ class SideBar extends LitElement {
    */
   render() {
     return html`
-      <input
-        type="image"
+      <button
         title="Build"
-        alt="Build"
         value="build-mode"
-        src=${buildModeIcon}
-        draggable="false"
         @click="${this.onModeClick}"
         @focus="${this.onFocus}"
-      />
-      <input
-        type="image"
+      >
+        B
+      </button>
+
+      <button
         title="Move"
-        alt="Move"
         value="move-mode"
-        src=${moveModeIcon}
-        draggable="false"
         @click="${this.onModeClick}"
         @focus="${this.onFocus}"
-      />
-      <input
-        type="image"
+      >
+        M
+      </button>
+
+      <button
         title="Color"
-        alt="Color"
         value="color-mode"
-        src=${colorModeIcon}
-        draggable="false"
         @click="${this.onModeClick}"
         @focus="${this.onFocus}"
-      />
+      >
+        C
+      </button>
 
       <my-color-picker></my-color-picker>
     `;
