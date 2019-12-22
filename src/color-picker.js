@@ -1,27 +1,7 @@
-/**
- * Module for the palette component.
- *
- * @module src/my-palette
- * @author Elias Pekkala
- */
-
-// Imports.
 import { LitElement, html, css } from 'lit-element';
 import './color-picker-button.js';
 
-/**
- * The palette component.
- *
- * @class MyPalette
- * @extends {LitElement}
- */
 class ColorPicker extends LitElement {
-  /**
-   * The component styles.
-   *
-   * @readonly
-   * @static
-   */
   static get styles() {
     return css`
       :host {
@@ -55,28 +35,18 @@ class ColorPicker extends LitElement {
     `;
   }
 
-  /**
-   * Creates an instance of MyPalette.
-   */
   constructor() {
     super();
 
-    // Sets the default saturation and lightness.
+    // Sets default saturation and lightness.
     this.saturation = 90;
     this.lightness = 60;
 
-    // Creates an array of colors that is later used to generate color buttons.
+    // Creates an array of colors that is used to generate color buttons.
     this.colors = this.createColorArray(10, this.saturation, this.lightness);
   }
 
-  /**
-   * Creates an array of HSL colors by looping around the color wheel.
-   *
-   * @param {Number} hueStepLength The step length of the color wheel loop.
-   * @param {Number} saturation The color saturation.
-   * @param {Number} lightness The color lightness.
-   * @returns An array of HSL colors.
-   */
+  // Creates an array of HSL colors by looping around the color wheel.
   createColorArray(hueStepLength, saturation, lightness) {
     const colorArray = [];
 
@@ -88,40 +58,22 @@ class ColorPicker extends LitElement {
     return colorArray;
   }
 
-  /**
-   * Creates / formats a HSL color.
-   *
-   * @param {Number} hue The color hue.
-   * @param {Number} saturation The color saturation.
-   * @param {Number} lightness The color lightness.
-   * @returns A HSL color string.
-   */
   createHSLColor(hue, saturation, lightness) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }
 
-  /**
-   * Handles the visual indication of which color is currently selected.
-   *
-   * @param {Event} event A focus event.
-   */
+  // Handles selections of colors.
   onFocus(event) {
     this.clearSelection();
     this.addSelection(event.target);
   }
 
-  /**
-   * Adds an visual indication to a specific color button.
-   *
-   * @param {HTMLElement} colorButton
-   */
+  // Adds a highlight to a specific color button.
   addSelection(colorButton) {
     colorButton.shadowRoot.querySelector('button').classList.add('selected');
   }
 
-  /**
-   * Clears the visual indication of which color button is selected.
-   */
+  // Removes the highlights of all color picker buttons.
   clearSelection() {
     this.shadowRoot
       .querySelectorAll('my-color-picker-button')
@@ -132,9 +84,7 @@ class ColorPicker extends LitElement {
       });
   }
 
-  /**
-   * Decreases the saturation of the colors in the palette.
-   */
+  // Decreases the saturation of the colors in the palette.
   decreaseSaturation() {
     if (this.saturation > 0) {
       this.saturation -= 10;
@@ -142,9 +92,7 @@ class ColorPicker extends LitElement {
     this.updatePalette();
   }
 
-  /**
-   * Increases the saturation of the colors in the palette.
-   */
+  // Increases the saturation of the colors in the palette.
   increaseSaturation() {
     if (this.saturation < 100) {
       this.saturation += 10;
@@ -152,9 +100,7 @@ class ColorPicker extends LitElement {
     this.updatePalette();
   }
 
-  /**
-   * Decreases the lightness of the colors in the palette.
-   */
+  // Decreases the lightness of the colors in the palette.
   decreaseLightness() {
     if (this.lightness > 0) {
       this.lightness -= 10;
@@ -162,9 +108,7 @@ class ColorPicker extends LitElement {
     this.updatePalette();
   }
 
-  /**
-   * Increases the lightness of the colors in the palette.
-   */
+  // Increases the lightness of the colors in the palette.
   increaseLightness() {
     if (this.lightness < 100) {
       this.lightness += 10;
@@ -172,19 +116,12 @@ class ColorPicker extends LitElement {
     this.updatePalette();
   }
 
-  /**
-   * Updates the palette component so that new colors display.
-   */
+  // Updates the palette component so that new colors are displayed.
   updatePalette() {
     this.colors = this.createColorArray(10, this.saturation, this.lightness);
     super.performUpdate();
   }
 
-  /**
-   * Renders a template inside the components shadow root.
-   *
-   * @returns {TemplateResult} The template to render.
-   */
   render() {
     return html`
       ${this.colors.map(
@@ -210,5 +147,4 @@ class ColorPicker extends LitElement {
   }
 }
 
-// Registers the custom element with the browser.
 window.customElements.define('my-color-picker', ColorPicker);

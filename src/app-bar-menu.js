@@ -1,26 +1,6 @@
-/**
- * Module for the dropdown component.
- *
- * @module src/my-dropdown
- * @author Elias Pekkala
- */
-
-// Imports.
 import { LitElement, html, css } from 'lit-element';
 
-/**
- * The dropdown component.
- *
- * @class MyDropdown
- * @extends {LitElement}
- */
 class AppBarMenu extends LitElement {
-  /**
-   * The component styles.
-   *
-   * @readonly
-   * @static
-   */
   static get styles() {
     return css`
       :host {
@@ -55,35 +35,21 @@ class AppBarMenu extends LitElement {
     `;
   }
 
-  /**
-   * The component properties.
-   *
-   * @readonly
-   * @static
-   */
   static get properties() {
     return {
-      // The dropdown title. (title is reserved, thereby the name).
+      // The menu title. (title is reserved, so I added 'x').
       titlex: { type: String },
-      // The titles of the dropdown's content.
+      // The titles of the menu's content.
       content: { type: Array }
     };
   }
 
-  /**
-   * Handles showing and hiding the dropdown's content.
-   *
-   * @param {Event} event A click event.
-   */
+  // Shows / hides the menu's content.
   onTitleClick(event) {
     event.target.nextElementSibling.classList.toggle('hidden');
   }
 
-  /**
-   * Notifies other components of menu actions.
-   *
-   * @param {Event} event A click event
-   */
+  // Notifies other components of menu actions.
   onMenuClick(event) {
     if (!event.target.value) return;
 
@@ -96,11 +62,6 @@ class AppBarMenu extends LitElement {
     this.dispatchEvent(menuActionEvent);
   }
 
-  /**
-   * Renders a template inside the components shadow root.
-   *
-   * @returns {TemplateResult} The template to render.
-   */
   render() {
     return html`
       <button @click=${this.onTitleClick}>${this.titlex}</button>
@@ -117,5 +78,4 @@ class AppBarMenu extends LitElement {
   }
 }
 
-// Registers the custom element with the browser.
 window.customElements.define('my-app-bar-menu', AppBarMenu);

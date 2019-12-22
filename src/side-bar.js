@@ -1,26 +1,6 @@
-/**
- * Module for the sidebar component.
- *
- * @module src/my-sidebar
- * @author Elias Pekkala
- */
-
-// Imports.
 import { LitElement, html, css } from 'lit-element';
 
-/**
- * The sidebar component.
- *
- * @class MySideBar
- * @extends {LitElement}
- */
 class SideBar extends LitElement {
-  /**
-   * The component styles.
-   *
-   * @readonly
-   * @static
-   */
   static get styles() {
     return css`
       :host {
@@ -60,11 +40,7 @@ class SideBar extends LitElement {
     `;
   }
 
-  /**
-   * Handles the visual indication of which mode is currently selected.
-   *
-   * @param {Event} event A focus event.
-   */
+  // Hightlights the selected mode button.
   onFocus(event) {
     this.shadowRoot
       .querySelectorAll('button')
@@ -72,11 +48,7 @@ class SideBar extends LitElement {
     event.target.classList.add('selected');
   }
 
-  /**
-   * Notifies other components of mode changes.
-   *
-   * @param {Event} event A click event.
-   */
+  // Notifies other components of mode changes.
   onModeClick(event) {
     const modeChangeEvent = new window.CustomEvent('mode-change', {
       detail: { message: event.target.value },
@@ -87,11 +59,6 @@ class SideBar extends LitElement {
     this.dispatchEvent(modeChangeEvent);
   }
 
-  /**
-   * Renders a template inside the components shadow root.
-   *
-   * @returns {TemplateResult} The template to render.
-   */
   render() {
     return html`
       <button
@@ -126,5 +93,4 @@ class SideBar extends LitElement {
   }
 }
 
-// Registers the custom element with the browser.
 window.customElements.define('my-side-bar', SideBar);

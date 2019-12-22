@@ -1,26 +1,6 @@
-/**
- * Module for the color button component.
- *
- * @module src/my-color-button
- * @author Elias Pekkala
- */
-
-// Imports.
 import { LitElement, html, css } from 'lit-element';
 
-/**
- * The color button component.
- *
- * @class MyColorButton
- * @extends {LitElement}
- */
 class ColorPickerButton extends LitElement {
-  /**
-   * The component styles.
-   *
-   * @readonly
-   * @static
-   */
   static get styles() {
     return css`
       :host {
@@ -41,24 +21,14 @@ class ColorPickerButton extends LitElement {
     `;
   }
 
-  /**
-   * The component properties.
-   *
-   * @readonly
-   * @static
-   */
   static get properties() {
     return {
-      // The color of the button.
+      // The button color.
       color: { type: String }
     };
   }
 
-  /**
-   * Notifies other components of color changes.
-   *
-   * @param {Event} event A click event.
-   */
+  // Notifies other components of color changes.
   onClick(event) {
     const colorChangeEvent = new window.CustomEvent('color-change', {
       detail: { message: event.target.value },
@@ -69,11 +39,6 @@ class ColorPickerButton extends LitElement {
     this.dispatchEvent(colorChangeEvent);
   }
 
-  /**
-   * Renders a template inside the components shadow root.
-   *
-   * @returns {TemplateResult} The template to render.
-   */
   render() {
     return html`
       <style>
@@ -86,5 +51,4 @@ class ColorPickerButton extends LitElement {
   }
 }
 
-// Registers the custom element with the browser.
 window.customElements.define('my-color-picker-button', ColorPickerButton);

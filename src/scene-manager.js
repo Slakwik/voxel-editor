@@ -1,21 +1,9 @@
-/**
- * Module for managing scenes, etc.
- *
- * @module src/scene
- * @author Elias Pekkala
- */
-
-// Imports.
 import { Mesh } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-/**
- * Exports the content of the scene to the computer.
- *
- * @param {THREE.Scene} scene The scene.
- */
+// Exports the content of the scene to the computer.
 function exportScene(scene) {
   const exporter = new GLTFExporter();
   const options = {};
@@ -39,13 +27,8 @@ function exportScene(scene) {
   );
 }
 
-/**
- * Merges multiple meshes into a single mesh while preserving their individual
- * positions and materials.
- *
- * @param {Array} meshes An array of meshes to merge.
- * @returns The merged mesh.
- */
+// Takes and array of meshes and merges them into a single mesh
+// while preserving their individual positions and materials.
 function mergeMeshes(meshes) {
   const geometries = [];
   const materials = [];
@@ -64,11 +47,7 @@ function mergeMeshes(meshes) {
   return mergedMesh;
 }
 
-/**
- * Saves a scene's content to local storage in glTF string format.
- *
- * @param {THREE.Scene} scene The scene to save.
- */
+// Takes a scene and saves it content to local storage in glTF string format.
 function saveScene(scene) {
   const exporter = new GLTFExporter();
   const options = {};
@@ -87,11 +66,7 @@ function saveScene(scene) {
   );
 }
 
-/**
- * Loads scene content from local storage and adds it to the specied scene.
- *
- * @param {THREE.Scene} scene The scene to load into.
- */
+// Takes a scene and loads scene content into it from local storage.
 function loadScene(scene) {
   const loader = new GLTFLoader();
 
@@ -110,24 +85,15 @@ function loadScene(scene) {
   });
 }
 
-/**
- * Takes a screenshot of the specified renderer.
- *
- * @param {THREE.WebGLRenderer} renderer The renderer to screenshot.
- */
+// Takes a screenshot of the specified renderer.
 function screenshot(renderer) {
   const imageData = renderer.domElement.toDataURL('image/png');
   const imageName = 'screenshot.png';
   download(imageData, imageName);
 }
 
-/**
- * Creates a file with the specified name; containing the specified data
- * and downloads it to the computer.
- *
- * @param {string} data The data to download.
- * @param {string} fileName The name of the file.
- */
+// Creates a file with the specified data and name,
+// and downloads it to the computer.
 function download(data, fileName) {
   const a = document.createElement('a');
   a.href = data;
@@ -137,5 +103,4 @@ function download(data, fileName) {
   document.body.removeChild(a);
 }
 
-// Exports.
 export { saveScene, loadScene, exportScene, screenshot };

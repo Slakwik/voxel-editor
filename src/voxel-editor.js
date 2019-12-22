@@ -1,11 +1,3 @@
-/**
- * Module for the editor component.
- *
- * @module src/my-editor
- * @author Elias Pekkala
- */
-
-// Imports.
 import { LitElement, html, css } from 'lit-element';
 import * as THREE from 'three';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
@@ -19,19 +11,7 @@ import {
 } from './scene-manager.js';
 import { loadSettings } from './settings-manager.js';
 
-/**
- * The editor component.
- *
- * @class MyEditor
- * @extends {LitElement}
- */
 class VoxelEditor extends LitElement {
-  /**
-   * The component styles.
-   *
-   * @readonly
-   * @static
-   */
   static get styles() {
     return css`
       :host {
@@ -47,24 +27,15 @@ class VoxelEditor extends LitElement {
     `;
   }
 
-  /**
-   * The component properties.
-   *
-   * @readonly
-   * @static
-   */
   static get properties() {
     return {
-      // The currently active mode.
+      // The active mode.
       mode: { type: String },
-      // The currently active color.
+      // The active color.
       color: { type: String }
     };
   }
 
-  /**
-   * Creates an instance of MyEditor.
-   */
   constructor() {
     super();
 
@@ -130,7 +101,7 @@ class VoxelEditor extends LitElement {
     this.voxelControls.size += 0.3;
     this.scene.add(this.voxelControls);
 
-    // Disable editor controls when voxel controls are being used.
+    // Disables editor controls when voxel controls are being used.
     this.voxelControls.addEventListener('dragging-changed', event => {
       this.orbitControls.enabled = !event.value;
     });
@@ -161,9 +132,6 @@ class VoxelEditor extends LitElement {
     this.animate();
   }
 
-  /**
-   * Gets called when the component updates for the first time.
-   */
   firstUpdated() {
     // Adds the starter voxel.
     this.addVoxel(new THREE.Vector3(0, 0, 0));
@@ -181,12 +149,8 @@ class VoxelEditor extends LitElement {
     });
   }
 
-  /**
-   * Calculates and sets the normalized mouse coordinates
-   * every time the mouse moves.
-   *
-   * @param {Event} event A mouse move event.
-   */
+  // Calculates and sets the normalized mouse coordinates
+  // every time the mouse moves.
   onMouseMove(event) {
     const rendererWidth = window.innerWidth;
     const rendererHeight = window.innerHeight;
@@ -194,7 +158,7 @@ class VoxelEditor extends LitElement {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
-    // Normalize coordinates so they are between -1 and +1.
+    // Normalize coordinates to be between -1 and +1.
     const mouseNormalizedX = (mouseX / rendererWidth) * 2 - 1;
     const mouseNormalizedY = (mouseY / rendererHeight) * -2 + 1;
 
@@ -202,15 +166,11 @@ class VoxelEditor extends LitElement {
     this.mouse.y = mouseNormalizedY;
   }
 
-  /**
-   * Adds a voxel to the specified position in the scene.
-   *
-   * @param {THREE.Vector3} position The position to add the voxel.
-   */
+  // Adds a voxel to the specified position.
   addVoxel(position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10);
 
-    // Choose material type based on user settings.
+    // Chooses material type based on user settings.
     let coloredMaterial = this.settings.pbrMaterials
       ? new THREE.MeshStandardMaterial({ color: this.color })
       : new THREE.MeshBasicMaterial({ color: this.color });
@@ -222,49 +182,27 @@ class VoxelEditor extends LitElement {
     this.scene.add(voxel);
   }
 
-  /**
-   * Removes the specified voxel from the scene.
-   *
-   * @param {THREE.Object3D} voxelReference The voxel to remove.
-   */
+  // Removes a voxel from the scene.
   removeVoxel(voxelReference) {
     this.scene.remove(voxelReference);
   }
 
-  /**
-   * Changes the color of the specified voxel.
-   *
-   * @param {THREE.Object3D} voxelReference The voxel to color.
-   */
+  // Changes the color of a voxel.
   colorVoxel(voxelReference) {
     voxelReference.material.color.set(this.color);
   }
 
-  /**
-   * Checks if the specified object is a voxel.
-   *
-   * @param {THREE.Object3D} object The object to check.
-   * @returns True or false.
-   */
+  // Checks if the given object is a voxel.
   isVoxel(object) {
     return object.name.slice(0, 5) === 'Voxel';
   }
 
-  /**
-   * Records the coordinates of where the mouse was pressed down.
-   *
-   * @param {Event} event A mouse down event.
-   */
+  // Records the coordinates of where the mouse was pressed.
   onMouseDown(event) {
     this.mouseDownX = event.clientX;
     this.mouseDownY = event.clientY;
   }
 
-  /**
-   * Handles mouse up events.
-   *
-   * @param {Event} event A mouse up event.
-   */
   onMouseUp(event) {
     const mouseUpX = event.clientX;
     const mouseUpY = event.clientY;
@@ -272,10 +210,10 @@ class VoxelEditor extends LitElement {
     const mousePressedMovementX = Math.abs(this.mouseDownX - mouseUpX);
     const mousePressedMovementY = Math.abs(this.mouseDownY - mouseUpY);
 
-    // The allowed mouse movement in pixels while the mouse is pressed down.
+    // The allowed mouse movement in pixels while the mouse is pressed.
     const movementThreshold = 6;
 
-    // Cancels the event if the mouse has travelled to far while pressed down.
+    // Cancels the event if the mouse has travelled to far while pressed.
     if (
       mousePressedMovementX > movementThreshold ||
       mousePressedMovementY > movementThreshold
@@ -294,11 +232,8 @@ class VoxelEditor extends LitElement {
     }
   }
 
-  /**
-   * Handles left mouse button clicks.
-   */
   onLeftClick() {
-    // The object in 3D space that was clicked.
+    // The scene object that was clicked.
     const firstIntersection = this.getFirstRaycastIntersection();
 
     // Cancels the selection and detaches the voxel controls
@@ -309,7 +244,7 @@ class VoxelEditor extends LitElement {
       return;
     }
 
-    // Chooses action based on what mode is currently active.
+    // Chooses action based on the active mode.
     switch (this.mode) {
       case 'build-mode':
         const placementPosition = this.calculatePlacementPosition(
@@ -323,7 +258,7 @@ class VoxelEditor extends LitElement {
         break;
 
       case 'move-mode':
-        // Creates a selection if there isn't one already.
+        // Creates a move selection if there isn't one already.
         if (!this.selection) {
           this.selection = new THREE.Group();
           this.selection.position.setFromMatrixPosition(
@@ -337,11 +272,7 @@ class VoxelEditor extends LitElement {
     }
   }
 
-  /**
-   * Adds a voxel to the selection.
-   *
-   * @param {THREE.Object3D} voxel The voxel to add.
-   */
+  // Adds a voxel to the move selection.
   addToSelection(voxel) {
     this.attachOutline(voxel);
     this.selection.add(voxel);
@@ -351,22 +282,14 @@ class VoxelEditor extends LitElement {
     voxel.updateMatrix();
   }
 
-  /**
-   * Removes a voxel from the selection.
-   *
-   * @param {THREE.Object3D} voxel The voxel to remove.
-   */
+  // Removes a voxel from the move selection.
   removeFromSelection(voxel) {
     this.detachOutline(voxel);
     voxel.position.setFromMatrixPosition(voxel.matrixWorld);
     this.scene.add(voxel);
   }
 
-  /**
-   * Attaches an outline to an object.
-   *
-   * @param {THREE.Object3D} object The object to attach on.
-   */
+  // Attaches an outline to an object.
   attachOutline(object) {
     const outline = new THREE.BoxHelper(object, 0xffffff);
     outline.name = 'Outline: ' + outline.id;
@@ -377,11 +300,7 @@ class VoxelEditor extends LitElement {
     outline.updateMatrix();
   }
 
-  /**
-   * Detaches the outline from the specified object.
-   *
-   * @param {THREE.Object3D} object The object to detach from.
-   */
+  // Detaches the outline from the specified object.
   detachOutline(object) {
     const outline = object.children.find(
       child => child.name.slice(0, 7) === 'Outline'
@@ -389,9 +308,7 @@ class VoxelEditor extends LitElement {
     object.remove(outline);
   }
 
-  /**
-   * Cancels the selection.
-   */
+  // Cancels the move selection.
   cancelSelection() {
     if (this.selection) {
       // Empties all the selection's children.
@@ -403,13 +320,8 @@ class VoxelEditor extends LitElement {
     }
   }
 
-  /**
-   * Calculates the placement position of the new voxel
-   * based on which voxel - and which of its sides - was clicked.
-   *
-   * @param {Object} intersection The intersection object.
-   * @returns An Vector3 with the placement postition.
-   */
+  // Calculates the placement position of the new voxel
+  // based on which voxel - and which of its sides - was clicked.
   calculatePlacementPosition(intersection) {
     const clickedVoxelPosition = new THREE.Vector3(
       intersection.object.position.x,
@@ -424,11 +336,7 @@ class VoxelEditor extends LitElement {
     return placementPosition;
   }
 
-  /**
-   * Gets the first object that intersects the raycaster ray.
-   *
-   * @returns The first intersecting object.
-   */
+  // Returns the first object that intersects the raycaster ray.
   getFirstRaycastIntersection() {
     this.raycaster.setFromCamera(this.mouse, this.camera);
 
@@ -437,9 +345,6 @@ class VoxelEditor extends LitElement {
     if (intersections.length > 0) return intersections[0];
   }
 
-  /**
-   * Handles right mouse button clicks.
-   */
   onRightClick() {
     const clickedObject = this.getFirstRaycastIntersection().object;
 
@@ -448,10 +353,8 @@ class VoxelEditor extends LitElement {
     }
   }
 
-  /**
-   * The animate loop calls itself about 60 times a second
-   * and updates controls and rendering.
-   */
+  // The animate loop calls itself 60 times a second
+  // and updates controls and rendering.
   animate() {
     this.orbitControls.update();
 
@@ -461,23 +364,13 @@ class VoxelEditor extends LitElement {
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
-  /**
-   * Moves the camera to the specified coordinates.
-   *
-   * @param {Number} x The x coordinate.
-   * @param {Number} y The y coordinate.
-   * @param {Number} z The z coordinate.
-   */
+  // Moves the camera to the specified coordinates.
   moveCameraTo(x, y, z) {
     this.orbitControls.reset();
     this.camera.position.set(x, y, z);
   }
 
-  /**
-   * Performs the specified action.
-   *
-   * @param {string} actionType The action perform.
-   */
+  // Performs the specified menu action.
   performAction(actionType) {
     switch (actionType) {
       case 'save':
@@ -507,11 +400,6 @@ class VoxelEditor extends LitElement {
     }
   }
 
-  /**
-   * Renders a template inside the components shadow root.
-   *
-   * @returns {TemplateResult} The template to render.
-   */
   render() {
     return html`
       <div
@@ -525,5 +413,4 @@ class VoxelEditor extends LitElement {
   }
 }
 
-// Registers the custom element with the browser.
 window.customElements.define('my-voxel-editor', VoxelEditor);
