@@ -1,47 +1,78 @@
-import { LitElement, html, css } from 'lit-element';
+const html = document.createElement('template');
+html.innerHTML = `
+  <button class="title"></button>
+  <div class="content hidden"></div>
+`;
 
-class AppBarMenu extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: inline;
-      }
-      button {
-        background-color: rgba(0, 0, 0, 0);
-        border: 1px solid #fefefe;
-        color: white;
-        padding: 4px 10px;
-        margin: 5px 3px;
-        border-radius: 3px;
-        display: inline;
-        cursor: pointer;
-        outline: none;
-      }
-      button:active {
-        transform: translateY(1px);
-      }
-      button::-moz-focus-inner {
-        border: none;
-      }
-      .content {
-        display: inline;
-      }
-      .content button {
-        border: 1px dotted #fefefe;
-      }
-      .hidden {
-        display: none;
-      }
-    `;
+const css = document.createElement('template');
+css.innerHTML = `
+  <style>
+    :host {
+      display: inline;
+    }
+    button {
+      background-color: rgba(0, 0, 0, 0);
+      border: 1px solid #fefefe;
+      color: white;
+      padding: 4px 10px;
+      margin: 5px 3px;
+      border-radius: 3px;
+      display: inline;
+      cursor: pointer;
+      outline: none;
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+    button::-moz-focus-inner {
+      border: none;
+    }
+    .content {
+      display: inline;
+    }
+    .content button {
+      border: 1px dotted #fefefe;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+`;
+
+class AppBarMenu extends window.HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(html.content.cloneNode(true));
+    this.shadowRoot.appendChild(css.content.cloneNode(true));
   }
 
-  static get properties() {
-    return {
-      // The menu title. (title is reserved, so I added 'x').
-      titlex: { type: String },
-      // The titles of the menu's content.
-      content: { type: Array }
-    };
+  connectedCallback() {
+    // The menu title.
+    this.title = this.getAttribute('data-title');
+    // The titles of the menu's content.
+    this.content = JSON.parse(this.getAttribute('data-content'));
+
+    let titleElement = this.shadowRoot.querySelector('.title');
+
+    titleElement.textContent = this.title;
+
+    titleElement.addEventListener('click', event => {
+      this.onTitleClick(event);
+    });
+
+    let menuElement = this.shadowRoot.querySelector('.content');
+
+    menuElement.addEventListener('click', event => {
+      this.onMenuClick(event);
+    });
+
+    this.content.forEach(title => {
+      let button = document.createElement('button');
+      button.textContent = title;
+      button.value = title.toLowerCase();
+      menuElement.appendChild(button);
+    });
   }
 
   // Shows / hides the menu's content.
@@ -60,21 +91,6 @@ class AppBarMenu extends LitElement {
     });
 
     this.dispatchEvent(menuActionEvent);
-  }
-
-  render() {
-    return html`
-      <button @click=${this.onTitleClick}>${this.titlex}</button>
-
-      <div class="content hidden" @click=${this.onMenuClick}>
-        ${this.content.map(
-          i =>
-            html`
-              <button value="${i.toLowerCase()}">${i}</button>
-            `
-        )}
-      </div>
-    `;
   }
 }
 

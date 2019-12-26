@@ -1,4 +1,3 @@
-import { LitElement, html, css } from 'lit-element';
 import * as THREE from 'three';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -11,33 +10,33 @@ import {
 } from './scene-manager.js';
 import { loadSettings } from './settings-manager.js';
 
-class VoxelEditor extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background-color: darkgray;
-      }
-      p {
-        margin: 0;
-      }
-    `;
-  }
+const html = document.createElement('template');
+html.innerHTML = `
+  <div></div>
+`;
 
-  static get properties() {
-    return {
-      // The active mode.
-      mode: { type: String },
-      // The active color.
-      color: { type: String }
-    };
-  }
+const css = document.createElement('template');
+css.innerHTML = `
+  <style>
+    :host {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: darkgray;
+    }
+    p {
+      margin: 0;
+    }
+  </style>
+`;
 
+class VoxelEditor extends window.HTMLElement {
   constructor() {
     super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(html.content.cloneNode(true));
+    this.shadowRoot.appendChild(css.content.cloneNode(true));
 
     // Scene
     this.scene = new THREE.Scene();
@@ -132,7 +131,22 @@ class VoxelEditor extends LitElement {
     this.animate();
   }
 
-  firstUpdated() {
+  connectedCallback() {
+    let mainDiv = this.shadowRoot.querySelector('div');
+
+    mainDiv.addEventListener('mousemove', event => {
+      this.onMouseMove(event);
+    });
+    mainDiv.addEventListener('mousedown', event => {
+      this.onMouseDown(event);
+    });
+    mainDiv.addEventListener('mouseup', event => {
+      this.onMouseUp(event);
+    });
+
+    // Add the render element
+    mainDiv.appendChild(this.renderer.domElement);
+
     // Adds the starter voxel.
     this.addVoxel(new THREE.Vector3(0, 0, 0));
 
@@ -398,18 +412,6 @@ class VoxelEditor extends LitElement {
         this.moveCameraTo(-100, 0, 0);
         break;
     }
-  }
-
-  render() {
-    return html`
-      <div
-        @mousemove=${this.onMouseMove}
-        @mousedown=${this.onMouseDown}
-        @mouseup=${this.onMouseUp}
-      >
-        ${this.renderer.domElement}
-      </div>
-    `;
   }
 }
 

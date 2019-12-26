@@ -1,31 +1,46 @@
-import { LitElement, html, css } from 'lit-element';
+const html = document.createElement('template');
+html.innerHTML = `
+  <button></button>
+`;
 
-class ColorPickerButton extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: inline;
-      }
-      button {
-        padding: 12px;
-        border: 1px solid white;
-        border-radius: 4px;
-        margin: 4px 2px;
-        cursor: pointer;
-        outline: none;
-      }
-      .selected {
-        border: 2px solid #fefefe;
-        margin: 2px 1px;
-      }
-    `;
+const css = document.createElement('template');
+css.innerHTML = `
+  <style>
+    :host {
+      display: inline;
+    }
+    button {
+      padding: 12px;
+      border: 1px solid white;
+      border-radius: 4px;
+      margin: 4px 2px;
+      cursor: pointer;
+      outline: none;
+    }
+    .selected {
+      border: 2px solid #fefefe;
+      margin: 2px 1px;
+    }
+  </style>
+`;
+
+class ColorPickerButton extends window.HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(html.content.cloneNode(true));
+    this.shadowRoot.appendChild(css.content.cloneNode(true));
   }
 
-  static get properties() {
-    return {
-      // The button color.
-      color: { type: String }
-    };
+  connectedCallback() {
+    let button = this.shadowRoot.querySelector('button');
+
+    button.value = this.color;
+    button.style.backgroundColor = this.color;
+
+    button.addEventListener('click', event => {
+      this.onClick(event);
+    });
   }
 
   // Notifies other components of color changes.
@@ -37,17 +52,6 @@ class ColorPickerButton extends LitElement {
     });
 
     this.dispatchEvent(colorChangeEvent);
-  }
-
-  render() {
-    return html`
-      <style>
-        button {
-          background-color: ${this.color};
-        }
-      </style>
-      <button value="${this.color}" @click="${this.onClick}"></button>
-    `;
   }
 }
 

@@ -9,7 +9,6 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "lit-element": "^2.2.1",
     "three": "^0.110.0"
   },
   "devDependencies": {
