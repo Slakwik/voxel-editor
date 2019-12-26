@@ -1,7 +1,8 @@
-import * as THREE from 'three';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
+import * as THREE from '../vendor/three/build/three.module.js';
+import { Sky } from '../vendor/three/examples/jsm/objects/Sky.js';
+import { OrbitControls } from '../vendor/three/examples/jsm/controls/OrbitControls.js';
+import { TransformControls } from '../vendor/three/examples/jsm/controls/TransformControls.js';
+
 import {
   saveScene,
   loadScene,
