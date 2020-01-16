@@ -4,20 +4,20 @@ const html = document.createElement('template');
 html.innerHTML = `
   <h2>Voxel Editor</h2>
 
-  <my-app-bar-menu
+  <my-top-menu
     data-title="File"
     data-content='["Save", "Load", "Export", "Screenshot"]'
-  ></my-app-bar-menu>
+  ></my-top-menu>
 
-  <my-app-bar-menu
+  <my-top-menu
     data-title="Edit"
     data-content='["Settings"]'
-  ></my-app-bar-menu>
+  ></my-top-menu>
 
-  <my-app-bar-menu
+  <my-top-menu
     data-title="View"
     data-content='["Top", "Right", "Bottom", "Left"]'
-  ></my-app-bar-menu>
+  ></my-top-menu>
 `;
 
 const css = document.createElement('template');
@@ -43,7 +43,7 @@ css.innerHTML = `
   </style>
 `;
 
-class AppBar extends window.HTMLElement {
+class TopBar extends window.HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -52,4 +52,4 @@ class AppBar extends window.HTMLElement {
   }
 }
 
-window.customElements.define('my-app-bar', AppBar);
+window.customElements.define('my-top-bar', TopBar);

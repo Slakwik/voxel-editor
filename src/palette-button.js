@@ -24,7 +24,7 @@ css.innerHTML = `
   </style>
 `;
 
-class ColorPickerButton extends window.HTMLElement {
+class PaletteButton extends window.HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -55,4 +55,4 @@ class ColorPickerButton extends window.HTMLElement {
   }
 }
 
-window.customElements.define('my-color-picker-button', ColorPickerButton);
+window.customElements.define('my-palette-button', PaletteButton);

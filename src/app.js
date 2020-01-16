@@ -7,7 +7,7 @@ import './settings-menu.js';
 
 const html = document.createElement('template');
 html.innerHTML = `
-  <my-app-bar></my-app-bar>
+  <my-top-bar></my-top-bar>
   <my-side-bar></my-side-bar>
 `;
 

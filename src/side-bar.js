@@ -3,7 +3,7 @@ html.innerHTML = `
   <button title="Build" value="build-mode">B</button>
   <button title="Move" value="move-mode">M</button>
   <button title="Color" value="color-mode">C</button>
-  <my-color-picker></my-color-picker>
+  <my-palette-menu></my-palette-menu>
 `;
 
 const css = document.createElement('template');

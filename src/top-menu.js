@@ -39,7 +39,7 @@ css.innerHTML = `
   </style>
 `;
 
-class AppBarMenu extends window.HTMLElement {
+class TopMenu extends window.HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -94,4 +94,4 @@ class AppBarMenu extends window.HTMLElement {
   }
 }
 
-window.customElements.define('my-app-bar-menu', AppBarMenu);
+window.customElements.define('my-top-menu', TopMenu);

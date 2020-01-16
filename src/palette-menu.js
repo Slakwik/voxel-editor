@@ -42,7 +42,7 @@ css.innerHTML = `
   </style>
 `;
 
-class ColorPicker extends window.HTMLElement {
+class PaletteMenu extends window.HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -89,7 +89,7 @@ class ColorPicker extends window.HTMLElement {
 
   addColorButtons() {
     this.colors.forEach(color => {
-      let colorButton = document.createElement('my-color-picker-button');
+      let colorButton = document.createElement('my-palette-button');
       colorButton.color = color;
       colorButton.addEventListener('focus', event => {
         this.onFocus(event);
@@ -99,9 +99,7 @@ class ColorPicker extends window.HTMLElement {
   }
 
   removeColorButtons() {
-    let colorButtons = this.shadowRoot.querySelectorAll(
-      'my-color-picker-button'
-    );
+    let colorButtons = this.shadowRoot.querySelectorAll('my-palette-button');
     colorButtons.forEach(colorButton => {
       colorButton.remove();
     });
@@ -137,7 +135,7 @@ class ColorPicker extends window.HTMLElement {
   // Removes the highlights of all color picker buttons.
   clearSelection() {
     this.shadowRoot
-      .querySelectorAll('my-color-picker-button')
+      .querySelectorAll('my-palette-button')
       .forEach(colorButton => {
         colorButton.shadowRoot
           .querySelector('button')
@@ -185,4 +183,4 @@ class ColorPicker extends window.HTMLElement {
   }
 }
 
-window.customElements.define('my-color-picker', ColorPicker);
+window.customElements.define('my-palette-menu', PaletteMenu);
