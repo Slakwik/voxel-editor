@@ -9,6 +9,7 @@ const html = document.createElement('template');
 html.innerHTML = `
   <my-top-bar></my-top-bar>
   <my-side-bar></my-side-bar>
+  <my-voxel-editor></my-voxel-editor>
 `;
 
 class App extends window.HTMLElement {
@@ -16,15 +17,9 @@ class App extends window.HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(html.content.cloneNode(true));
+  }
 
-    this.voxelEditor = document.createElement('my-voxel-editor');
-
-    // Sets default mode and color.
-    this.voxelEditor.mode = 'build-mode';
-    this.voxelEditor.color = 'hsl(60, 90%, 60%)';
-
-    this.shadowRoot.appendChild(this.voxelEditor);
-
+  connectedCallback() {
     // Sets default settings if there aren't any saved user settings.
     if (!loadSettings()) {
       saveSettings({
@@ -33,17 +28,6 @@ class App extends window.HTMLElement {
         skyBackground: true
       });
     }
-  }
-
-  connectedCallback() {
-    let sideBar = this.shadowRoot.querySelector('my-side-bar');
-
-    sideBar.addEventListener('mode-change', event => {
-      this.voxelEditor.mode = event.detail.message;
-    });
-    sideBar.addEventListener('color-change', event => {
-      this.voxelEditor.color = event.detail.message;
-    });
 
     // Opens the settings menu.
     this.addEventListener('menu-action', event => {

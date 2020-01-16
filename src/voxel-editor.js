@@ -39,6 +39,10 @@ class VoxelEditor extends window.HTMLElement {
     this.shadowRoot.appendChild(html.content.cloneNode(true));
     this.shadowRoot.appendChild(css.content.cloneNode(true));
 
+    // Sets default mode and color.
+    this.selectedMode = 'build-mode';
+    this.selectedColor = 'hsl(60, 90%, 60%)';
+
     // Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xdaeaf1);
@@ -162,6 +166,16 @@ class VoxelEditor extends window.HTMLElement {
     window.addEventListener('menu-action', event => {
       this.performAction(event.detail.message);
     });
+
+    // Handles mode changes.
+    window.addEventListener('mode-change', event => {
+      this.selectedMode = event.detail.message;
+    });
+
+    // Handles color changes.
+    window.addEventListener('color-change', event => {
+      this.selectedColor = event.detail.message;
+    });
   }
 
   // Calculates and sets the normalized mouse coordinates
@@ -187,8 +201,8 @@ class VoxelEditor extends window.HTMLElement {
 
     // Chooses material type based on user settings.
     let coloredMaterial = this.settings.pbrMaterials
-      ? new THREE.MeshStandardMaterial({ color: this.color })
-      : new THREE.MeshBasicMaterial({ color: this.color });
+      ? new THREE.MeshStandardMaterial({ color: this.selectedColor })
+      : new THREE.MeshBasicMaterial({ color: this.selectedColor });
 
     const voxel = new THREE.Mesh(boxGeometry, coloredMaterial);
     voxel.name = 'Voxel: ' + voxel.id;
@@ -204,7 +218,7 @@ class VoxelEditor extends window.HTMLElement {
 
   // Changes the color of a voxel.
   colorVoxel(voxelReference) {
-    voxelReference.material.color.set(this.color);
+    voxelReference.material.color.set(this.selectedColor);
   }
 
   // Checks if the given object is a voxel.
@@ -260,7 +274,7 @@ class VoxelEditor extends window.HTMLElement {
     }
 
     // Chooses action based on the active mode.
-    switch (this.mode) {
+    switch (this.selectedMode) {
       case 'build-mode':
         const placementPosition = this.calculatePlacementPosition(
           firstIntersection
