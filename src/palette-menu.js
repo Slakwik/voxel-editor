@@ -1,4 +1,4 @@
-import './color-picker-button.js';
+import './palette-button.js';
 
 const html = document.createElement('template');
 html.innerHTML = `

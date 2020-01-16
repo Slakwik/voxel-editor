@@ -1,8 +1,8 @@
 import { loadSettings, saveSettings } from './settings-manager.js';
-import './app-bar.js';
+import './top-bar.js';
 import './voxel-editor.js';
 import './side-bar.js';
-import './color-picker.js';
+import './palette-menu.js';
 import './settings-menu.js';
 
 const html = document.createElement('template');

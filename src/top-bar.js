@@ -1,4 +1,4 @@
-import './app-bar-menu.js';
+import './top-menu.js';
 
 const html = document.createElement('template');
 html.innerHTML = `
