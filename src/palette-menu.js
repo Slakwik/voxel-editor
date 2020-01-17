@@ -49,137 +49,86 @@ class PaletteMenu extends window.HTMLElement {
     this.shadowRoot.appendChild(html.content.cloneNode(true));
     this.shadowRoot.appendChild(css.content.cloneNode(true));
 
-    // Sets default saturation and lightness.
+    // Set default saturation and lightness.
     this.saturation = 90;
     this.lightness = 60;
 
-    // Creates an array of colors that is used to generate color buttons.
-    this.colors = this.createColorArray(10, this.saturation, this.lightness);
+    // Initialize the palette buttons
+    this.refreshPalette();
   }
 
   connectedCallback() {
-    this.addColorButtons();
-
-    let decreaseSaturationButton = this.shadowRoot.getElementById(
-      'decrease-saturation'
-    );
-    let increaseSaturationButton = this.shadowRoot.getElementById(
-      'increase-saturation'
-    );
-    let decreaseLightnessButton = this.shadowRoot.getElementById(
-      'decrease-lightness'
-    );
-    let increaseLightnessButton = this.shadowRoot.getElementById(
-      'increase-lightness'
-    );
-
-    decreaseSaturationButton.addEventListener('click', event => {
-      this.decreaseSaturation();
-    });
-    increaseSaturationButton.addEventListener('click', event => {
-      this.increaseSaturation();
-    });
-    decreaseLightnessButton.addEventListener('click', event => {
-      this.decreaseLightness();
-    });
-    increaseLightnessButton.addEventListener('click', event => {
-      this.increaseLightness();
-    });
-  }
-
-  addColorButtons() {
-    this.colors.forEach(color => {
-      let colorButton = document.createElement('my-palette-button');
-      colorButton.color = color;
-      colorButton.addEventListener('focus', event => {
-        this.onFocus(event);
+    // Handles decreasing the saturation of the palette buttons.
+    this.shadowRoot
+      .getElementById('decrease-saturation')
+      .addEventListener('click', event => {
+        if (this.saturation > 0) {
+          this.saturation -= 10;
+          this.refreshPalette();
+        }
       });
-      this.shadowRoot.prepend(colorButton);
-    });
+
+    // Handles increasing the saturation of the palette buttons.
+    this.shadowRoot
+      .getElementById('increase-saturation')
+      .addEventListener('click', event => {
+        if (this.saturation < 100) {
+          this.saturation += 10;
+          this.refreshPalette();
+        }
+      });
+
+    // Handles decreasing the lightness of the palette buttons.
+    this.shadowRoot
+      .getElementById('decrease-lightness')
+      .addEventListener('click', event => {
+        if (this.lightness > 0) {
+          this.lightness -= 10;
+          this.refreshPalette();
+        }
+      });
+
+    // Handles increasing the lightness of the palette buttons.
+    this.shadowRoot
+      .getElementById('increase-lightness')
+      .addEventListener('click', event => {
+        if (this.lightness < 100) {
+          this.lightness += 10;
+          this.refreshPalette();
+        }
+      });
   }
 
-  removeColorButtons() {
-    let colorButtons = this.shadowRoot.querySelectorAll('my-palette-button');
-    colorButtons.forEach(colorButton => {
-      colorButton.remove();
+  // Refreshes the palette to display new colors.
+  refreshPalette() {
+    // Remove old palette buttons.
+    this.shadowRoot.querySelectorAll('my-palette-button').forEach(button => {
+      button.remove();
     });
+
+    // Create and add new palette buttons.
+    this.createHSLColorArray(10, this.saturation, this.lightness).forEach(
+      color => {
+        let button = document.createElement('my-palette-button');
+        button.color = color;
+        this.shadowRoot.prepend(button);
+      }
+    );
   }
 
   // Creates an array of HSL colors by looping around the color wheel.
-  createColorArray(hueStepLength, saturation, lightness) {
-    const colorArray = [];
+  createHSLColorArray(hueStep, saturation, lightness) {
+    const colors = [];
 
-    for (let hue = 0; hue < 360; hue += hueStepLength) {
-      const hsl = this.createHSLColor(hue, saturation, lightness);
-      colorArray.push(hsl);
+    for (let hue = 0; hue < 360; hue += hueStep) {
+      const color = this.formatHSLColor(hue, saturation, lightness);
+      colors.push(color);
     }
-
-    return colorArray;
+    return colors;
   }
 
-  createHSLColor(hue, saturation, lightness) {
+  formatHSLColor(hue, saturation, lightness) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-  }
-
-  // Handles selections of colors.
-  onFocus(event) {
-    this.clearSelection();
-    this.addSelection(event.target);
-  }
-
-  // Adds a highlight to a specific color button.
-  addSelection(colorButton) {
-    colorButton.shadowRoot.querySelector('button').classList.add('selected');
-  }
-
-  // Removes the highlights of all color picker buttons.
-  clearSelection() {
-    this.shadowRoot
-      .querySelectorAll('my-palette-button')
-      .forEach(colorButton => {
-        colorButton.shadowRoot
-          .querySelector('button')
-          .classList.remove('selected');
-      });
-  }
-
-  // Decreases the saturation of the colors in the palette.
-  decreaseSaturation() {
-    if (this.saturation > 0) {
-      this.saturation -= 10;
-    }
-    this.updatePalette();
-  }
-
-  // Increases the saturation of the colors in the palette.
-  increaseSaturation() {
-    if (this.saturation < 100) {
-      this.saturation += 10;
-    }
-    this.updatePalette();
-  }
-
-  // Decreases the lightness of the colors in the palette.
-  decreaseLightness() {
-    if (this.lightness > 0) {
-      this.lightness -= 10;
-    }
-    this.updatePalette();
-  }
-
-  // Increases the lightness of the colors in the palette.
-  increaseLightness() {
-    if (this.lightness < 100) {
-      this.lightness += 10;
-    }
-    this.updatePalette();
-  }
-
-  // Updates the palette component so that new colors are displayed.
-  updatePalette() {
-    this.colors = this.createColorArray(10, this.saturation, this.lightness);
-    this.removeColorButtons();
-    this.addColorButtons();
   }
 }
 

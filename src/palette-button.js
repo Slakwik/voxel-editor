@@ -34,24 +34,28 @@ class PaletteButton extends window.HTMLElement {
 
   connectedCallback() {
     let button = this.shadowRoot.querySelector('button');
-
-    button.value = this.color;
     button.style.backgroundColor = this.color;
+    button.value = this.color;
 
+    // Notify other components of changes in selected color.
     button.addEventListener('click', event => {
-      this.onClick(event);
-    });
-  }
-
-  // Notifies other components of color changes.
-  onClick(event) {
-    const colorChangeEvent = new window.CustomEvent('color-change', {
-      detail: { message: event.target.value },
-      bubbles: true,
-      composed: true
+      const colorChangeEvent = new window.CustomEvent('color-change', {
+        detail: { message: event.target.value },
+        bubbles: true,
+        composed: true
+      });
+      this.dispatchEvent(colorChangeEvent);
     });
 
-    this.dispatchEvent(colorChangeEvent);
+    // Highlight the selected palette button.
+    button.addEventListener('focus', event => {
+      event.target.classList.add('selected');
+    });
+
+    // Remove highlight from palette button when unselected.
+    button.addEventListener('blur', event => {
+      event.target.classList.remove('selected');
+    });
   }
 }
 
