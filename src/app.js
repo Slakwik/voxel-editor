@@ -1,4 +1,3 @@
-import { loadSettings, saveSettings } from './settings-manager.js';
 import './top-bar.js';
 import './voxel-editor.js';
 import './side-bar.js';
@@ -20,15 +19,6 @@ class App extends window.HTMLElement {
   }
 
   connectedCallback() {
-    // Sets default settings if there aren't any saved user settings.
-    if (!loadSettings()) {
-      saveSettings({
-        antiAliasing: true,
-        pbrMaterials: true,
-        skyBackground: true
-      });
-    }
-
     // Opens the settings menu.
     this.addEventListener('menu-action', event => {
       if (event.detail.message === 'settings') {

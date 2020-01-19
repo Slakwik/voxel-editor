@@ -9,7 +9,7 @@ import {
   exportScene,
   screenshot
 } from './scene-manager.js';
-import { loadSettings } from './settings-manager.js';
+import { UserSettings } from './UserSettings.js';
 
 const html = document.createElement('template');
 html.innerHTML = `
@@ -71,8 +71,17 @@ class VoxelEditor extends window.HTMLElement {
     this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     this.camera.position.set(0, 10, 50);
 
-    // Settings
-    this.settings = loadSettings();
+    // Settings (saves default settings if there aren't any user settings).
+    if (UserSettings.load() === null) {
+      this.settings = {
+        antiAliasing: true,
+        pbrMaterials: true,
+        skyBackground: true
+      };
+      UserSettings.save(this.settings);
+    } else {
+      this.settings = UserSettings.load();
+    }
 
     // Renderer
     this.renderer = new THREE.WebGLRenderer({

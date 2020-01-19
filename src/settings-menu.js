@@ -1,4 +1,4 @@
-import { loadSettings, saveSettings } from './settings-manager.js';
+import { UserSettings } from './UserSettings.js';
 
 const html = document.createElement('template');
 html.innerHTML = `
@@ -57,7 +57,7 @@ class SettingsMenu extends window.HTMLElement {
     this.shadowRoot.appendChild(css.content.cloneNode(true));
 
     // Loads the user settings from local storage.
-    this.settings = loadSettings() || {};
+    this.settings = UserSettings.load() || {};
 
     let keys = Object.keys(this.settings);
 
@@ -105,7 +105,7 @@ class SettingsMenu extends window.HTMLElement {
         this.settings.skyBackground = event.target.checked;
         break;
     }
-    saveSettings(this.settings);
+    UserSettings.save(this.settings);
   }
 
   onCloseClick() {
