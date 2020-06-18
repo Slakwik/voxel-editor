@@ -7,7 +7,7 @@ import {
   saveScene,
   loadScene,
   exportScene,
-  screenshot
+  screenshot,
 } from './scene-manager.js';
 import { UserSettings } from './UserSettings.js';
 
@@ -76,7 +76,7 @@ class VoxelEditor extends window.HTMLElement {
       this.settings = {
         antiAliasing: true,
         pbrMaterials: true,
-        skyBackground: true
+        skyBackground: true,
       };
       UserSettings.save(this.settings);
     } else {
@@ -86,7 +86,7 @@ class VoxelEditor extends window.HTMLElement {
     // Renderer
     this.renderer = new THREE.WebGLRenderer({
       preserveDrawingBuffer: true,
-      antialias: this.settings.antiAliasing
+      antialias: this.settings.antiAliasing,
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -115,7 +115,7 @@ class VoxelEditor extends window.HTMLElement {
     this.scene.add(this.voxelControls);
 
     // Disables editor controls when voxel controls are being used.
-    this.voxelControls.addEventListener('dragging-changed', event => {
+    this.voxelControls.addEventListener('dragging-changed', (event) => {
       this.orbitControls.enabled = !event.value;
     });
 
@@ -148,13 +148,13 @@ class VoxelEditor extends window.HTMLElement {
   connectedCallback() {
     let mainDiv = this.shadowRoot.querySelector('div');
 
-    mainDiv.addEventListener('mousemove', event => {
+    mainDiv.addEventListener('mousemove', (event) => {
       this.onMouseMove(event);
     });
-    mainDiv.addEventListener('mousedown', event => {
+    mainDiv.addEventListener('mousedown', (event) => {
       this.onMouseDown(event);
     });
-    mainDiv.addEventListener('mouseup', event => {
+    mainDiv.addEventListener('mouseup', (event) => {
       this.onMouseUp(event);
     });
 
@@ -172,17 +172,17 @@ class VoxelEditor extends window.HTMLElement {
     });
 
     // Handles menu actions.
-    window.addEventListener('menu-action', event => {
+    window.addEventListener('menu-action', (event) => {
       this.performAction(event.detail.message);
     });
 
     // Handles mode changes.
-    window.addEventListener('mode-change', event => {
+    window.addEventListener('mode-change', (event) => {
       this.selectedMode = event.detail.message;
     });
 
     // Handles color changes.
-    window.addEventListener('color-change', event => {
+    window.addEventListener('color-change', (event) => {
       this.selectedColor = event.detail.message;
     });
   }
@@ -341,7 +341,7 @@ class VoxelEditor extends window.HTMLElement {
   // Detaches the outline from the specified object.
   detachOutline(object) {
     const outline = object.children.find(
-      child => child.name.slice(0, 7) === 'Outline'
+      (child) => child.name.slice(0, 7) === 'Outline'
     );
     object.remove(outline);
   }

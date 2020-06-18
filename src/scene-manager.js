@@ -9,13 +9,13 @@ function exportScene(scene) {
   const options = {};
 
   const voxels = scene.children.filter(
-    child => child.name.slice(0, 5) === 'Voxel'
+    (child) => child.name.slice(0, 5) === 'Voxel'
   );
   const mergedVoxels = mergeMeshes(voxels);
 
   exporter.parse(
     mergedVoxels,
-    gltfScene => {
+    (gltfScene) => {
       const jsonScene = JSON.stringify(gltfScene);
       const modelData = URL.createObjectURL(
         new window.Blob([jsonScene], { type: 'text/plain' })
@@ -53,12 +53,12 @@ function saveScene(scene) {
   const options = {};
 
   const voxels = scene.children.filter(
-    child => child.name.slice(0, 5) === 'Voxel'
+    (child) => child.name.slice(0, 5) === 'Voxel'
   );
 
   exporter.parse(
     voxels,
-    gltfScene => {
+    (gltfScene) => {
       const jsonScene = JSON.stringify(gltfScene);
       window.localStorage.setItem('scene', jsonScene);
     },
@@ -72,11 +72,11 @@ function loadScene(scene) {
 
   const jsonScene = window.localStorage.getItem('scene');
 
-  loader.parse(jsonScene, '', gltf => {
+  loader.parse(jsonScene, '', (gltf) => {
     const loadedScene = gltf.scene;
 
     const oldVoxels = scene.children.filter(
-      child => child.name.slice(0, 5) === 'Voxel'
+      (child) => child.name.slice(0, 5) === 'Voxel'
     );
     scene.remove(...oldVoxels);
 

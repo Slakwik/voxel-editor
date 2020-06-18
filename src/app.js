@@ -20,7 +20,7 @@ class App extends window.HTMLElement {
 
   connectedCallback() {
     // Opens the settings menu.
-    this.addEventListener('menu-action', event => {
+    this.addEventListener('menu-action', (event) => {
       if (event.detail.message === 'settings') {
         // Makes sure only one settings menu is opened.
         if (!this.shadowRoot.querySelector('my-settings-menu')) {

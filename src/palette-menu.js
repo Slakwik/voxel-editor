@@ -61,7 +61,7 @@ class PaletteMenu extends window.HTMLElement {
     // Handles decreasing the saturation of the palette buttons.
     this.shadowRoot
       .getElementById('decrease-saturation')
-      .addEventListener('click', event => {
+      .addEventListener('click', (event) => {
         if (this.saturation > 0) {
           this.saturation -= 10;
           this.refreshPalette();
@@ -71,7 +71,7 @@ class PaletteMenu extends window.HTMLElement {
     // Handles increasing the saturation of the palette buttons.
     this.shadowRoot
       .getElementById('increase-saturation')
-      .addEventListener('click', event => {
+      .addEventListener('click', (event) => {
         if (this.saturation < 100) {
           this.saturation += 10;
           this.refreshPalette();
@@ -81,7 +81,7 @@ class PaletteMenu extends window.HTMLElement {
     // Handles decreasing the lightness of the palette buttons.
     this.shadowRoot
       .getElementById('decrease-lightness')
-      .addEventListener('click', event => {
+      .addEventListener('click', (event) => {
         if (this.lightness > 0) {
           this.lightness -= 10;
           this.refreshPalette();
@@ -91,7 +91,7 @@ class PaletteMenu extends window.HTMLElement {
     // Handles increasing the lightness of the palette buttons.
     this.shadowRoot
       .getElementById('increase-lightness')
-      .addEventListener('click', event => {
+      .addEventListener('click', (event) => {
         if (this.lightness < 100) {
           this.lightness += 10;
           this.refreshPalette();
@@ -102,13 +102,13 @@ class PaletteMenu extends window.HTMLElement {
   // Refreshes the palette to display new colors.
   refreshPalette() {
     // Remove old palette buttons.
-    this.shadowRoot.querySelectorAll('my-palette-button').forEach(button => {
+    this.shadowRoot.querySelectorAll('my-palette-button').forEach((button) => {
       button.remove();
     });
 
     // Create and add new palette buttons.
     this.createHSLColorArray(10, this.saturation, this.lightness).forEach(
-      color => {
+      (color) => {
         let button = document.createElement('my-palette-button');
         button.color = color;
         this.shadowRoot.prepend(button);

@@ -57,11 +57,11 @@ class SideBar extends window.HTMLElement {
   connectedCallback() {
     let modeButtons = this.shadowRoot.querySelectorAll('button');
 
-    modeButtons.forEach(button => {
-      button.addEventListener('focus', event => {
+    modeButtons.forEach((button) => {
+      button.addEventListener('focus', (event) => {
         this.onFocus(event);
       });
-      button.addEventListener('click', event => {
+      button.addEventListener('click', (event) => {
         this.onModeClick(event);
       });
     });
@@ -71,7 +71,7 @@ class SideBar extends window.HTMLElement {
   onFocus(event) {
     this.shadowRoot
       .querySelectorAll('button')
-      .forEach(el => el.classList.remove('selected'));
+      .forEach((el) => el.classList.remove('selected'));
     event.target.classList.add('selected');
   }
 
@@ -80,7 +80,7 @@ class SideBar extends window.HTMLElement {
     const modeChangeEvent = new window.CustomEvent('mode-change', {
       detail: { message: event.target.value },
       bubbles: true,
-      composed: true
+      composed: true,
     });
 
     this.dispatchEvent(modeChangeEvent);

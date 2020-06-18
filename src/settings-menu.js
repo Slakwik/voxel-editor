@@ -81,12 +81,12 @@ class SettingsMenu extends window.HTMLElement {
 
   connectedCallback() {
     let closeButton = this.shadowRoot.querySelector('.close');
-    closeButton.addEventListener('click', event => {
+    closeButton.addEventListener('click', (event) => {
       this.onCloseClick();
     });
     let settingsCheckboxes = this.shadowRoot.querySelectorAll('input');
-    settingsCheckboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', event => {
+    settingsCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', (event) => {
         this.onSettingChange(event);
       });
     });

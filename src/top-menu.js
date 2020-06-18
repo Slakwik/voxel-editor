@@ -57,17 +57,17 @@ class TopMenu extends window.HTMLElement {
 
     titleElement.textContent = this.title;
 
-    titleElement.addEventListener('click', event => {
+    titleElement.addEventListener('click', (event) => {
       this.onTitleClick(event);
     });
 
     let menuElement = this.shadowRoot.querySelector('.content');
 
-    menuElement.addEventListener('click', event => {
+    menuElement.addEventListener('click', (event) => {
       this.onMenuClick(event);
     });
 
-    this.content.forEach(title => {
+    this.content.forEach((title) => {
       let button = document.createElement('button');
       button.textContent = title;
       button.value = title.toLowerCase();
@@ -87,7 +87,7 @@ class TopMenu extends window.HTMLElement {
     const menuActionEvent = new window.CustomEvent('menu-action', {
       detail: { message: event.target.value },
       bubbles: true,
-      composed: true
+      composed: true,
     });
 
     this.dispatchEvent(menuActionEvent);
