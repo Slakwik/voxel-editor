@@ -9,7 +9,6 @@ import {
   exportScene,
   screenshot,
 } from './scene-manager.js';
-import { UserSettings } from './UserSettings.js';
 
 const html = document.createElement('template');
 html.innerHTML = `
@@ -71,22 +70,10 @@ class VoxelEditor extends window.HTMLElement {
     this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     this.camera.position.set(0, 10, 50);
 
-    // Settings (saves default settings if there aren't any user settings).
-    if (UserSettings.load() === null) {
-      this.settings = {
-        antiAliasing: true,
-        pbrMaterials: true,
-        skyBackground: true,
-      };
-      UserSettings.save(this.settings);
-    } else {
-      this.settings = UserSettings.load();
-    }
-
     // Renderer
     this.renderer = new THREE.WebGLRenderer({
       preserveDrawingBuffer: true,
-      antialias: this.settings.antiAliasing,
+      antialias: true,
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -120,22 +107,16 @@ class VoxelEditor extends window.HTMLElement {
     });
 
     // Sky background
-    if (this.settings.skyBackground) {
-      const sky = new Sky();
-      sky.name = 'Sky: ' + sky.id;
-      sky.material.uniforms.turbidity.value = 10;
-      sky.material.uniforms.rayleigh.value = 0.5;
-      sky.material.uniforms.luminance.value = 0.16;
-      sky.material.uniforms.mieCoefficient.value = 0.01;
-      sky.material.uniforms.mieDirectionalG.value = 0.95;
-      sky.material.uniforms.sunPosition.value = new THREE.Vector3(
-        100,
-        200,
-        100
-      );
-      sky.scale.setScalar(2000);
-      this.scene.add(sky);
-    }
+    const sky = new Sky();
+    sky.name = 'Sky: ' + sky.id;
+    sky.material.uniforms.turbidity.value = 10;
+    sky.material.uniforms.rayleigh.value = 0.5;
+    sky.material.uniforms.luminance.value = 0.16;
+    sky.material.uniforms.mieCoefficient.value = 0.01;
+    sky.material.uniforms.mieDirectionalG.value = 0.95;
+    sky.material.uniforms.sunPosition.value = new THREE.Vector3(100, 200, 100);
+    sky.scale.setScalar(2000);
+    this.scene.add(sky);
 
     // Mouse & raycaster
     this.mouse = new THREE.Vector2();
@@ -208,12 +189,11 @@ class VoxelEditor extends window.HTMLElement {
   addVoxel(position) {
     const boxGeometry = new THREE.BoxBufferGeometry(10, 10, 10);
 
-    // Chooses material type based on user settings.
-    let coloredMaterial = this.settings.pbrMaterials
-      ? new THREE.MeshStandardMaterial({ color: this.selectedColor })
-      : new THREE.MeshBasicMaterial({ color: this.selectedColor });
+    const boxMaterial = new THREE.MeshStandardMaterial({
+      color: this.selectedColor,
+    });
 
-    const voxel = new THREE.Mesh(boxGeometry, coloredMaterial);
+    const voxel = new THREE.Mesh(boxGeometry, boxMaterial);
     voxel.name = 'Voxel: ' + voxel.id;
     voxel.position.set(position.x, position.y, position.z);
 

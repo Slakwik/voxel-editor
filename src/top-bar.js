@@ -10,11 +10,6 @@ html.innerHTML = `
   ></my-top-menu>
 
   <my-top-menu
-    data-title="Edit"
-    data-content='["Settings"]'
-  ></my-top-menu>
-
-  <my-top-menu
     data-title="View"
     data-content='["Top", "Right", "Bottom", "Left"]'
   ></my-top-menu>
