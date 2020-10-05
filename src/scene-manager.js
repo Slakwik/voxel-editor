@@ -34,7 +34,7 @@ function mergeMeshes(meshes) {
   const materials = [];
 
   for (let i = 0; i < meshes.length; i++) {
-    geometries.push(meshes[i].geometry.clone().applyMatrix(meshes[i].matrix));
+    geometries.push(meshes[i].geometry.clone().applyMatrix4(meshes[i].matrix));
     materials.push(meshes[i].material.clone());
   }
 

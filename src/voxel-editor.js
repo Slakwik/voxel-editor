@@ -111,7 +111,6 @@ class VoxelEditor extends window.HTMLElement {
     sky.name = 'Sky: ' + sky.id;
     sky.material.uniforms.turbidity.value = 10;
     sky.material.uniforms.rayleigh.value = 0.5;
-    sky.material.uniforms.luminance.value = 0.16;
     sky.material.uniforms.mieCoefficient.value = 0.01;
     sky.material.uniforms.mieDirectionalG.value = 0.95;
     sky.material.uniforms.sunPosition.value = new THREE.Vector3(100, 200, 100);
@@ -129,13 +128,13 @@ class VoxelEditor extends window.HTMLElement {
   connectedCallback() {
     let mainDiv = this.shadowRoot.querySelector('div');
 
-    mainDiv.addEventListener('mousemove', (event) => {
+    mainDiv.addEventListener('pointermove', (event) => {
       this.onMouseMove(event);
     });
-    mainDiv.addEventListener('mousedown', (event) => {
+    mainDiv.addEventListener('pointerdown', (event) => {
       this.onMouseDown(event);
     });
-    mainDiv.addEventListener('mouseup', (event) => {
+    mainDiv.addEventListener('pointerup', (event) => {
       this.onMouseUp(event);
     });
 
@@ -191,6 +190,8 @@ class VoxelEditor extends window.HTMLElement {
 
     const boxMaterial = new THREE.MeshStandardMaterial({
       color: this.selectedColor,
+      roughness: 0.5,
+      metalness: 0.5,
     });
 
     const voxel = new THREE.Mesh(boxGeometry, boxMaterial);
