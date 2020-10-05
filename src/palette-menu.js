@@ -22,8 +22,8 @@ css.innerHTML = `
     button {
       padding: 2px;
       font-size: 12px;
-      height: 22px;
-      width: 22px;
+      height: 21px;
+      width: 21px;
       font-weight: bold;
       border: 1px solid white;
       border-radius: 100%;
