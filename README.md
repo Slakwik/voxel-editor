@@ -1,5 +1,7 @@
 # Voxel Editor
 
+**This app is no longer under development. I don't enjoy writing Javascript anymore, and the app is not well engineered—it has design issues and performance issues. I might rewrite it in a low-level language in the future. We'll see. :)**
+
 A voxel editor in the browser.
 
 Try it here: https://eliaspekkala.github.io/voxel-editor/
